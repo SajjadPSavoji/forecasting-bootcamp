@@ -1,0 +1,1712 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Demand forecasting with the Temporal Fusion Transformer &#8212; SajjadPSavoji/forecasting-bootcamp</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=__G_ANALYTICS_ID__"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', '__G_ANALYTICS_ID__');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'external_demos/temporal_fusion_transformer_sales_demand';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Introduction" href="time-series-forecasting-eda-fe-modelling.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="readme.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://vectorinstitute.ai/wp-content/uploads/2022/11/logo-vector-institute-full-colour-01.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="https://vectorinstitute.ai/wp-content/uploads/2022/11/logo-vector-institute-full-colour-01.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../README.html">
+                    Forecasting Bootcamp
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../datasets/datasets_intro.html">Datasets intro</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../datasets/can_climate_data/data_explore.html">Load weather data and station metadata</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../datasets/m5/load_m5_dataset.html">M5 Data Preparation</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../demos/demo1_prophet_neuralprophet_testset.html">Demo1 prophet neuralprophet testset</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../demos/demo2_pytorch_forecasting.html">Demo2 pytorch forecasting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../demos/demo2_pytorch_forecasting-NBEATS-CPI.html">Demo2 pytorch forecasting-nbeats-cpi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../demos/demo3_rolling_cv_prophet.html">Demo3 rolling cv prophet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../demos/README.html">Readme</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="m5-competition-eda-models.html">Introduction</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1 has-children"><a class="reference internal" href="../intro_to_forecasting/intro_time_series.html">Intro time series</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro_to_forecasting/intro_time_series_2.html">Intro time series 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro_to_forecasting/README.html">Readme</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../multivariate_demos/deepar_electricty.html">Deepar electricty</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../multivariate_demos/nbeats_electricity.html">Nbeats electricity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multivariate_demos/nhits_quantile.html">Nhits quantile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multivariate_demos/README.html">Readme</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../multivariate_lstf_demos/autoformer_traffic.html">Autoformer traffic</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../multivariate_lstf_demos/nhits_traffic.html">Nhits traffic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../multivariate_lstf_demos/README.html">Readme</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/SajjadPSavoji/forecasting-bootcamp/booklet?urlpath=lab/tree/./external_demos/temporal_fusion_transformer_sales_demand.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/SajjadPSavoji/forecasting-bootcamp/blob/booklet/./external_demos/temporal_fusion_transformer_sales_demand.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/SajjadPSavoji/forecasting-bootcamp" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/SajjadPSavoji/forecasting-bootcamp/edit/booklet/./external_demos/temporal_fusion_transformer_sales_demand.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/SajjadPSavoji/forecasting-bootcamp/issues/new?title=Issue%20on%20page%20%2Fexternal_demos/temporal_fusion_transformer_sales_demand.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/external_demos/temporal_fusion_transformer_sales_demand.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Demand forecasting with the Temporal Fusion Transformer</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-dataset-and-dataloaders">Create dataset and dataloaders</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-baseline-model">Create baseline model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-the-temporal-fusion-transformer">Train the Temporal Fusion Transformer</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#find-optimal-learning-rate">Find optimal learning rate</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-model">Train model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperparameter-tuning">Hyperparameter tuning</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluate-performance">Evaluate performance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#worst-performers">Worst performers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#actuals-vs-predictions-by-variables">Actuals vs predictions by variables</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predict-on-selected-data">Predict on selected data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predict-on-new-data">Predict on new data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpret-model">Interpret model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-importances">Variable importances</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="demand-forecasting-with-the-temporal-fusion-transformer">
+<h1>Demand forecasting with the Temporal Fusion Transformer<a class="headerlink" href="#demand-forecasting-with-the-temporal-fusion-transformer" title="Permalink to this heading">#</a></h1>
+<p>In this tutorial, we will train the class <code class="docutils literal notranslate"><span class="pre">pytorch_forecasting.models.temporal_fusion_transformer.TemporalFusionTransformer</span></code> on a very small dataset to demonstrate that it even does a good job on only 20k samples. Generally speaking, it is a large model and will therefore perform much better with more data.</p>
+<p>Our example is a demand forecast from the <a class="reference external" href="https://www.kaggle.com/utathya/future-volume-prediction">Stallion kaggle competition</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>  <span class="c1"># avoid printing out absolute paths</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">pytorch_lightning</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="kn">from</span> <span class="nn">pytorch_lightning.callbacks</span> <span class="kn">import</span> <span class="n">EarlyStopping</span><span class="p">,</span> <span class="n">LearningRateMonitor</span>
+<span class="kn">from</span> <span class="nn">pytorch_lightning.loggers</span> <span class="kn">import</span> <span class="n">TensorBoardLogger</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="kn">from</span> <span class="nn">pytorch_forecasting</span> <span class="kn">import</span> <span class="n">Baseline</span><span class="p">,</span> <span class="n">TemporalFusionTransformer</span><span class="p">,</span> <span class="n">TimeSeriesDataSet</span>
+<span class="kn">from</span> <span class="nn">pytorch_forecasting.data</span> <span class="kn">import</span> <span class="n">GroupNormalizer</span>
+<span class="kn">from</span> <span class="nn">pytorch_forecasting.metrics</span> <span class="kn">import</span> <span class="n">SMAPE</span><span class="p">,</span> <span class="n">PoissonLoss</span><span class="p">,</span> <span class="n">QuantileLoss</span>
+<span class="kn">from</span> <span class="nn">pytorch_forecasting.models.temporal_fusion_transformer.tuning</span> <span class="kn">import</span> <span class="n">optimize_hyperparameters</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="load-data">
+<h2>Load data<a class="headerlink" href="#load-data" title="Permalink to this heading">#</a></h2>
+<p>First, we need to transform our time series into a pandas dataframe where each row can be identified with a time step and a time series. Fortunately, most datasets are already in this format. For this tutorial, we will use the <a class="reference external" href="https://www.kaggle.com/utathya/future-volume-prediction">Stallion dataset from Kaggle</a> describing sales of various beverages. Our task is to make a six-month forecast of the sold volume by stock keeping units (SKU), that is products, sold by an agency, that is a store. There are about 21 000 monthly historic sales records. In addition to historic sales we have information about the sales price, the location of the agency, special days such as holidays, and volume sold in the entire industry.</p>
+<p>The dataset is already in the correct format but misses some important features. Most importantly, we need to add a time index that is incremented by one for each time step. Further, it is beneficial to add date features, which in this case means extracting the month from the date record.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pytorch_forecasting.data.examples</span> <span class="kn">import</span> <span class="n">get_stallion_data</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">get_stallion_data</span><span class="p">()</span>
+
+<span class="c1"># add time index</span>
+<span class="n">data</span><span class="p">[</span><span class="s2">&quot;time_idx&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span> <span class="o">*</span> <span class="mi">12</span> <span class="o">+</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span>
+<span class="n">data</span><span class="p">[</span><span class="s2">&quot;time_idx&quot;</span><span class="p">]</span> <span class="o">-=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;time_idx&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+
+<span class="c1"># add additional features</span>
+<span class="n">data</span><span class="p">[</span><span class="s2">&quot;month&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>  <span class="c1"># categories have be strings</span>
+<span class="n">data</span><span class="p">[</span><span class="s2">&quot;log_volume&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">volume</span> <span class="o">+</span> <span class="mf">1e-8</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s2">&quot;avg_volume_by_sku&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;time_idx&quot;</span><span class="p">,</span> <span class="s2">&quot;sku&quot;</span><span class="p">],</span> <span class="n">observed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">volume</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="s2">&quot;mean&quot;</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s2">&quot;avg_volume_by_agency&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;time_idx&quot;</span><span class="p">,</span> <span class="s2">&quot;agency&quot;</span><span class="p">],</span> <span class="n">observed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">volume</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="s2">&quot;mean&quot;</span><span class="p">)</span>
+
+<span class="c1"># we want to encode special days as one variable and thus need to first reverse one-hot encoding</span>
+<span class="n">special_days</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;easter_day&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;good_friday&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;new_year&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;christmas&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;labor_day&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;independence_day&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;revolution_day_memorial&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;regional_games&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;fifa_u_17_world_cup&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;football_gold_cup&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;beer_capital&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;music_fest&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">data</span><span class="p">[</span><span class="n">special_days</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">special_days</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">map</span><span class="p">({</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">name</span><span class="p">}))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">521</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>agency</th>
+      <th>sku</th>
+      <th>volume</th>
+      <th>date</th>
+      <th>industry_volume</th>
+      <th>soda_volume</th>
+      <th>avg_max_temp</th>
+      <th>price_regular</th>
+      <th>price_actual</th>
+      <th>discount</th>
+      <th>...</th>
+      <th>football_gold_cup</th>
+      <th>beer_capital</th>
+      <th>music_fest</th>
+      <th>discount_in_percent</th>
+      <th>timeseries</th>
+      <th>time_idx</th>
+      <th>month</th>
+      <th>log_volume</th>
+      <th>avg_volume_by_sku</th>
+      <th>avg_volume_by_agency</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>291</th>
+      <td>Agency_25</td>
+      <td>SKU_03</td>
+      <td>0.5076</td>
+      <td>2013-01-01</td>
+      <td>492612703</td>
+      <td>718394219</td>
+      <td>25.845238</td>
+      <td>1264.162234</td>
+      <td>1152.473405</td>
+      <td>111.688829</td>
+      <td>...</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>8.835008</td>
+      <td>228</td>
+      <td>0</td>
+      <td>1</td>
+      <td>-0.678062</td>
+      <td>1225.306376</td>
+      <td>99.650400</td>
+    </tr>
+    <tr>
+      <th>871</th>
+      <td>Agency_29</td>
+      <td>SKU_02</td>
+      <td>8.7480</td>
+      <td>2015-01-01</td>
+      <td>498567142</td>
+      <td>762225057</td>
+      <td>27.584615</td>
+      <td>1316.098485</td>
+      <td>1296.804924</td>
+      <td>19.293561</td>
+      <td>...</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>1.465966</td>
+      <td>177</td>
+      <td>24</td>
+      <td>1</td>
+      <td>2.168825</td>
+      <td>1634.434615</td>
+      <td>11.397086</td>
+    </tr>
+    <tr>
+      <th>19532</th>
+      <td>Agency_47</td>
+      <td>SKU_01</td>
+      <td>4.9680</td>
+      <td>2013-09-01</td>
+      <td>454252482</td>
+      <td>789624076</td>
+      <td>30.665957</td>
+      <td>1269.250000</td>
+      <td>1266.490490</td>
+      <td>2.759510</td>
+      <td>...</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>0.217413</td>
+      <td>322</td>
+      <td>8</td>
+      <td>9</td>
+      <td>1.603017</td>
+      <td>2625.472644</td>
+      <td>48.295650</td>
+    </tr>
+    <tr>
+      <th>2089</th>
+      <td>Agency_53</td>
+      <td>SKU_07</td>
+      <td>21.6825</td>
+      <td>2013-10-01</td>
+      <td>480693900</td>
+      <td>791658684</td>
+      <td>29.197727</td>
+      <td>1193.842373</td>
+      <td>1128.124395</td>
+      <td>65.717978</td>
+      <td>...</td>
+      <td>-</td>
+      <td>beer_capital</td>
+      <td>-</td>
+      <td>5.504745</td>
+      <td>240</td>
+      <td>9</td>
+      <td>10</td>
+      <td>3.076505</td>
+      <td>38.529107</td>
+      <td>2511.035175</td>
+    </tr>
+    <tr>
+      <th>9755</th>
+      <td>Agency_17</td>
+      <td>SKU_02</td>
+      <td>960.5520</td>
+      <td>2015-03-01</td>
+      <td>515468092</td>
+      <td>871204688</td>
+      <td>23.608120</td>
+      <td>1338.334248</td>
+      <td>1232.128069</td>
+      <td>106.206179</td>
+      <td>...</td>
+      <td>-</td>
+      <td>-</td>
+      <td>music_fest</td>
+      <td>7.935699</td>
+      <td>259</td>
+      <td>26</td>
+      <td>3</td>
+      <td>6.867508</td>
+      <td>2143.677462</td>
+      <td>396.022140</td>
+    </tr>
+    <tr>
+      <th>7561</th>
+      <td>Agency_05</td>
+      <td>SKU_03</td>
+      <td>1184.6535</td>
+      <td>2014-02-01</td>
+      <td>425528909</td>
+      <td>734443953</td>
+      <td>28.668254</td>
+      <td>1369.556376</td>
+      <td>1161.135214</td>
+      <td>208.421162</td>
+      <td>...</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>15.218151</td>
+      <td>21</td>
+      <td>13</td>
+      <td>2</td>
+      <td>7.077206</td>
+      <td>1566.643589</td>
+      <td>1881.866367</td>
+    </tr>
+    <tr>
+      <th>19204</th>
+      <td>Agency_11</td>
+      <td>SKU_05</td>
+      <td>5.5593</td>
+      <td>2017-08-01</td>
+      <td>623319783</td>
+      <td>1049868815</td>
+      <td>31.915385</td>
+      <td>1922.486644</td>
+      <td>1651.307674</td>
+      <td>271.178970</td>
+      <td>...</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>14.105636</td>
+      <td>17</td>
+      <td>55</td>
+      <td>8</td>
+      <td>1.715472</td>
+      <td>1385.225478</td>
+      <td>109.699200</td>
+    </tr>
+    <tr>
+      <th>8781</th>
+      <td>Agency_48</td>
+      <td>SKU_04</td>
+      <td>4275.1605</td>
+      <td>2013-03-01</td>
+      <td>509281531</td>
+      <td>892192092</td>
+      <td>26.767857</td>
+      <td>1761.258209</td>
+      <td>1546.059670</td>
+      <td>215.198539</td>
+      <td>...</td>
+      <td>-</td>
+      <td>-</td>
+      <td>music_fest</td>
+      <td>12.218455</td>
+      <td>151</td>
+      <td>2</td>
+      <td>3</td>
+      <td>8.360577</td>
+      <td>1757.950603</td>
+      <td>1925.272108</td>
+    </tr>
+    <tr>
+      <th>2540</th>
+      <td>Agency_07</td>
+      <td>SKU_21</td>
+      <td>0.0000</td>
+      <td>2015-10-01</td>
+      <td>544203593</td>
+      <td>761469815</td>
+      <td>28.987755</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>0.000000</td>
+      <td>300</td>
+      <td>33</td>
+      <td>10</td>
+      <td>-18.420681</td>
+      <td>0.000000</td>
+      <td>2418.719550</td>
+    </tr>
+    <tr>
+      <th>12084</th>
+      <td>Agency_21</td>
+      <td>SKU_03</td>
+      <td>46.3608</td>
+      <td>2017-04-01</td>
+      <td>589969396</td>
+      <td>940912941</td>
+      <td>32.478910</td>
+      <td>1675.922116</td>
+      <td>1413.571789</td>
+      <td>262.350327</td>
+      <td>...</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>15.654088</td>
+      <td>181</td>
+      <td>51</td>
+      <td>4</td>
+      <td>3.836454</td>
+      <td>2034.293024</td>
+      <td>109.381800</td>
+    </tr>
+  </tbody>
+</table>
+<p>10 rows × 31 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>volume</th>
+      <th>industry_volume</th>
+      <th>soda_volume</th>
+      <th>avg_max_temp</th>
+      <th>price_regular</th>
+      <th>price_actual</th>
+      <th>discount</th>
+      <th>avg_population_2017</th>
+      <th>avg_yearly_household_income_2017</th>
+      <th>discount_in_percent</th>
+      <th>timeseries</th>
+      <th>time_idx</th>
+      <th>log_volume</th>
+      <th>avg_volume_by_sku</th>
+      <th>avg_volume_by_agency</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>21000.000000</td>
+      <td>2.100000e+04</td>
+      <td>2.100000e+04</td>
+      <td>21000.000000</td>
+      <td>21000.000000</td>
+      <td>21000.000000</td>
+      <td>21000.000000</td>
+      <td>2.100000e+04</td>
+      <td>21000.000000</td>
+      <td>21000.000000</td>
+      <td>21000.00000</td>
+      <td>21000.000000</td>
+      <td>21000.000000</td>
+      <td>21000.000000</td>
+      <td>21000.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>1492.403982</td>
+      <td>5.439214e+08</td>
+      <td>8.512000e+08</td>
+      <td>28.612404</td>
+      <td>1451.536344</td>
+      <td>1267.347450</td>
+      <td>184.374146</td>
+      <td>1.045065e+06</td>
+      <td>151073.494286</td>
+      <td>10.574884</td>
+      <td>174.50000</td>
+      <td>29.500000</td>
+      <td>2.464118</td>
+      <td>1492.403982</td>
+      <td>1492.403982</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>2711.496882</td>
+      <td>6.288022e+07</td>
+      <td>7.824340e+07</td>
+      <td>3.972833</td>
+      <td>683.362417</td>
+      <td>587.757323</td>
+      <td>257.469968</td>
+      <td>9.291926e+05</td>
+      <td>50409.593114</td>
+      <td>9.590813</td>
+      <td>101.03829</td>
+      <td>17.318515</td>
+      <td>8.178218</td>
+      <td>1051.790829</td>
+      <td>1328.239698</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.000000</td>
+      <td>4.130518e+08</td>
+      <td>6.964015e+08</td>
+      <td>16.731034</td>
+      <td>0.000000</td>
+      <td>-3121.690141</td>
+      <td>0.000000</td>
+      <td>1.227100e+04</td>
+      <td>90240.000000</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+      <td>-18.420681</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>8.272388</td>
+      <td>5.090553e+08</td>
+      <td>7.890880e+08</td>
+      <td>25.374816</td>
+      <td>1311.547158</td>
+      <td>1178.365653</td>
+      <td>54.935108</td>
+      <td>6.018900e+04</td>
+      <td>110057.000000</td>
+      <td>3.749628</td>
+      <td>87.00000</td>
+      <td>14.750000</td>
+      <td>2.112923</td>
+      <td>932.285496</td>
+      <td>113.420250</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>158.436000</td>
+      <td>5.512000e+08</td>
+      <td>8.649196e+08</td>
+      <td>28.479272</td>
+      <td>1495.174592</td>
+      <td>1324.695705</td>
+      <td>138.307225</td>
+      <td>1.232242e+06</td>
+      <td>131411.000000</td>
+      <td>8.948990</td>
+      <td>174.50000</td>
+      <td>29.500000</td>
+      <td>5.065351</td>
+      <td>1402.305264</td>
+      <td>1730.529771</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>1774.793475</td>
+      <td>5.893715e+08</td>
+      <td>9.005551e+08</td>
+      <td>31.568405</td>
+      <td>1725.652080</td>
+      <td>1517.311427</td>
+      <td>272.298630</td>
+      <td>1.729177e+06</td>
+      <td>206553.000000</td>
+      <td>15.647058</td>
+      <td>262.00000</td>
+      <td>44.250000</td>
+      <td>7.481439</td>
+      <td>2195.362302</td>
+      <td>2595.316500</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>22526.610000</td>
+      <td>6.700157e+08</td>
+      <td>1.049869e+09</td>
+      <td>45.290476</td>
+      <td>19166.625000</td>
+      <td>4925.404000</td>
+      <td>19166.625000</td>
+      <td>3.137874e+06</td>
+      <td>247220.000000</td>
+      <td>226.740147</td>
+      <td>349.00000</td>
+      <td>59.000000</td>
+      <td>10.022453</td>
+      <td>4332.363750</td>
+      <td>5884.717375</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<section id="create-dataset-and-dataloaders">
+<h3>Create dataset and dataloaders<a class="headerlink" href="#create-dataset-and-dataloaders" title="Permalink to this heading">#</a></h3>
+<p>The next step is to convert the dataframe into a PyTorch Forecasting the class <code class="docutils literal notranslate"><span class="pre">pytorch_forecasting.data.timeseries.TimeSeriesDataSet</span></code>. Apart from telling the dataset which features are categorical vs continuous and which are static vs varying in time, we also have to decide how we normalise the data. Here, we standard scale each time series separately and indicate that values are always positive. Generally, the class <code class="docutils literal notranslate"><span class="pre">pytorch_forecasting.data.encoders.EncoderNormalizer</span></code>, that scales dynamically on each encoder sequence as you train, is preferred to avoid look-ahead bias induced by normalisation. However, you might accept look-ahead bias if you are having troubles to find a reasonably stable normalisation, for example, because there are a lot of zeros in your data. Or you expect a more stable normalization in inference. In the later case, you ensure that you do not learn “weird” jumps that will not be present when running inference, thus training on a more realistic data set.</p>
+<p>We also choose to use the last six months as a validation set.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">max_prediction_length</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">max_encoder_length</span> <span class="o">=</span> <span class="mi">24</span>
+<span class="n">training_cutoff</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;time_idx&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">max_prediction_length</span>
+
+<span class="n">training</span> <span class="o">=</span> <span class="n">TimeSeriesDataSet</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">[</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">time_idx</span> <span class="o">&lt;=</span> <span class="n">training_cutoff</span><span class="p">],</span>
+    <span class="n">time_idx</span><span class="o">=</span><span class="s2">&quot;time_idx&quot;</span><span class="p">,</span>
+    <span class="n">target</span><span class="o">=</span><span class="s2">&quot;volume&quot;</span><span class="p">,</span>
+    <span class="n">group_ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;agency&quot;</span><span class="p">,</span> <span class="s2">&quot;sku&quot;</span><span class="p">],</span>
+    <span class="n">min_encoder_length</span><span class="o">=</span><span class="n">max_encoder_length</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span>  <span class="c1"># keep encoder length long (as it is in the validation set)</span>
+    <span class="n">max_encoder_length</span><span class="o">=</span><span class="n">max_encoder_length</span><span class="p">,</span>
+    <span class="n">min_prediction_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">max_prediction_length</span><span class="o">=</span><span class="n">max_prediction_length</span><span class="p">,</span>
+    <span class="n">static_categoricals</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;agency&quot;</span><span class="p">,</span> <span class="s2">&quot;sku&quot;</span><span class="p">],</span>
+    <span class="n">static_reals</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;avg_population_2017&quot;</span><span class="p">,</span> <span class="s2">&quot;avg_yearly_household_income_2017&quot;</span><span class="p">],</span>
+    <span class="n">time_varying_known_categoricals</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;special_days&quot;</span><span class="p">,</span> <span class="s2">&quot;month&quot;</span><span class="p">],</span>
+    <span class="n">variable_groups</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;special_days&quot;</span><span class="p">:</span> <span class="n">special_days</span><span class="p">},</span>  <span class="c1"># group of categorical variables can be treated as one variable</span>
+    <span class="n">time_varying_known_reals</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;time_idx&quot;</span><span class="p">,</span> <span class="s2">&quot;price_regular&quot;</span><span class="p">,</span> <span class="s2">&quot;discount_in_percent&quot;</span><span class="p">],</span>
+    <span class="n">time_varying_unknown_categoricals</span><span class="o">=</span><span class="p">[],</span>
+    <span class="n">time_varying_unknown_reals</span><span class="o">=</span><span class="p">[</span>
+        <span class="s2">&quot;volume&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;log_volume&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;industry_volume&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;soda_volume&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;avg_max_temp&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;avg_volume_by_agency&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;avg_volume_by_sku&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="n">target_normalizer</span><span class="o">=</span><span class="n">GroupNormalizer</span><span class="p">(</span>
+        <span class="n">groups</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;agency&quot;</span><span class="p">,</span> <span class="s2">&quot;sku&quot;</span><span class="p">],</span> <span class="n">transformation</span><span class="o">=</span><span class="s2">&quot;softplus&quot;</span>
+    <span class="p">),</span>  <span class="c1"># use softplus and normalize by group</span>
+    <span class="n">add_relative_time_idx</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">add_target_scales</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">add_encoder_length</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># create validation set (predict=True) which means to predict the last max_prediction_length points in time</span>
+<span class="c1"># for each series</span>
+<span class="n">validation</span> <span class="o">=</span> <span class="n">TimeSeriesDataSet</span><span class="o">.</span><span class="n">from_dataset</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">predict</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">stop_randomization</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># create dataloaders for model</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">128</span>  <span class="c1"># set this between 32 to 128</span>
+<span class="n">train_dataloader</span> <span class="o">=</span> <span class="n">training</span><span class="o">.</span><span class="n">to_dataloader</span><span class="p">(</span><span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">val_dataloader</span> <span class="o">=</span> <span class="n">validation</span><span class="o">.</span><span class="n">to_dataloader</span><span class="p">(</span><span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span> <span class="o">*</span> <span class="mi">10</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="create-baseline-model">
+<h2>Create baseline model<a class="headerlink" href="#create-baseline-model" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate baseline mean absolute error, i.e. predict next value as the last available value from the history</span>
+<span class="n">actuals</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">y</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">iter</span><span class="p">(</span><span class="n">val_dataloader</span><span class="p">)])</span>
+<span class="n">baseline_predictions</span> <span class="o">=</span> <span class="n">Baseline</span><span class="p">()</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">val_dataloader</span><span class="p">)</span>
+<span class="p">(</span><span class="n">actuals</span> <span class="o">-</span> <span class="n">baseline_predictions</span><span class="p">)</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>293.0088195800781
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="train-the-temporal-fusion-transformer">
+<h2>Train the Temporal Fusion Transformer<a class="headerlink" href="#train-the-temporal-fusion-transformer" title="Permalink to this heading">#</a></h2>
+<section id="find-optimal-learning-rate">
+<h3>Find optimal learning rate<a class="headerlink" href="#find-optimal-learning-rate" title="Permalink to this heading">#</a></h3>
+<p>Prior to training, you can identify the optimal learning rate with the <a class="reference external" href="https://pytorch-lightning.readthedocs.io/en/latest/lr_finder.html">PyTorch Lightning learning rate finder</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># configure network and trainer</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">seed_everything</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">trainer</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">Trainer</span><span class="p">(</span>
+    <span class="n">gpus</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="c1"># clipping gradients is a hyperparameter and important to prevent divergance</span>
+    <span class="c1"># of the gradient for recurrent neural networks</span>
+    <span class="n">gradient_clip_val</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="n">tft</span> <span class="o">=</span> <span class="n">TemporalFusionTransformer</span><span class="o">.</span><span class="n">from_dataset</span><span class="p">(</span>
+    <span class="n">training</span><span class="p">,</span>
+    <span class="c1"># not meaningful for finding the learning rate but otherwise very important</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span>
+    <span class="n">hidden_size</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>  <span class="c1"># most important hyperparameter apart from learning rate</span>
+    <span class="c1"># number of attention heads. Set to up to 4 for large datasets</span>
+    <span class="n">attention_head_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">dropout</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>  <span class="c1"># between 0.1 and 0.3 are good values</span>
+    <span class="n">hidden_continuous_size</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>  <span class="c1"># set to &lt;= hidden_size</span>
+    <span class="n">output_size</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>  <span class="c1"># 7 quantiles by default</span>
+    <span class="n">loss</span><span class="o">=</span><span class="n">QuantileLoss</span><span class="p">(),</span>
+    <span class="c1"># reduce learning rate if no improvement in validation loss after x epochs</span>
+    <span class="n">reduce_on_plateau_patience</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of parameters in network: </span><span class="si">{</span><span class="n">tft</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">/</span><span class="mf">1e3</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">k&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Global seed set to 42
+GPU available: True, used: False
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of parameters in network: 29.7k
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># find optimal learning rate</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">tuner</span><span class="o">.</span><span class="n">lr_find</span><span class="p">(</span>
+    <span class="n">tft</span><span class="p">,</span>
+    <span class="n">train_dataloader</span><span class="o">=</span><span class="n">train_dataloader</span><span class="p">,</span>
+    <span class="n">val_dataloaders</span><span class="o">=</span><span class="n">val_dataloader</span><span class="p">,</span>
+    <span class="n">max_lr</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span>
+    <span class="n">min_lr</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;suggested learning rate: </span><span class="si">{</span><span class="n">res</span><span class="o">.</span><span class="n">suggestion</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">suggest</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/ssd003/projects/aieng/public/forecasting_unified/lib/python3.8/site-packages/pytorch_lightning/trainer/trainer.py:1079: LightningDeprecationWarning: `trainer.tune(train_dataloader)` is deprecated in v1.4 and will be removed in v1.6. Use `trainer.tune(train_dataloaders)` instead. HINT: added &#39;s&#39;
+  rank_zero_deprecation(
+Set SLURM handle signals.
+Global seed set to 42
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "fea97e1b7a9e4fed8a48d5a9ba545216", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Restoring states from the checkpoint path at /scratch/ssd002/home/jewtay/lr_find_temp_model_6e4c9dc6-1fec-4d6f-a919-9059b50ba81b.ckpt
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>suggested learning rate: 5.888436553555889e-06
+</pre></div>
+</div>
+<img alt="../_images/6f59325e42bb9e2fce6f09d85e269eed041ff7d540b83e46be74d264b4603522.png" src="../_images/6f59325e42bb9e2fce6f09d85e269eed041ff7d540b83e46be74d264b4603522.png" />
+</div>
+</div>
+<p>For the<code class="docutils literal notranslate"><span class="pre">pytorch_forecasting.models.temporal_fusion_transformer.TemporalFusionTransformer</span></code>, the optimal learning rate seems to be slightly lower than the suggested one. Further, we do not directly want to use the suggested learning rate because PyTorch Lightning sometimes can get confused by the noise at lower learning rates and suggests rates far too low. Manual control is essential. We decide to pick 0.03 as learning rate.</p>
+</section>
+<section id="train-model">
+<h3>Train model<a class="headerlink" href="#train-model" title="Permalink to this heading">#</a></h3>
+<p>If you have troubles training the model and get an error <code class="docutils literal notranslate"><span class="pre">AttributeError:</span> <span class="pre">module</span> <span class="pre">'tensorflow._api.v2.io.gfile'</span> <span class="pre">has</span> <span class="pre">no</span> <span class="pre">attribute</span> <span class="pre">'get_filesystem'</span></code>, consider either uninstalling tensorflow or first execute</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>import tensorflow as tf
+import tensorboard as tb
+tf.io.gfile = tb.compat.tensorflow_stub.io.gfile
+```.
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># configure network and trainer</span>
+<span class="n">early_stop_callback</span> <span class="o">=</span> <span class="n">EarlyStopping</span><span class="p">(</span><span class="n">monitor</span><span class="o">=</span><span class="s2">&quot;val_loss&quot;</span><span class="p">,</span> <span class="n">min_delta</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span> <span class="n">patience</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;min&quot;</span><span class="p">)</span>
+<span class="n">lr_logger</span> <span class="o">=</span> <span class="n">LearningRateMonitor</span><span class="p">()</span>  <span class="c1"># log the learning rate</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">TensorBoardLogger</span><span class="p">(</span><span class="s2">&quot;lightning_logs&quot;</span><span class="p">)</span>  <span class="c1"># logging results to a tensorboard</span>
+
+<span class="n">trainer</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">Trainer</span><span class="p">(</span>
+    <span class="n">max_epochs</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+    <span class="n">gpus</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">weights_summary</span><span class="o">=</span><span class="s2">&quot;top&quot;</span><span class="p">,</span>
+    <span class="n">gradient_clip_val</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">limit_train_batches</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>  <span class="c1"># coment in for training, running valiation every 30 batches</span>
+    <span class="c1"># fast_dev_run=True,  # comment in to check that networkor dataset has no serious bugs</span>
+    <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">lr_logger</span><span class="p">,</span> <span class="n">early_stop_callback</span><span class="p">],</span>
+    <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="n">tft</span> <span class="o">=</span> <span class="n">TemporalFusionTransformer</span><span class="o">.</span><span class="n">from_dataset</span><span class="p">(</span>
+    <span class="n">training</span><span class="p">,</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span>
+    <span class="n">hidden_size</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+    <span class="n">attention_head_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">dropout</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">hidden_continuous_size</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+    <span class="n">output_size</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>  <span class="c1"># 7 quantiles by default</span>
+    <span class="n">loss</span><span class="o">=</span><span class="n">QuantileLoss</span><span class="p">(),</span>
+    <span class="n">log_interval</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>  <span class="c1"># uncomment for learning rate finder and otherwise, e.g. to 10 for logging every 10 batches</span>
+    <span class="n">reduce_on_plateau_patience</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of parameters in network: </span><span class="si">{</span><span class="n">tft</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">/</span><span class="mf">1e3</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">k&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GPU available: True, used: False
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of parameters in network: 29.7k
+</pre></div>
+</div>
+</div>
+</div>
+<p>Training takes a couple of minutes on my Macbook but for larger networks and datasets, it can take hours. The training speed is here mostly determined by overhead and choosing a larger <code class="docutils literal notranslate"><span class="pre">batch_size</span></code> or <code class="docutils literal notranslate"><span class="pre">hidden_size</span></code> (i.e. network size) does not slow does training linearly making training on large datasets feasible. During training, we can monitor the tensorboard which can be spun up with <code class="docutils literal notranslate"><span class="pre">tensorboard</span> <span class="pre">--logdir=lightning_logs</span></code>. For example, we can monitor examples predictions on the training and validation set.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fit network</span>
+<span class="n">trainer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">tft</span><span class="p">,</span>
+    <span class="n">train_dataloader</span><span class="o">=</span><span class="n">train_dataloader</span><span class="p">,</span>
+    <span class="n">val_dataloaders</span><span class="o">=</span><span class="n">val_dataloader</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/ssd003/projects/aieng/public/forecasting_unified/lib/python3.8/site-packages/pytorch_lightning/trainer/trainer.py:735: LightningDeprecationWarning: `trainer.fit(train_dataloader)` is deprecated in v1.4 and will be removed in v1.6. Use `trainer.fit(train_dataloaders)` instead. HINT: added &#39;s&#39;
+  rank_zero_deprecation(
+Set SLURM handle signals.
+
+   | Name                               | Type                            | Params
+----------------------------------------------------------------------------------------
+0  | loss                               | QuantileLoss                    | 0     
+1  | logging_metrics                    | ModuleList                      | 0     
+2  | input_embeddings                   | MultiEmbedding                  | 1.3 K 
+3  | prescalers                         | ModuleDict                      | 256   
+4  | static_variable_selection          | VariableSelectionNetwork        | 3.4 K 
+5  | encoder_variable_selection         | VariableSelectionNetwork        | 8.0 K 
+6  | decoder_variable_selection         | VariableSelectionNetwork        | 2.7 K 
+7  | static_context_variable_selection  | GatedResidualNetwork            | 1.1 K 
+8  | static_context_initial_hidden_lstm | GatedResidualNetwork            | 1.1 K 
+9  | static_context_initial_cell_lstm   | GatedResidualNetwork            | 1.1 K 
+10 | static_context_enrichment          | GatedResidualNetwork            | 1.1 K 
+11 | lstm_encoder                       | LSTM                            | 2.2 K 
+12 | lstm_decoder                       | LSTM                            | 2.2 K 
+13 | post_lstm_gate_encoder             | GatedLinearUnit                 | 544   
+14 | post_lstm_add_norm_encoder         | AddNorm                         | 32    
+15 | static_enrichment                  | GatedResidualNetwork            | 1.4 K 
+16 | multihead_attn                     | InterpretableMultiHeadAttention | 1.1 K 
+17 | post_attn_gate_norm                | GateAddNorm                     | 576   
+18 | pos_wise_ff                        | GatedResidualNetwork            | 1.1 K 
+19 | pre_output_gate_norm               | GateAddNorm                     | 576   
+20 | output_layer                       | Linear                          | 119   
+----------------------------------------------------------------------------------------
+29.7 K    Trainable params
+0         Non-trainable params
+29.7 K    Total params
+0.119     Total estimated model params size (MB)
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "e5f56eb16ee84ce19a09fd1edf71d6c3", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Global seed set to 42
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "87413c27f6744ff0adae9b0210f408f3", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "9cdbbdea7a264ad9987f118fa8e87312", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "92ab1a183a5d43f0adb79e96e2174d06", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "4e431decd95448538025cf9f1488c082", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "a0deb555d2f9490c8043bd50e5b03163", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "16a3db848dc4460393bd927fb8e97a63", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "34d3ec22b85140a2818b3e6de76e5ed8", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "1c1bcac3cb5b4f70bdde3eb185a42fbf", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "78b7537a6f2d4e519a3cb29d3686bc44", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "c6572515f7644ace93389800e5ee9d11", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "1bd3046b4ad344d5a01eb70ee7933a9f", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "2336f2ad37e14800bfb4024d5cba5d8d", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "40badf4a8fa54c05a1bbb6f7bd6063c7", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "fec72c7df2a044579d8c4c20a8787087", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "fce24c73ec17413582078878b9567b56", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "c796cd38078044bbac9fb6418335f8c4", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "9b12071912ee41e4a01114856cf88b10", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "53af1f55163a48ac95a2474108264328", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "6453936beba043798402f2c0d2c2f5f7", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "214775d6dcdb44469630187e4bdf835e", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "b4ad4a60bcd643b98218a818b862b58d", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "ad592d76933d440aa0a152cfa205df27", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "98709b751e89480a9ef5666034842db0", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "fd680268dca04a5bb959dde671ef5e52", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "9ba6b2e2dfb14ab59db35f4185b2393b", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+</section>
+<section id="hyperparameter-tuning">
+<h3>Hyperparameter tuning<a class="headerlink" href="#hyperparameter-tuning" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="evaluate-performance">
+<h2>Evaluate performance<a class="headerlink" href="#evaluate-performance" title="Permalink to this heading">#</a></h2>
+<p>PyTorch Lightning automatically checkpoints training and thus, we can easily retrieve the best model and load it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load the best model according to the validation loss</span>
+<span class="c1"># (given that we use early stopping, this is not necessarily the last epoch)</span>
+<span class="n">best_model_path</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">checkpoint_callback</span><span class="o">.</span><span class="n">best_model_path</span>
+<span class="n">best_tft</span> <span class="o">=</span> <span class="n">TemporalFusionTransformer</span><span class="o">.</span><span class="n">load_from_checkpoint</span><span class="p">(</span><span class="n">best_model_path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>After training, we can make predictions with the method <code class="docutils literal notranslate"><span class="pre">pytorch_forecasting.models.base_model.BaseModel.predict</span></code>. The method allows very fine-grained control over what it returns so that, for example, you can easily match predictions to your pandas dataframe. See its documentation for details. We evaluate the metrics on the validation dataset and a couple of examples to see how well the model is doing. Given that we work with only 21 000 samples the results are very reassuring and can compete with results by a gradient booster. We also perform better than the baseline model. Given the noisy data, this is not trivial.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calcualte mean absolute error on validation set</span>
+<span class="n">actuals</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">iter</span><span class="p">(</span><span class="n">val_dataloader</span><span class="p">)])</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">best_tft</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">val_dataloader</span><span class="p">)</span>
+<span class="p">(</span><span class="n">actuals</span> <span class="o">-</span> <span class="n">predictions</span><span class="p">)</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor(271.7230)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now also look at sample predictions directly which we plot with the method <code class="docutils literal notranslate"><span class="pre">pytorch_forecasting.models.base_model.BaseModel.plot_prediction</span></code>. As you can see from the figures below, forecasts look rather accurate. If you wonder, the grey lines denote the amount of attention the model pays to different points in time when making the prediction. This is a special feature of the Temporal Fusion Transformer.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># raw predictions are a dictionary from which all kind of information including quantiles can be extracted</span>
+<span class="n">raw_predictions</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">best_tft</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">val_dataloader</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;raw&quot;</span><span class="p">,</span> <span class="n">return_x</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>  <span class="c1"># plot 10 examples</span>
+    <span class="n">best_tft</span><span class="o">.</span><span class="n">plot_prediction</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">raw_predictions</span><span class="p">,</span> <span class="n">idx</span><span class="o">=</span><span class="n">idx</span><span class="p">,</span> <span class="n">add_loss_to_title</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/cbc6239816492782b1b3736d381e512dbebe6d50063c499de3e48a3badd5e4cf.png" src="../_images/cbc6239816492782b1b3736d381e512dbebe6d50063c499de3e48a3badd5e4cf.png" />
+<img alt="../_images/0d04efcb1ccd9d231b22e61012817458bea674792b4263d6d386928e43a08ba7.png" src="../_images/0d04efcb1ccd9d231b22e61012817458bea674792b4263d6d386928e43a08ba7.png" />
+<img alt="../_images/c0ccbbb364b98042b62b46488f9e5c624d0f5d07b65252ba0eaaf79798c0dc95.png" src="../_images/c0ccbbb364b98042b62b46488f9e5c624d0f5d07b65252ba0eaaf79798c0dc95.png" />
+<img alt="../_images/7dd934d33018f2f51e55a72dd0704e8fcd4f705448afc9b7befbcd1a708146de.png" src="../_images/7dd934d33018f2f51e55a72dd0704e8fcd4f705448afc9b7befbcd1a708146de.png" />
+<img alt="../_images/b2090d1fad5d87ab7b451456997ad51374da59aaf71f023b8be01ca4adaba785.png" src="../_images/b2090d1fad5d87ab7b451456997ad51374da59aaf71f023b8be01ca4adaba785.png" />
+<img alt="../_images/7796d598ae2ece5a74bfdb90678682c65dd3f98f4b1d665e5cdf7fe083212ab2.png" src="../_images/7796d598ae2ece5a74bfdb90678682c65dd3f98f4b1d665e5cdf7fe083212ab2.png" />
+<img alt="../_images/662b8cceedf1fb242bf052f17e9078417ba9a20112105ed2c6b0cc5d454171b5.png" src="../_images/662b8cceedf1fb242bf052f17e9078417ba9a20112105ed2c6b0cc5d454171b5.png" />
+<img alt="../_images/648c9559d0e71a91675b9ab60a4707267ee20a0db08fb13dd73d1df0c62ad2d0.png" src="../_images/648c9559d0e71a91675b9ab60a4707267ee20a0db08fb13dd73d1df0c62ad2d0.png" />
+<img alt="../_images/b2e4355c8f437144f700867559ae0328783ce307a4c214557245f076035681f8.png" src="../_images/b2e4355c8f437144f700867559ae0328783ce307a4c214557245f076035681f8.png" />
+<img alt="../_images/c1d4bd468ec1726e495a28c46b17c8115b08461db964e2187dad0ce1c5cce03c.png" src="../_images/c1d4bd468ec1726e495a28c46b17c8115b08461db964e2187dad0ce1c5cce03c.png" />
+</div>
+</div>
+<section id="worst-performers">
+<h3>Worst performers<a class="headerlink" href="#worst-performers" title="Permalink to this heading">#</a></h3>
+<p>Looking at the worst performers, for example in terms of the class<code class="docutils literal notranslate"><span class="pre">pytorch_forecasting.metrics.SMAPE</span></code>, gives us an idea where the model has issues with forecasting reliably. These examples can provide important pointers about how to improve the model. This kind of actuals vs predictions plots are available to all models. Of course, it is also sensible to employ additional metrics, such as MASE, defined in the :py:mod:<code class="docutils literal notranslate"><span class="pre">~pytorch_forecasting.metrics</span></code> module. However, for the sake of demonstration, we only use :py:class:<code class="docutils literal notranslate"><span class="pre">~pytorch_forecasting.metrics.SMAPE</span></code> here.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calcualte metric by which to display</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">best_tft</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">val_dataloader</span><span class="p">)</span>
+<span class="n">mean_losses</span> <span class="o">=</span> <span class="n">SMAPE</span><span class="p">(</span><span class="n">reduction</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">actuals</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">indices</span> <span class="o">=</span> <span class="n">mean_losses</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">descending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># sort losses</span>
+<span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>  <span class="c1"># plot 10 examples</span>
+    <span class="n">best_tft</span><span class="o">.</span><span class="n">plot_prediction</span><span class="p">(</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">raw_predictions</span><span class="p">,</span> <span class="n">idx</span><span class="o">=</span><span class="n">indices</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">add_loss_to_title</span><span class="o">=</span><span class="n">SMAPE</span><span class="p">(</span><span class="n">quantiles</span><span class="o">=</span><span class="n">best_tft</span><span class="o">.</span><span class="n">loss</span><span class="o">.</span><span class="n">quantiles</span><span class="p">)</span>
+    <span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/0e8470aefa4c1c11aa6121db2185a0e4a7880bffe94034772f7778658e61415c.png" src="../_images/0e8470aefa4c1c11aa6121db2185a0e4a7880bffe94034772f7778658e61415c.png" />
+<img alt="../_images/af59f0f7bb8569c82250a5ad4da7850ac4464e9cb542331c594530a295a73d0b.png" src="../_images/af59f0f7bb8569c82250a5ad4da7850ac4464e9cb542331c594530a295a73d0b.png" />
+<img alt="../_images/d47e221612ae7c7ba1eb9b59ac8f6a79ec153d2db0df2754400d7f72aab97937.png" src="../_images/d47e221612ae7c7ba1eb9b59ac8f6a79ec153d2db0df2754400d7f72aab97937.png" />
+<img alt="../_images/f9d222237825b2f41fa281f6b215db7847d81892ea1b08c9aa0af703c138ca79.png" src="../_images/f9d222237825b2f41fa281f6b215db7847d81892ea1b08c9aa0af703c138ca79.png" />
+<img alt="../_images/f7512f73765eec47c9181b67c8739e84a8146beb13902fa8b7c8908035ea5c89.png" src="../_images/f7512f73765eec47c9181b67c8739e84a8146beb13902fa8b7c8908035ea5c89.png" />
+<img alt="../_images/7294f8630977fe56fd5ed152c8fb5f5b91a68fa7f46a695e6abae13e7a850e34.png" src="../_images/7294f8630977fe56fd5ed152c8fb5f5b91a68fa7f46a695e6abae13e7a850e34.png" />
+<img alt="../_images/406a76b4e25be9b59b479762528b314b231075a20d8060a8dee4073184804eb3.png" src="../_images/406a76b4e25be9b59b479762528b314b231075a20d8060a8dee4073184804eb3.png" />
+<img alt="../_images/9748cafc57bbd00510b0bd1e9f6f07794dc39c7e711540dab342d7fffda3a0c5.png" src="../_images/9748cafc57bbd00510b0bd1e9f6f07794dc39c7e711540dab342d7fffda3a0c5.png" />
+<img alt="../_images/080468ebf8d5c0da9d14253750443d6cd0998d61b017cfb6111d6b435345d9d8.png" src="../_images/080468ebf8d5c0da9d14253750443d6cd0998d61b017cfb6111d6b435345d9d8.png" />
+<img alt="../_images/9baef0ec667421df4cd43b45b43f0eb6076ec5dd5e948ae416027f613506874a.png" src="../_images/9baef0ec667421df4cd43b45b43f0eb6076ec5dd5e948ae416027f613506874a.png" />
+</div>
+</div>
+</section>
+<section id="actuals-vs-predictions-by-variables">
+<h3>Actuals vs predictions by variables<a class="headerlink" href="#actuals-vs-predictions-by-variables" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predictions</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">best_tft</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">val_dataloader</span><span class="p">,</span> <span class="n">return_x</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">predictions_vs_actuals</span> <span class="o">=</span> <span class="n">best_tft</span><span class="o">.</span><span class="n">calculate_prediction_actual_by_variable</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span>
+<span class="n">best_tft</span><span class="o">.</span><span class="n">plot_prediction_actual_by_variable</span><span class="p">(</span><span class="n">predictions_vs_actuals</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/8972b5e7090356cce5a218b8fe8b19b955669b0e2aea696a47de0be1ea532d70.png" src="../_images/8972b5e7090356cce5a218b8fe8b19b955669b0e2aea696a47de0be1ea532d70.png" />
+<img alt="../_images/8226349b4c0423395e51b98189519d95ed5e711b9ce8dd354b9f1da54e4a7ef4.png" src="../_images/8226349b4c0423395e51b98189519d95ed5e711b9ce8dd354b9f1da54e4a7ef4.png" />
+<img alt="../_images/a8edb9a99e1f58c4a8c81de3da02bdca1699c3018bc848d0f52906615c86eba4.png" src="../_images/a8edb9a99e1f58c4a8c81de3da02bdca1699c3018bc848d0f52906615c86eba4.png" />
+<img alt="../_images/94546a5ac0131881144dfca1a7cf6f24cfd5296907ee52b399795f4459f359d9.png" src="../_images/94546a5ac0131881144dfca1a7cf6f24cfd5296907ee52b399795f4459f359d9.png" />
+<img alt="../_images/f50a8b064bb246acf739c653a85ef542cd5d413bcf166fea1bbd73af24763700.png" src="../_images/f50a8b064bb246acf739c653a85ef542cd5d413bcf166fea1bbd73af24763700.png" />
+<img alt="../_images/80a9eb3b1a5c8f8a7bcd6c6d3cca8500b78670f48b400512b716691f6f0dc237.png" src="../_images/80a9eb3b1a5c8f8a7bcd6c6d3cca8500b78670f48b400512b716691f6f0dc237.png" />
+<img alt="../_images/11373409f467712ba4780c2a007185af301c8e96dd19133264c54d780ac17133.png" src="../_images/11373409f467712ba4780c2a007185af301c8e96dd19133264c54d780ac17133.png" />
+<img alt="../_images/91249cc1a12be3df8f873cc4f677d088d46301892701d43fa78e293ec4e04757.png" src="../_images/91249cc1a12be3df8f873cc4f677d088d46301892701d43fa78e293ec4e04757.png" />
+<img alt="../_images/3674e4bda76cacdcf2ed6c07ca58ef76105223b3d0e367a83f357ad861f04552.png" src="../_images/3674e4bda76cacdcf2ed6c07ca58ef76105223b3d0e367a83f357ad861f04552.png" />
+<img alt="../_images/233e30baab090acd3c2e0dd5c4f401e6d30326d15d28a6740ea8b4a82b113017.png" src="../_images/233e30baab090acd3c2e0dd5c4f401e6d30326d15d28a6740ea8b4a82b113017.png" />
+<img alt="../_images/045be223bf2ae45843210538b6b38f6230ac259ff36b1094a14872d8e3a8f5fc.png" src="../_images/045be223bf2ae45843210538b6b38f6230ac259ff36b1094a14872d8e3a8f5fc.png" />
+<img alt="../_images/be7c3bd0388dfd5287bb9d4ae51b7099e8386f70221ab31bdb6f15a70a007549.png" src="../_images/be7c3bd0388dfd5287bb9d4ae51b7099e8386f70221ab31bdb6f15a70a007549.png" />
+<img alt="../_images/35ca2128da0d88926d1efc28dbc0d1b2f57c4d7ac23eb24d0a79f6e8dee066df.png" src="../_images/35ca2128da0d88926d1efc28dbc0d1b2f57c4d7ac23eb24d0a79f6e8dee066df.png" />
+<img alt="../_images/e4ee8094d7a798886f8a919c6f24baae75a097aefeb7968eee57f485038415ca.png" src="../_images/e4ee8094d7a798886f8a919c6f24baae75a097aefeb7968eee57f485038415ca.png" />
+<img alt="../_images/8a69aa2c0b98ddf5c4e8d3e18d7204a29296cc613fba8b2e2da6905e4abed5ba.png" src="../_images/8a69aa2c0b98ddf5c4e8d3e18d7204a29296cc613fba8b2e2da6905e4abed5ba.png" />
+<img alt="../_images/5d5a8fd2adbf319d14db84cffb13b5ae0b71d1658800988a40c118dd31d86346.png" src="../_images/5d5a8fd2adbf319d14db84cffb13b5ae0b71d1658800988a40c118dd31d86346.png" />
+<img alt="../_images/4994f2c4f8f4fc057788354694477a69e27013664360571abf2880013f25c3b5.png" src="../_images/4994f2c4f8f4fc057788354694477a69e27013664360571abf2880013f25c3b5.png" />
+<img alt="../_images/6aa96b3269b81dc8ca0c95b69d0fad9d92c3263e4533beb1d553d8aa3f8dcc95.png" src="../_images/6aa96b3269b81dc8ca0c95b69d0fad9d92c3263e4533beb1d553d8aa3f8dcc95.png" />
+<img alt="../_images/09188bf5b625b93da04a7db99e6671344e9c131f6ff5c09a914d0e9c57154830.png" src="../_images/09188bf5b625b93da04a7db99e6671344e9c131f6ff5c09a914d0e9c57154830.png" />
+<img alt="../_images/2b10f99730bfa1a34ad4695a70b116d3d20dc9d9ed5628cf7e0c93d7b587519f.png" src="../_images/2b10f99730bfa1a34ad4695a70b116d3d20dc9d9ed5628cf7e0c93d7b587519f.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="predict-on-selected-data">
+<h2>Predict on selected data<a class="headerlink" href="#predict-on-selected-data" title="Permalink to this heading">#</a></h2>
+<p>To predict on a subset of data we can filter the subsequences in a dataset using the method <code class="docutils literal notranslate"><span class="pre">pytorch_forecasting.data.timeseries.TimeSeriesDataSet.filter</span></code> method. Here we predict for the subsequence in the <code class="docutils literal notranslate"><span class="pre">training</span></code> dataset that maps to the group ids “Agency_01” and “SKU_01” and whose first predicted value corresponds to the time index “15”. We output all seven quantiles. This means we expect a tensor of shape <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">x</span> <span class="pre">n_timesteps</span> <span class="pre">x</span> <span class="pre">n_quantiles</span> <span class="pre">=</span> <span class="pre">1</span> <span class="pre">x</span> <span class="pre">6</span> <span class="pre">x</span> <span class="pre">7</span></code> as we predict for a single subsequence six time steps ahead and 7 quantiles for each time step.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_tft</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span>
+    <span class="n">training</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">agency</span> <span class="o">==</span> <span class="s2">&quot;Agency_01&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">sku</span> <span class="o">==</span> <span class="s2">&quot;SKU_01&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">time_idx_first_prediction</span> <span class="o">==</span> <span class="mi">15</span><span class="p">)),</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;quantiles&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[[ 87.1830, 110.6064, 127.7628, 145.3178, 165.5041, 182.8347, 213.5448],
+         [ 53.9288,  80.0576,  94.3104, 113.3253, 133.8607, 152.9938, 188.1326],
+         [ 48.2099,  72.1758,  85.6514, 101.1941, 119.5774, 138.5667, 174.2507],
+         [ 50.7282,  85.2085,  98.7025, 112.9578, 133.0831, 152.9954, 188.2846],
+         [ 62.5154,  91.1128, 102.8401, 116.8755, 134.7699, 153.5502, 188.5885],
+         [ 49.8006,  75.4659,  91.2730, 104.2535, 124.6483, 144.5271, 178.1142]]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Of course, we can also plot this prediction readily:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">raw_prediction</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">best_tft</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span>
+    <span class="n">training</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">agency</span> <span class="o">==</span> <span class="s2">&quot;Agency_01&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">sku</span> <span class="o">==</span> <span class="s2">&quot;SKU_01&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">time_idx_first_prediction</span> <span class="o">==</span> <span class="mi">15</span><span class="p">)),</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;raw&quot;</span><span class="p">,</span>
+    <span class="n">return_x</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">best_tft</span><span class="o">.</span><span class="n">plot_prediction</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">raw_prediction</span><span class="p">,</span> <span class="n">idx</span><span class="o">=</span><span class="mi">0</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/e306d15783e8a204f0693e5ad26d351db35d421c37dbe5f09fd0d984ab3858c3.png" src="../_images/e306d15783e8a204f0693e5ad26d351db35d421c37dbe5f09fd0d984ab3858c3.png" />
+</div>
+</div>
+</section>
+<section id="predict-on-new-data">
+<h2>Predict on new data<a class="headerlink" href="#predict-on-new-data" title="Permalink to this heading">#</a></h2>
+<p>Because we have covariates in the dataset, predicting on new data requires us to define the known covariates upfront.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># select last 24 months from data (max_encoder_length is 24)</span>
+<span class="n">encoder_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">time_idx</span> <span class="o">&gt;</span> <span class="n">x</span><span class="o">.</span><span class="n">time_idx</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">max_encoder_length</span><span class="p">]</span>
+
+<span class="c1"># select last known data point and create decoder data from it by repeating it and incrementing the month</span>
+<span class="c1"># in a real world dataset, we should not just forward fill the covariates but specify them to account</span>
+<span class="c1"># for changes in special days and prices (which you absolutely should do but we are too lazy here)</span>
+<span class="n">last_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">time_idx</span> <span class="o">==</span> <span class="n">x</span><span class="o">.</span><span class="n">time_idx</span><span class="o">.</span><span class="n">max</span><span class="p">()]</span>
+<span class="n">decoder_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">last_data</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">date</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">offsets</span><span class="o">.</span><span class="n">MonthBegin</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_prediction_length</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)],</span>
+    <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># add time index consistent with &quot;data&quot;</span>
+<span class="n">decoder_data</span><span class="p">[</span><span class="s2">&quot;time_idx&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">decoder_data</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span> <span class="o">*</span> <span class="mi">12</span> <span class="o">+</span> <span class="n">decoder_data</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span>
+<span class="n">decoder_data</span><span class="p">[</span><span class="s2">&quot;time_idx&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">encoder_data</span><span class="p">[</span><span class="s2">&quot;time_idx&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">decoder_data</span><span class="p">[</span><span class="s2">&quot;time_idx&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+
+<span class="c1"># adjust additional time feature(s)</span>
+<span class="n">decoder_data</span><span class="p">[</span><span class="s2">&quot;month&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">decoder_data</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>  <span class="c1"># categories have be strings</span>
+
+<span class="c1"># combine encoder and decoder data</span>
+<span class="n">new_prediction_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">encoder_data</span><span class="p">,</span> <span class="n">decoder_data</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_raw_predictions</span><span class="p">,</span> <span class="n">new_x</span> <span class="o">=</span> <span class="n">best_tft</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">new_prediction_data</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;raw&quot;</span><span class="p">,</span> <span class="n">return_x</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>  <span class="c1"># plot 10 examples</span>
+    <span class="n">best_tft</span><span class="o">.</span><span class="n">plot_prediction</span><span class="p">(</span><span class="n">new_x</span><span class="p">,</span> <span class="n">new_raw_predictions</span><span class="p">,</span> <span class="n">idx</span><span class="o">=</span><span class="n">idx</span><span class="p">,</span> <span class="n">show_future_observed</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/40310816ce6032726c9dcadec00903f0c5df885ed848d6572d47aeb1bd9f392d.png" src="../_images/40310816ce6032726c9dcadec00903f0c5df885ed848d6572d47aeb1bd9f392d.png" />
+<img alt="../_images/55188406681ec681502b6cb9edebeb249642e100841eff96c17755b3439083e0.png" src="../_images/55188406681ec681502b6cb9edebeb249642e100841eff96c17755b3439083e0.png" />
+<img alt="../_images/b992a28739cb4b84b886770deb3624f75705d4c6ba6e2a54cd67a9e6009d7eca.png" src="../_images/b992a28739cb4b84b886770deb3624f75705d4c6ba6e2a54cd67a9e6009d7eca.png" />
+<img alt="../_images/1a01be5479b93ec14be2476a7cb4b37ac0aa22542405522c8a49a3e7fc9ce9f5.png" src="../_images/1a01be5479b93ec14be2476a7cb4b37ac0aa22542405522c8a49a3e7fc9ce9f5.png" />
+<img alt="../_images/e5f218e4016e03cb6e39b7ba460f49a5192a126e56afc0045d9471a22b3d1399.png" src="../_images/e5f218e4016e03cb6e39b7ba460f49a5192a126e56afc0045d9471a22b3d1399.png" />
+<img alt="../_images/cf37d839c08279197e203e8953242ca6dc1221b53cac778d8af6196e5a8de55b.png" src="../_images/cf37d839c08279197e203e8953242ca6dc1221b53cac778d8af6196e5a8de55b.png" />
+<img alt="../_images/68450730e1376fd3902bea98e80b4fb847b6f6f1c8505c1d78930608a95154d4.png" src="../_images/68450730e1376fd3902bea98e80b4fb847b6f6f1c8505c1d78930608a95154d4.png" />
+<img alt="../_images/a8850da86d1158cc229abc9b987eb967939c9adb2604fea58b367c3ed6d60afe.png" src="../_images/a8850da86d1158cc229abc9b987eb967939c9adb2604fea58b367c3ed6d60afe.png" />
+<img alt="../_images/5f3be0712278e362ba3aad1a720087839bfb2db57533922fd85309b749f8c3e4.png" src="../_images/5f3be0712278e362ba3aad1a720087839bfb2db57533922fd85309b749f8c3e4.png" />
+<img alt="../_images/7dddf39685ae5bb394f7234aac17bfa39a69fd4b12d6dce89a29bd661dab933b.png" src="../_images/7dddf39685ae5bb394f7234aac17bfa39a69fd4b12d6dce89a29bd661dab933b.png" />
+</div>
+</div>
+</section>
+<section id="interpret-model">
+<h2>Interpret model<a class="headerlink" href="#interpret-model" title="Permalink to this heading">#</a></h2>
+<section id="variable-importances">
+<h3>Variable importances<a class="headerlink" href="#variable-importances" title="Permalink to this heading">#</a></h3>
+<p>The model has inbuilt interpretation capabilities due to how its architecture is build. Let’s see how that looks. We first calculate interpretations with the method
+<code class="docutils literal notranslate"><span class="pre">pytorch_forecasting.models.temporal_fusion_transformer.TemporalFusionTransformer.interpret_output</span></code> and plot them subsequently with the method <code class="docutils literal notranslate"><span class="pre">pytorch_forecasting.models.temporal_fusion_transformer.TemporalFusionTransformer.plot_interpretation</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">interpretation</span> <span class="o">=</span> <span class="n">best_tft</span><span class="o">.</span><span class="n">interpret_output</span><span class="p">(</span><span class="n">raw_predictions</span><span class="p">,</span> <span class="n">reduction</span><span class="o">=</span><span class="s2">&quot;sum&quot;</span><span class="p">)</span>
+<span class="n">best_tft</span><span class="o">.</span><span class="n">plot_interpretation</span><span class="p">(</span><span class="n">interpretation</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;attention&#39;: &lt;Figure size 432x288 with 1 Axes&gt;,
+ &#39;static_variables&#39;: &lt;Figure size 504x270 with 1 Axes&gt;,
+ &#39;encoder_variables&#39;: &lt;Figure size 504x378 with 1 Axes&gt;,
+ &#39;decoder_variables&#39;: &lt;Figure size 504x252 with 1 Axes&gt;}
+</pre></div>
+</div>
+<img alt="../_images/3f02349ff2762adbad8b71ca14e36fa4f1f45edf5e81752fa6ec7abc57e9c321.png" src="../_images/3f02349ff2762adbad8b71ca14e36fa4f1f45edf5e81752fa6ec7abc57e9c321.png" />
+<img alt="../_images/f2dab13a5b805edd7c9ac0d9d0b548f90973349f89862f447438159f6895c739.png" src="../_images/f2dab13a5b805edd7c9ac0d9d0b548f90973349f89862f447438159f6895c739.png" />
+<img alt="../_images/8ba3f38a73b3b01d2952369db5788ba19162f466dede32f4868ade629889aba3.png" src="../_images/8ba3f38a73b3b01d2952369db5788ba19162f466dede32f4868ade629889aba3.png" />
+<img alt="../_images/7f9a7c41e7edc9af79a93de029a928e8e94ab67bb766958f65bb1fbaba3ee5a5.png" src="../_images/7f9a7c41e7edc9af79a93de029a928e8e94ab67bb766958f65bb1fbaba3ee5a5.png" />
+</div>
+</div>
+<p>Unsurprisingly, the past observed volume features as the top variable in the encoder and price related variables are among the top predictors in the decoder.</p>
+<p>The general attention patterns seems to be that more recent observations are more important and older ones. This confirms intuition. The average attention is often not very useful - looking at the attention by example is more insightful because patterns are not averaged out.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "forecasting"
+        },
+        kernelOptions: {
+            name: "forecasting",
+            path: "./external_demos"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'forecasting'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="readme.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="time-series-forecasting-eda-fe-modelling.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Introduction</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-dataset-and-dataloaders">Create dataset and dataloaders</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-baseline-model">Create baseline model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-the-temporal-fusion-transformer">Train the Temporal Fusion Transformer</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#find-optimal-learning-rate">Find optimal learning rate</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-model">Train model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperparameter-tuning">Hyperparameter tuning</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluate-performance">Evaluate performance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#worst-performers">Worst performers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#actuals-vs-predictions-by-variables">Actuals vs predictions by variables</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predict-on-selected-data">Predict on selected data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predict-on-new-data">Predict on new data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpret-model">Interpret model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-importances">Variable importances</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Vector Institute
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright Vector Institute.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
