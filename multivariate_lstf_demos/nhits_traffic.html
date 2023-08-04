@@ -500,16 +500,19 @@ by 862 different sensors on San Francisco Bay area freeways.</p>
 <p><strong>Note:</strong> neuralforecast is a relatively new package that has been gaining traction because, unlike more mature packages, it supports recent state-of-the-art methods like NHITS and Autoformer. That being said, the documentation is sparse and the package is not as mature as others we have used in other demos (<a class="reference external" href="https://pytorch-forecasting.readthedocs.io/en/stable/">PyTorch Forecasting</a>, <a class="reference external" href="https://facebook.github.io/prophet/">Prophet</a>). In any event, neuralforecast provides a great oppurtunity to explore bleeding edge time series forecasting methods.</p>
 <section id="environment-configuration-and-package-imports">
 <h2>Environment Configuration and Package Imports<a class="headerlink" href="#environment-configuration-and-package-imports" title="Permalink to this heading">#</a></h2>
-<p><strong>Note for Colab users:</strong> Run the following cell to install PyTorch Forecasting. After installation completes, you will likely need to restart the Colab runtime. If this is the case, a button RESTART RUNTIME will appear at the bottom of the next cell’s output.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note for Colab Users: Run the following cell to install neuralforecast and pytorch_lightning.
+After installation completes, you will likely need to restart the Colab runtime.
+If this is the case, a button RESTART RUNTIME will appear at the bottom of the next cell’s output.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="s1">&#39;google.colab&#39;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">get_ipython</span><span class="p">()):</span>
     <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>pytorch_lightning
-    <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>neuralforecast
-    
-<span class="k">if</span> <span class="s1">&#39;google.colab&#39;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">get_ipython</span><span class="p">()):</span>
-    <span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
-    <span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
+    <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span><span class="nv">neuralforecast</span><span class="o">==</span><span class="m">0</span>.0.6
+
+  <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span> <span class="c1"># Comment out</span>
 </pre></div>
 </div>
 </div>
@@ -550,8 +553,8 @@ by 862 different sensors on San Francisco Bay area freeways.</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Model Configuration Hyperparameters</span>
 <span class="n">mc</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="n">mc</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;n-hits&#39;</span> <span class="c1"># Model Name </span>
-<span class="n">mc</span><span class="p">[</span><span class="s1">&#39;mode&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;simple&#39;</span> 
+<span class="n">mc</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;n-hits&#39;</span> <span class="c1"># Model Name</span>
+<span class="n">mc</span><span class="p">[</span><span class="s1">&#39;mode&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;simple&#39;</span>
 <span class="n">mc</span><span class="p">[</span><span class="s1">&#39;activation&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;SELU&#39;</span> <span class="c1"># Activation function</span>
 
 
@@ -573,7 +576,7 @@ by 862 different sensors on San Francisco Bay area freeways.</p>
 <span class="c1"># Optimization and regularization parameters</span>
 <span class="n">mc</span><span class="p">[</span><span class="s1">&#39;initialization&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;lecun_normal&#39;</span>  <span class="c1">#Initialization function. An item from [&#39;orthogonal&#39;, &#39;he_uniform&#39;, &#39;glorot_uniform&#39;, &#39;glorot_normal&#39;, &#39;lecun_normal&#39;].</span>
 <span class="n">mc</span><span class="p">[</span><span class="s1">&#39;learning_rate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.001</span> <span class="c1"># Learning rate between (0, 1).</span>
-<span class="n">mc</span><span class="p">[</span><span class="s1">&#39;batch_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># Batch size </span>
+<span class="n">mc</span><span class="p">[</span><span class="s1">&#39;batch_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># Batch size</span>
 <span class="n">mc</span><span class="p">[</span><span class="s1">&#39;n_windows&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">32</span>
 <span class="n">mc</span><span class="p">[</span><span class="s1">&#39;lr_decay&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="c1"># Decreasing multiplier for the learning rate.</span>
 <span class="n">mc</span><span class="p">[</span><span class="s1">&#39;lr_decay_step_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># Steps between each learning rate decay.</span>
@@ -583,7 +586,7 @@ by 862 different sensors on San Francisco Bay area freeways.</p>
 <span class="n">mc</span><span class="p">[</span><span class="s1">&#39;eval_freq&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">500</span> <span class="c1"># How many steps between evaluations</span>
 <span class="n">mc</span><span class="p">[</span><span class="s1">&#39;batch_normalization&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1"># Whether perform batch normalization.</span>
 <span class="n">mc</span><span class="p">[</span><span class="s1">&#39;dropout_prob_theta&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="c1"># Float between (0, 1). Dropout for Nbeats basis.</span>
-<span class="n">mc</span><span class="p">[</span><span class="s1">&#39;dropout_prob_exogenous&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="c1"># </span>
+<span class="n">mc</span><span class="p">[</span><span class="s1">&#39;dropout_prob_exogenous&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="c1">#</span>
 <span class="n">mc</span><span class="p">[</span><span class="s1">&#39;weight_decay&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># L2 penalty for optimizer.</span>
 <span class="n">mc</span><span class="p">[</span><span class="s1">&#39;loss_train&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;MAE&#39;</span> <span class="c1"># Loss to optimize. An item from [&#39;MAPE&#39;, &#39;MASE&#39;, &#39;SMAPE&#39;, &#39;MSE&#39;, &#39;MAE&#39;, &#39;QUANTILE&#39;, &#39;QUANTILE2&#39;].</span>
 <span class="n">mc</span><span class="p">[</span><span class="s1">&#39;loss_hypar&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="c1"># Hyperparameter for chosen loss.</span>
@@ -603,7 +606,7 @@ by 862 different sensors on San Francisco Bay area freeways.</p>
 <span class="c1"># Structure of hidden layers for each stack type.</span>
 <span class="c1"># Each internal list should contain the number of units of each hidden layer.</span>
 <span class="c1"># Note that len(n_hidden) = len(stack_types).</span>
-<span class="n">mc</span><span class="p">[</span><span class="s1">&#39;n_mlp_units&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mc</span><span class="p">[</span><span class="s1">&#39;stack_types&#39;</span><span class="p">])</span> <span class="o">*</span> <span class="p">[</span> <span class="n">mc</span><span class="p">[</span><span class="s1">&#39;constant_n_layers&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">mc</span><span class="p">[</span><span class="s1">&#39;constant_n_mlp_units&#39;</span><span class="p">])]</span> <span class="p">]</span> 
+<span class="n">mc</span><span class="p">[</span><span class="s1">&#39;n_mlp_units&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mc</span><span class="p">[</span><span class="s1">&#39;stack_types&#39;</span><span class="p">])</span> <span class="o">*</span> <span class="p">[</span> <span class="n">mc</span><span class="p">[</span><span class="s1">&#39;constant_n_layers&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">mc</span><span class="p">[</span><span class="s1">&#39;constant_n_mlp_units&#39;</span><span class="p">])]</span> <span class="p">]</span>
 <span class="n">mc</span><span class="p">[</span><span class="s1">&#39;n_blocks&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="nb">len</span><span class="p">(</span><span class="n">mc</span><span class="p">[</span><span class="s1">&#39;stack_types&#39;</span><span class="p">])</span> <span class="o">*</span> <span class="p">[</span> <span class="n">mc</span><span class="p">[</span><span class="s1">&#39;constant_n_blocks&#39;</span><span class="p">]</span> <span class="p">]</span> <span class="c1"># Number of blocks for each stack. Note that len(n_blocks) = len(stack_types).</span>
 <span class="n">mc</span><span class="p">[</span><span class="s1">&#39;n_layers&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="nb">len</span><span class="p">(</span><span class="n">mc</span><span class="p">[</span><span class="s1">&#39;stack_types&#39;</span><span class="p">])</span> <span class="o">*</span> <span class="p">[</span> <span class="n">mc</span><span class="p">[</span><span class="s1">&#39;constant_n_layers&#39;</span><span class="p">]</span> <span class="p">]</span> <span class="c1"># Number of layers for each stack type. Note that len(n_layers) = len(stack_types).</span>
 
@@ -695,7 +698,11 @@ dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
+<div class="output text_html">
+
+  <div id="df-289bb701-fa71-4983-be9f-d92e46bdf69f">
+    <div class="colab-df-container">
+      <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -788,7 +795,150 @@ dtype: object
   </tbody>
 </table>
 <p>15122928 rows × 3 columns</p>
-</div></div></div>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-289bb701-fa71-4983-be9f-d92e46bdf69f')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+
+
+
+    <div id="df-43449a0d-beb4-4f55-bd16-c383e35b748e">
+      <button class="colab-df-quickchart" onclick="quickchart('df-43449a0d-beb4-4f55-bd16-c383e35b748e')"
+              title="Suggest charts."
+              style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+      </button>
+    </div>
+
+<style>
+  .colab-df-quickchart {
+    background-color: #E8F0FE;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: #1967D2;
+    height: 32px;
+    padding: 0 0 0 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: #E2EBFA;
+    box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: #174EA6;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+    background-color: #3B4455;
+    fill: #D2E3FC;
+  }
+
+  [theme=dark] .colab-df-quickchart:hover {
+    background-color: #434B5C;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+    filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+    fill: #FFFFFF;
+  }
+</style>
+
+    <script>
+      async function quickchart(key) {
+        const containerElement = document.querySelector('#' + key);
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      }
+    </script>
+
+      <script>
+
+function displayQuickchartButton(domScope) {
+  let quickchartButtonEl =
+    domScope.querySelector('#df-43449a0d-beb4-4f55-bd16-c383e35b748e button.colab-df-quickchart');
+  quickchartButtonEl.style.display =
+    google.colab.kernel.accessAllowed ? 'block' : 'none';
+}
+
+        displayQuickchartButton(document);
+      </script>
+      <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-289bb701-fa71-4983-be9f-d92e46bdf69f button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-289bb701-fa71-4983-be9f-d92e46bdf69f');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+</div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -797,7 +947,11 @@ dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
+<div class="output text_html">
+
+  <div id="df-5569d6f3-91a6-45f3-8bc7-7151465593bd">
+    <div class="colab-df-container">
+      <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -926,11 +1080,168 @@ dtype: object
   </tbody>
 </table>
 <p>15122928 rows × 6 columns</p>
-</div></div></div>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-5569d6f3-91a6-45f3-8bc7-7151465593bd')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+
+
+
+    <div id="df-70f5a94e-fe58-4ad1-a96e-62e4481528fb">
+      <button class="colab-df-quickchart" onclick="quickchart('df-70f5a94e-fe58-4ad1-a96e-62e4481528fb')"
+              title="Suggest charts."
+              style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+      </button>
+    </div>
+
+<style>
+  .colab-df-quickchart {
+    background-color: #E8F0FE;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: #1967D2;
+    height: 32px;
+    padding: 0 0 0 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: #E2EBFA;
+    box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: #174EA6;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+    background-color: #3B4455;
+    fill: #D2E3FC;
+  }
+
+  [theme=dark] .colab-df-quickchart:hover {
+    background-color: #434B5C;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+    filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+    fill: #FFFFFF;
+  }
+</style>
+
+    <script>
+      async function quickchart(key) {
+        const containerElement = document.querySelector('#' + key);
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      }
+    </script>
+
+      <script>
+
+function displayQuickchartButton(domScope) {
+  let quickchartButtonEl =
+    domScope.querySelector('#df-70f5a94e-fe58-4ad1-a96e-62e4481528fb button.colab-df-quickchart');
+  quickchartButtonEl.style.display =
+    google.colab.kernel.accessAllowed ? 'block' : 'none';
+}
+
+        displayQuickchartButton(document);
+      </script>
+      <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-5569d6f3-91a6-45f3-8bc7-7151465593bd button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-5569d6f3-91a6-45f3-8bc7-7151465593bd');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+</div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">S_df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>This notebook should run in a high-RAM env. If your runtime crashes due to RAM limits, adjust “portion_to_use” accordingling.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="s1">&#39;google.colab&#39;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">get_ipython</span><span class="p">()):</span>
+    <span class="n">portion_to_use</span> <span class="o">=</span> <span class="mf">0.5</span>
+    <span class="n">X_df</span> <span class="o">=</span> <span class="n">X_df</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_df</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)]</span>
+    <span class="n">Y_df</span> <span class="o">=</span> <span class="n">Y_df</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Y_df</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div>
@@ -956,60 +1267,11 @@ dtype: object
 <span class="n">n_test</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">TEST_PERC</span> <span class="o">*</span> <span class="n">n_ds</span><span class="p">)</span>
 
 <span class="n">train_dataset</span><span class="p">,</span> <span class="n">val_dataset</span><span class="p">,</span> <span class="n">test_dataset</span><span class="p">,</span> <span class="n">scaler_y</span> <span class="o">=</span> <span class="n">create_datasets</span><span class="p">(</span><span class="n">mc</span><span class="o">=</span><span class="n">mc</span><span class="p">,</span>
-                                                                     <span class="n">S_df</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+                                                                     <span class="n">S_df</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                                                                      <span class="n">Y_df</span><span class="o">=</span><span class="n">Y_df</span><span class="p">,</span> <span class="n">X_df</span><span class="o">=</span><span class="n">X_df</span><span class="p">,</span>
                                                                      <span class="n">f_cols</span><span class="o">=</span><span class="n">f_cols</span><span class="p">,</span>
                                                                      <span class="n">ds_in_val</span><span class="o">=</span><span class="n">n_val</span><span class="p">,</span>
                                                                      <span class="n">ds_in_test</span><span class="o">=</span><span class="n">n_test</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:root:Train Validation splits
-
-INFO:root:                             ds                    
-                            min                 max
-sample_mask                                        
-0           2018-02-05 22:00:00 2018-07-02 01:00:00
-1           2016-07-01 02:00:00 2018-02-05 21:00:00
-INFO:root:
-Total data 			15122928 time stamps 
-Available percentage=100.0, 	15122928 time stamps 
-Insample  percentage=80.0, 	12099032 time stamps 
-Outsample percentage=20.0, 	3023896 time stamps 
-
-/ssd003/projects/aieng/public/forecasting_unified/lib/python3.8/site-packages/neuralforecast/data/tsdataset.py:208: FutureWarning: In a future version of pandas all arguments of DataFrame.drop except for the argument &#39;labels&#39; will be keyword-only
-  X.drop([&#39;unique_id&#39;, &#39;ds&#39;], 1, inplace=True)
-INFO:root:Train Validation splits
-
-INFO:root:                             ds                    
-                            min                 max
-sample_mask                                        
-0           2016-07-01 02:00:00 2018-07-02 01:00:00
-1           2018-02-05 22:00:00 2018-04-19 23:00:00
-INFO:root:
-Total data 			15122928 time stamps 
-Available percentage=100.0, 	15122928 time stamps 
-Insample  percentage=10.0, 	1511948 time stamps 
-Outsample percentage=90.0, 	13610980 time stamps 
-
-/ssd003/projects/aieng/public/forecasting_unified/lib/python3.8/site-packages/neuralforecast/data/tsdataset.py:208: FutureWarning: In a future version of pandas all arguments of DataFrame.drop except for the argument &#39;labels&#39; will be keyword-only
-  X.drop([&#39;unique_id&#39;, &#39;ds&#39;], 1, inplace=True)
-INFO:root:Train Validation splits
-
-INFO:root:                             ds                    
-                            min                 max
-sample_mask                                        
-0           2016-07-01 02:00:00 2018-04-19 23:00:00
-1           2018-04-20 00:00:00 2018-07-02 01:00:00
-INFO:root:
-Total data 			15122928 time stamps 
-Available percentage=100.0, 	15122928 time stamps 
-Insample  percentage=10.0, 	1511948 time stamps 
-Outsample percentage=90.0, 	13610980 time stamps 
-
-/ssd003/projects/aieng/public/forecasting_unified/lib/python3.8/site-packages/neuralforecast/data/tsdataset.py:208: FutureWarning: In a future version of pandas all arguments of DataFrame.drop except for the argument &#39;labels&#39; will be keyword-only
-  X.drop([&#39;unique_id&#39;, &#39;ds&#39;], 1, inplace=True)
 </pre></div>
 </div>
 </div>
@@ -1112,12 +1374,12 @@ Outsample percentage=90.0, 	13610980 time stamps
 <p>For more information regarding the <code class="docutils literal notranslate"><span class="pre">pl.Trainer</span></code> class, consult the <a class="reference external" href="https://pytorch-lightning.readthedocs.io/en/stable/api/pytorch_lightning.trainer.trainer.html#pytorch_lightning.trainer.trainer.Trainer.validate">PyTorch Lightning documentation</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set random seed </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set random seed</span>
 <span class="n">pl</span><span class="o">.</span><span class="n">seed_everything</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 
 <span class="c1"># Define early stopping criteria</span>
-<span class="n">early_stopping</span> <span class="o">=</span> <span class="n">EarlyStopping</span><span class="p">(</span><span class="n">monitor</span><span class="o">=</span><span class="s2">&quot;val_loss&quot;</span><span class="p">,</span> 
-                               <span class="n">min_delta</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span> 
+<span class="n">early_stopping</span> <span class="o">=</span> <span class="n">EarlyStopping</span><span class="p">(</span><span class="n">monitor</span><span class="o">=</span><span class="s2">&quot;val_loss&quot;</span><span class="p">,</span>
+                               <span class="n">min_delta</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span>
                                <span class="n">patience</span><span class="o">=</span><span class="n">mc</span><span class="p">[</span><span class="s1">&#39;early_stop_patience&#39;</span><span class="p">],</span>
                                <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                                <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;min&quot;</span><span class="p">)</span>
@@ -1125,10 +1387,9 @@ Outsample percentage=90.0, 	13610980 time stamps
 <span class="c1"># Init pytorch lightning trainer</span>
 <span class="n">trainer</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">Trainer</span><span class="p">(</span><span class="n">accelerator</span><span class="o">=</span><span class="s2">&quot;gpu&quot;</span><span class="p">,</span>
                      <span class="n">devices</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                     <span class="n">max_epochs</span><span class="o">=</span><span class="n">mc</span><span class="p">[</span><span class="s1">&#39;max_epochs&#39;</span><span class="p">],</span> 
+                     <span class="n">max_epochs</span><span class="o">=</span><span class="n">mc</span><span class="p">[</span><span class="s1">&#39;max_epochs&#39;</span><span class="p">],</span>
                      <span class="n">gradient_clip_val</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
-                     <span class="n">progress_bar_refresh_rate</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> 
-                     <span class="n">log_every_n_steps</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> 
+                     <span class="n">log_every_n_steps</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
                      <span class="n">check_val_every_n_epoch</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                      <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">early_stopping</span><span class="p">])</span>
 
@@ -1137,36 +1398,6 @@ Outsample percentage=90.0, 	13610980 time stamps
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Global seed set to 42
-/ssd003/projects/aieng/public/forecasting_unified/lib/python3.8/site-packages/pytorch_lightning/trainer/connectors/callback_connector.py:90: LightningDeprecationWarning: Setting `Trainer(progress_bar_refresh_rate=10)` is deprecated in v1.5 and will be removed in v1.7. Please pass `pytorch_lightning.callbacks.progress.TQDMProgressBar` with `refresh_rate` directly to the Trainer&#39;s `callbacks` argument instead. Or, to disable the progress bar pass `enable_progress_bar = False` to the Trainer.
-  rank_zero_deprecation(
-GPU available: True, used: True
-TPU available: False, using: 0 TPU cores
-IPU available: False, using: 0 IPUs
-LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-Set SLURM handle signals.
-
-  | Name  | Type   | Params
----------------------------------
-0 | model | _NHITS | 932 K 
----------------------------------
-932 K     Trainable params
-0         Non-trainable params
-932 K     Total params
-3.731     Total estimated model params size (MB)
-</pre></div>
-</div>
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "95931449dbdf48b4af1f8c81945a130c", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/ssd003/projects/aieng/public/forecasting_unified/lib/python3.8/site-packages/pytorch_lightning/trainer/data_loading.py:132: UserWarning: The dataloader, val_dataloader 0, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 32 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
-  rank_zero_warn(
-/ssd003/projects/aieng/public/forecasting_unified/lib/python3.8/site-packages/torch/nn/functional.py:3631: UserWarning: Default upsampling behavior when mode=linear is changed to align_corners=False since 0.4.0. Please specify align_corners=True if the old behavior is desired. See the documentation of nn.Upsample for details.
-  warnings.warn(
-Global seed set to 42
-/ssd003/projects/aieng/public/forecasting_unified/lib/python3.8/site-packages/pytorch_lightning/trainer/data_loading.py:132: UserWarning: The dataloader, train_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 32 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
-  rank_zero_warn(
-</pre></div>
-</div>
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "f873c8ea68bc4ed29ccc4b5ef056543d", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "618a4d872e824cb48aaea34954f5b295", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 </section>
 <section id="test">
@@ -1182,15 +1413,6 @@ Global seed set to 42
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-/ssd003/projects/aieng/public/forecasting_unified/lib/python3.8/site-packages/neuralforecast/data/tsloader.py:46: UserWarning: This class wraps the pytorch `DataLoader` with a special collate function. If you want to use yours simply use `DataLoader`. Removing collate_fn
-  warnings.warn(
-/ssd003/projects/aieng/public/forecasting_unified/lib/python3.8/site-packages/pytorch_lightning/trainer/data_loading.py:132: UserWarning: The dataloader, predict_dataloader 0, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 32 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
-  rank_zero_warn(
-</pre></div>
-</div>
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "d85bd24bdbce47c8bd54463d8c9e0aff", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 </section>
 <section id="visualize-predictions">
@@ -1200,7 +1422,7 @@ Global seed set to 42
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">input_list</span><span class="p">,</span> <span class="n">gt_list</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">test_loader</span><span class="p">:</span>
-    <span class="n">Y</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;Y&quot;</span><span class="p">]</span> 
+    <span class="n">Y</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;Y&quot;</span><span class="p">]</span>
     <span class="n">inp</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[:,</span> <span class="p">:</span><span class="n">mc</span><span class="p">[</span><span class="s1">&#39;n_time_in&#39;</span><span class="p">]]</span>
     <span class="n">input_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span>
 </pre></div>
@@ -1230,7 +1452,7 @@ Global seed set to 42
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/43843ad5c52b128b4ab9fa9d488b9d1a7b075a55d2a68e680eb057fe2a4117b5.png" src="../_images/43843ad5c52b128b4ab9fa9d488b9d1a7b075a55d2a68e680eb057fe2a4117b5.png" />
+<img alt="../_images/d1078fa1759313ffeebf07f0f543b67f50d24fa74c1bbe1b98a460eeeb8b48f1.png" src="../_images/d1078fa1759313ffeebf07f0f543b67f50d24fa74c1bbe1b98a460eeeb8b48f1.png" />
 </div>
 </div>
 </section>
@@ -1256,7 +1478,7 @@ Global seed set to 42
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MSE: 0.644439697265625 MAE: 0.41899624466896057
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MSE: 0.6308218836784363 MAE: 0.5023184418678284
 </pre></div>
 </div>
 </div>

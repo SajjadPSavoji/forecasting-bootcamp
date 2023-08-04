@@ -464,8 +464,8 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-configuration-and-package-imports">Environment Configuration and Package Imports</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperparameter-definitions">Hyperparameter Definitions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperparameter-definitions">Hyperparameter Definitions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-splitting">Data Splitting</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-dataloader">Defining Dataloader</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model">Model</a><ul class="nav section-nav flex-column">
@@ -499,12 +499,16 @@ by 862 different sensors on San Francisco Bay area freeways.</p>
 <p><strong>Note:</strong> neuralforecast is a relatively new package that has been gaining traction because, unlike more mature packages, it supports recent state-of-the-art methods like NHITS and Autoformer. That being said, the documentation is sparse and the package is not as mature as others we have used in other demos (<a class="reference external" href="https://pytorch-forecasting.readthedocs.io/en/stable/">PyTorch Forecasting</a>, <a class="reference external" href="https://facebook.github.io/prophet/">Prophet</a>). In any event, neuralforecast provides a great oppurtunity to explore bleeding edge time series forecasting methods.</p>
 <section id="environment-configuration-and-package-imports">
 <h2>Environment Configuration and Package Imports<a class="headerlink" href="#environment-configuration-and-package-imports" title="Permalink to this heading">#</a></h2>
-<p><strong>Note for Colab users:</strong> Run the following cell to install PyTorch Forecasting. After installation completes, you will likely need to restart the Colab runtime. If this is the case, a button RESTART RUNTIME will appear at the bottom of the next cell’s output.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For Colab Users: Run the following cell to install neuralforecast and pytorch_lightning.
+After installation completes, you will likely need to restart the Colab runtime.
+If this is the case, a button RESTART RUNTIME will appear at the bottom of the next cell’s output.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="s1">&#39;google.colab&#39;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">get_ipython</span><span class="p">()):</span>
-    <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>pytorch_lightning
-    <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>neuralforecast
+    <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>pytorch_lightning<span class="w"> </span><span class="nv">neuralforecast</span><span class="o">==</span><span class="m">0</span>.0.6
 </pre></div>
 </div>
 </div>
@@ -534,65 +538,7 @@ by 862 different sensors on San Francisco Bay area freeways.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span> <span class="c1"># Comment out </span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="hyperparameter-definitions">
-<h2>Hyperparameter Definitions<a class="headerlink" href="#hyperparameter-definitions" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">VAL_PERC</span> <span class="o">=</span> <span class="mf">.1</span>
-<span class="n">TEST_PERC</span> <span class="o">=</span> <span class="mf">.1</span>
-<span class="n">N_TIME_SERIES</span> <span class="o">=</span> <span class="mi">862</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mc_model</span> <span class="o">=</span> <span class="p">{}</span>
-
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;seq_len&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">96</span> <span class="c1"># Input sequence size.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;label_len&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">96</span> <span class="o">//</span> <span class="mi">2</span> <span class="c1"># Label sequence size. (Input buffer length for decoder)</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;pred_len&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">96</span> <span class="c1"># Prediction sequence size.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;output_attention&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1"># If true use output attention for Transformer model.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;enc_in&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">N_TIME_SERIES</span> <span class="c1">#  Number of encoders in data embedding layers.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;dec_in&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">N_TIME_SERIES</span> <span class="c1">#  Number of decoders in data embedding layers.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;d_model&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">512</span> <span class="c1">#  Number of nodes for embedding layers.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;c_out&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">N_TIME_SERIES</span> <span class="c1"># Number of output nodes in projection layer.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;embed&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;timeF&#39;</span> <span class="c1">#  Type of embedding layers.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;freq&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;h&#39;</span> <span class="c1"># Frequency for embedding layers.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;dropout&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.05</span> <span class="c1"># Float between (0, 1). Dropout for Transformer.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;factor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># Factor for attention layer.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;n_heads&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">8</span> <span class="c1">#  Number of heads in attention layer.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;d_ff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2_048</span> <span class="c1">#  Number of inputs in encoder layers.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;moving_avg&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">25</span>  <span class="c1">#  Moving average for encoder and decoder layers.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;activation&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;gelu&#39;</span> <span class="c1">#  Activation function for encoder layer.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;e_layers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># Number of encoder layers.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;d_layers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># Number of decoder layers.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;loss_train&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;MAE&#39;</span> <span class="c1"># Loss to optimize. An item from [&#39;MAPE&#39;, &#39;MASE&#39;, &#39;SMAPE&#39;, &#39;MSE&#39;, &#39;MAE&#39;, &#39;QUANTILE&#39;, &#39;QUANTILE2&#39;]. </span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;loss_hypar&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="c1"># Hyperparameter for chosen loss.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;loss_valid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;MAE&#39;</span><span class="c1"># Validation loss.An item from [&#39;MAPE&#39;, &#39;MASE&#39;, &#39;SMAPE&#39;, &#39;RMSE&#39;, &#39;MAE&#39;, &#39;QUANTILE&#39;].</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;learning_rate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.001</span> <span class="c1"># Learning rate between (0, 1).</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;lr_decay&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="c1"># Decreasing multiplier for the learning rate.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;weight_decay&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span> <span class="c1"># L2 penalty for optimizer.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;lr_decay_step_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># Steps between each learning rate decay.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;random_seed&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># random_seed for pseudo random pytorch initializer and numpy random generator.</span>
-
-<span class="c1"># Dataset parameters</span>
-<span class="n">mc_data</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;mode&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;iterate_windows&#39;</span>
-<span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;n_time_in&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;seq_len&#39;</span><span class="p">]</span> <span class="c1"># Input sequence length</span>
-<span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;n_time_out&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;pred_len&#39;</span><span class="p">]</span> <span class="c1"># Prediction sequence length</span>
-<span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;batch_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># Batch size </span>
-<span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;normalizer_y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span> 
-<span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;normalizer_x&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;max_epochs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># Maximum number of training epochs</span>
-<span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;max_steps&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># maximum number of training steps</span>
-<span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;early_stop_patience&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">20</span> <span class="c1">#Number of consecutive violations of early stopping criteria to end training</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span> <span class="c1"># Comment out</span>
 </pre></div>
 </div>
 </div>
@@ -620,6 +566,20 @@ by 862 different sensors on San Francisco Bay area freeways.</p>
 </div>
 </div>
 </div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>This notebook should run in a high-RAM env. If your runtime crashes due to RAM limits, adjust “percent_to_use” accordingling.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="s1">&#39;google.colab&#39;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">get_ipython</span><span class="p">()):</span>
+    <span class="n">percent_to_use</span> <span class="o">=</span> <span class="mf">0.5</span>
+    <span class="n">Y_df</span> <span class="o">=</span> <span class="n">Y_df</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Y_df</span><span class="p">)</span> <span class="o">*</span> <span class="n">percent_to_use</span><span class="p">)]</span>
+    <span class="n">X_df</span> <span class="o">=</span> <span class="n">X_df</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_df</span><span class="p">)</span> <span class="o">*</span> <span class="n">percent_to_use</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Y_df</span>
@@ -627,7 +587,11 @@ by 862 different sensors on San Francisco Bay area freeways.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
+<div class="output text_html">
+
+  <div id="df-d2f943ca-d4c1-4a8a-a96d-657a34f02169">
+    <div class="colab-df-container">
+      <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -688,39 +652,182 @@ by 862 different sensors on San Francisco Bay area freeways.</p>
       <td>...</td>
     </tr>
     <tr>
-      <th>15122923</th>
-      <td>OT</td>
+      <th>7561459</th>
+      <td>486</td>
       <td>2018-07-01 21:00:00</td>
-      <td>0.765917</td>
+      <td>0.050247</td>
     </tr>
     <tr>
-      <th>15122924</th>
-      <td>OT</td>
+      <th>7561460</th>
+      <td>486</td>
       <td>2018-07-01 22:00:00</td>
-      <td>0.389237</td>
+      <td>-0.294950</td>
     </tr>
     <tr>
-      <th>15122925</th>
-      <td>OT</td>
+      <th>7561461</th>
+      <td>486</td>
       <td>2018-07-01 23:00:00</td>
-      <td>0.172360</td>
+      <td>-0.389601</td>
     </tr>
     <tr>
-      <th>15122926</th>
-      <td>OT</td>
+      <th>7561462</th>
+      <td>486</td>
       <td>2018-07-02 00:00:00</td>
-      <td>-0.090175</td>
+      <td>-0.517658</td>
     </tr>
     <tr>
-      <th>15122927</th>
-      <td>OT</td>
+      <th>7561463</th>
+      <td>486</td>
       <td>2018-07-02 01:00:00</td>
-      <td>-0.495391</td>
+      <td>-0.812746</td>
     </tr>
   </tbody>
 </table>
-<p>15122928 rows × 3 columns</p>
-</div></div></div>
+<p>7561464 rows × 3 columns</p>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-d2f943ca-d4c1-4a8a-a96d-657a34f02169')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+
+
+
+    <div id="df-2a3c5114-3de6-4eab-b982-4c953c9711fb">
+      <button class="colab-df-quickchart" onclick="quickchart('df-2a3c5114-3de6-4eab-b982-4c953c9711fb')"
+              title="Suggest charts."
+              style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+      </button>
+    </div>
+
+<style>
+  .colab-df-quickchart {
+    background-color: #E8F0FE;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: #1967D2;
+    height: 32px;
+    padding: 0 0 0 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: #E2EBFA;
+    box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: #174EA6;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+    background-color: #3B4455;
+    fill: #D2E3FC;
+  }
+
+  [theme=dark] .colab-df-quickchart:hover {
+    background-color: #434B5C;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+    filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+    fill: #FFFFFF;
+  }
+</style>
+
+    <script>
+      async function quickchart(key) {
+        const containerElement = document.querySelector('#' + key);
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      }
+    </script>
+
+      <script>
+
+function displayQuickchartButton(domScope) {
+  let quickchartButtonEl =
+    domScope.querySelector('#df-2a3c5114-3de6-4eab-b982-4c953c9711fb button.colab-df-quickchart');
+  quickchartButtonEl.style.display =
+    google.colab.kernel.accessAllowed ? 'block' : 'none';
+}
+
+        displayQuickchartButton(document);
+      </script>
+      <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-d2f943ca-d4c1-4a8a-a96d-657a34f02169 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-d2f943ca-d4c1-4a8a-a96d-657a34f02169');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+</div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -729,7 +836,11 @@ by 862 different sensors on San Francisco Bay area freeways.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
+<div class="output text_html">
+
+  <div id="df-c99f77d3-31fe-4e94-b38b-1faf852eb3b6">
+    <div class="colab-df-container">
+      <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -811,8 +922,8 @@ by 862 different sensors on San Francisco Bay area freeways.</p>
       <td>...</td>
     </tr>
     <tr>
-      <th>15122923</th>
-      <td>OT</td>
+      <th>7561459</th>
+      <td>486</td>
       <td>2018-07-01 21:00:00</td>
       <td>0.413043</td>
       <td>0.500000</td>
@@ -820,8 +931,8 @@ by 862 different sensors on San Francisco Bay area freeways.</p>
       <td>-0.00411</td>
     </tr>
     <tr>
-      <th>15122924</th>
-      <td>OT</td>
+      <th>7561460</th>
+      <td>486</td>
       <td>2018-07-01 22:00:00</td>
       <td>0.456522</td>
       <td>0.500000</td>
@@ -829,8 +940,8 @@ by 862 different sensors on San Francisco Bay area freeways.</p>
       <td>-0.00411</td>
     </tr>
     <tr>
-      <th>15122925</th>
-      <td>OT</td>
+      <th>7561461</th>
+      <td>486</td>
       <td>2018-07-01 23:00:00</td>
       <td>0.500000</td>
       <td>0.500000</td>
@@ -838,8 +949,8 @@ by 862 different sensors on San Francisco Bay area freeways.</p>
       <td>-0.00411</td>
     </tr>
     <tr>
-      <th>15122926</th>
-      <td>OT</td>
+      <th>7561462</th>
+      <td>486</td>
       <td>2018-07-02 00:00:00</td>
       <td>-0.500000</td>
       <td>-0.500000</td>
@@ -847,8 +958,8 @@ by 862 different sensors on San Francisco Bay area freeways.</p>
       <td>-0.00137</td>
     </tr>
     <tr>
-      <th>15122927</th>
-      <td>OT</td>
+      <th>7561463</th>
+      <td>486</td>
       <td>2018-07-02 01:00:00</td>
       <td>-0.456522</td>
       <td>-0.500000</td>
@@ -857,8 +968,151 @@ by 862 different sensors on San Francisco Bay area freeways.</p>
     </tr>
   </tbody>
 </table>
-<p>15122928 rows × 6 columns</p>
-</div></div></div>
+<p>7561464 rows × 6 columns</p>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-c99f77d3-31fe-4e94-b38b-1faf852eb3b6')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+
+
+
+    <div id="df-43f62918-a1c4-49db-a433-dc138ec41f9b">
+      <button class="colab-df-quickchart" onclick="quickchart('df-43f62918-a1c4-49db-a433-dc138ec41f9b')"
+              title="Suggest charts."
+              style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+      </button>
+    </div>
+
+<style>
+  .colab-df-quickchart {
+    background-color: #E8F0FE;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: #1967D2;
+    height: 32px;
+    padding: 0 0 0 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: #E2EBFA;
+    box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: #174EA6;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+    background-color: #3B4455;
+    fill: #D2E3FC;
+  }
+
+  [theme=dark] .colab-df-quickchart:hover {
+    background-color: #434B5C;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+    filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+    fill: #FFFFFF;
+  }
+</style>
+
+    <script>
+      async function quickchart(key) {
+        const containerElement = document.querySelector('#' + key);
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      }
+    </script>
+
+      <script>
+
+function displayQuickchartButton(domScope) {
+  let quickchartButtonEl =
+    domScope.querySelector('#df-43f62918-a1c4-49db-a433-dc138ec41f9b button.colab-df-quickchart');
+  quickchartButtonEl.style.display =
+    google.colab.kernel.accessAllowed ? 'block' : 'none';
+}
+
+        displayQuickchartButton(document);
+      </script>
+      <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-c99f77d3-31fe-4e94-b38b-1faf852eb3b6 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-c99f77d3-31fe-4e94-b38b-1faf852eb3b6');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+</div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -877,6 +1131,58 @@ by 862 different sensors on San Francisco Bay area freeways.</p>
 </div>
 </div>
 </section>
+<section id="hyperparameter-definitions">
+<h2>Hyperparameter Definitions<a class="headerlink" href="#hyperparameter-definitions" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">VAL_PERC</span> <span class="o">=</span> <span class="mf">.1</span>
+<span class="n">TEST_PERC</span> <span class="o">=</span> <span class="mf">.1</span>
+<span class="n">N_TIME_SERIES</span> <span class="o">=</span> <span class="n">Y_df</span><span class="p">[</span><span class="s2">&quot;unique_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+
+<span class="n">mc_model</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;seq_len&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">96</span> <span class="c1"># Input sequence size.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;label_len&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">96</span> <span class="o">//</span> <span class="mi">2</span> <span class="c1"># Label sequence size. (Input buffer length for decoder)</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;pred_len&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">96</span> <span class="c1"># Prediction sequence size.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;output_attention&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1"># If true use output attention for Transformer model.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;enc_in&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">N_TIME_SERIES</span> <span class="c1">#  Number of encoders in data embedding layers.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;dec_in&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">N_TIME_SERIES</span> <span class="c1">#  Number of decoders in data embedding layers.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;d_model&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">512</span> <span class="c1">#  Number of nodes for embedding layers.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;c_out&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">N_TIME_SERIES</span> <span class="c1"># Number of output nodes in projection layer.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;embed&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;timeF&#39;</span> <span class="c1">#  Type of embedding layers.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;freq&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;h&#39;</span> <span class="c1"># Frequency for embedding layers.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;dropout&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.05</span> <span class="c1"># Float between (0, 1). Dropout for Transformer.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;factor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># Factor for attention layer.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;n_heads&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">8</span> <span class="c1">#  Number of heads in attention layer.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;d_ff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2_048</span> <span class="c1">#  Number of inputs in encoder layers.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;moving_avg&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">25</span>  <span class="c1">#  Moving average for encoder and decoder layers.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;activation&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;gelu&#39;</span> <span class="c1">#  Activation function for encoder layer.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;e_layers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># Number of encoder layers.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;d_layers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># Number of decoder layers.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;loss_train&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;MAE&#39;</span> <span class="c1"># Loss to optimize. An item from [&#39;MAPE&#39;, &#39;MASE&#39;, &#39;SMAPE&#39;, &#39;MSE&#39;, &#39;MAE&#39;, &#39;QUANTILE&#39;, &#39;QUANTILE2&#39;].</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;loss_hypar&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="c1"># Hyperparameter for chosen loss.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;loss_valid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;MAE&#39;</span><span class="c1"># Validation loss.An item from [&#39;MAPE&#39;, &#39;MASE&#39;, &#39;SMAPE&#39;, &#39;RMSE&#39;, &#39;MAE&#39;, &#39;QUANTILE&#39;].</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;learning_rate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.001</span> <span class="c1"># Learning rate between (0, 1).</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;lr_decay&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="c1"># Decreasing multiplier for the learning rate.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;weight_decay&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span> <span class="c1"># L2 penalty for optimizer.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;lr_decay_step_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># Steps between each learning rate decay.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;random_seed&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># random_seed for pseudo random pytorch initializer and numpy random generator.</span>
+
+<span class="c1"># Dataset parameters</span>
+<span class="n">mc_data</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;mode&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;iterate_windows&#39;</span>
+<span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;n_time_in&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;seq_len&#39;</span><span class="p">]</span> <span class="c1"># Input sequence length</span>
+<span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;n_time_out&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;pred_len&#39;</span><span class="p">]</span> <span class="c1"># Prediction sequence length</span>
+<span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;batch_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># Batch size</span>
+<span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;normalizer_y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;normalizer_x&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;max_epochs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># Maximum number of training epochs</span>
+<span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;max_steps&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># maximum number of training steps @Modified</span>
+<span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;early_stop_patience&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">20</span> <span class="c1">#Number of consecutive violations of early stopping criteria to end training</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 <section id="data-splitting">
 <h2>Data Splitting<a class="headerlink" href="#data-splitting" title="Permalink to this heading">#</a></h2>
 <p>The data is split sequentially into train, validation and test based on <code class="docutils literal notranslate"><span class="pre">VAL_PERC</span></code> and <code class="docutils literal notranslate"><span class="pre">TEST_PERC</span></code> global variables. We will withhold the last <code class="docutils literal notranslate"><span class="pre">TEST_PERC</span></code> of data for testing. In the code below, we are very careful to ensure that when training and validating the model, it does not have access to the withheld data.</p>
@@ -888,53 +1194,11 @@ by 862 different sensors on San Francisco Bay area freeways.</p>
 <span class="n">n_test</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">TEST_PERC</span> <span class="o">*</span> <span class="n">n_ds</span><span class="p">)</span>
 
 <span class="n">train_dataset</span><span class="p">,</span> <span class="n">val_dataset</span><span class="p">,</span> <span class="n">test_dataset</span><span class="p">,</span> <span class="n">scaler_y</span> <span class="o">=</span> <span class="n">create_datasets</span><span class="p">(</span><span class="n">mc</span><span class="o">=</span><span class="n">mc_data</span><span class="p">,</span>
-                                                                     <span class="n">S_df</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+                                                                     <span class="n">S_df</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                                                                      <span class="n">Y_df</span><span class="o">=</span><span class="n">Y_df</span><span class="p">,</span> <span class="n">X_df</span><span class="o">=</span><span class="n">X_df</span><span class="p">,</span>
                                                                      <span class="n">f_cols</span><span class="o">=</span><span class="n">f_cols</span><span class="p">,</span>
                                                                      <span class="n">ds_in_val</span><span class="o">=</span><span class="n">n_val</span><span class="p">,</span>
                                                                      <span class="n">ds_in_test</span><span class="o">=</span><span class="n">n_test</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:root:Train Validation splits
-
-INFO:root:                             ds                    
-                            min                 max
-sample_mask                                        
-0           2018-02-05 22:00:00 2018-07-02 01:00:00
-1           2016-07-01 02:00:00 2018-02-05 21:00:00
-INFO:root:
-Total data 			15122928 time stamps 
-Available percentage=100.0, 	15122928 time stamps 
-Insample  percentage=80.0, 	12099032 time stamps 
-Outsample percentage=20.0, 	3023896 time stamps 
-
-INFO:root:Train Validation splits
-
-INFO:root:                             ds                    
-                            min                 max
-sample_mask                                        
-0           2016-07-01 02:00:00 2018-07-02 01:00:00
-1           2018-02-05 22:00:00 2018-04-19 23:00:00
-INFO:root:
-Total data 			15122928 time stamps 
-Available percentage=100.0, 	15122928 time stamps 
-Insample  percentage=10.0, 	1511948 time stamps 
-Outsample percentage=90.0, 	13610980 time stamps 
-
-INFO:root:Train Validation splits
-
-INFO:root:                             ds                    
-                            min                 max
-sample_mask                                        
-0           2016-07-01 02:00:00 2018-04-19 23:00:00
-1           2018-04-20 00:00:00 2018-07-02 01:00:00
-INFO:root:
-Total data 			15122928 time stamps 
-Available percentage=100.0, 	15122928 time stamps 
-Insample  percentage=10.0, 	1511948 time stamps 
-Outsample percentage=90.0, 	13610980 time stamps 
 </pre></div>
 </div>
 </div>
@@ -1009,44 +1273,24 @@ Outsample percentage=90.0, 	13610980 time stamps
 <p>For more information regarding the <code class="docutils literal notranslate"><span class="pre">pl.Trainer</span></code> class, consult the <a class="reference external" href="https://pytorch-lightning.readthedocs.io/en/stable/api/pytorch_lightning.trainer.trainer.html#pytorch_lightning.trainer.trainer.Trainer.validate">PyTorch Lightning documentation</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">early_stopping</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">EarlyStopping</span><span class="p">(</span><span class="n">monitor</span><span class="o">=</span><span class="s1">&#39;val_loss&#39;</span><span class="p">,</span> 
-                                            <span class="n">min_delta</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">early_stopping</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">EarlyStopping</span><span class="p">(</span><span class="n">monitor</span><span class="o">=</span><span class="s1">&#39;val_loss&#39;</span><span class="p">,</span>
+                                            <span class="n">min_delta</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span>
                                             <span class="n">patience</span><span class="o">=</span><span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;early_stop_patience&#39;</span><span class="p">],</span>
                                             <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                                             <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;min&quot;</span><span class="p">)</span>
 
-<span class="n">trainer</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">Trainer</span><span class="p">(</span><span class="n">max_epochs</span><span class="o">=</span><span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;max_epochs&#39;</span><span class="p">],</span> 
-                     <span class="n">max_steps</span><span class="o">=</span><span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;max_steps&#39;</span><span class="p">],</span>
+<span class="n">trainer</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">Trainer</span><span class="p">(</span><span class="n">max_epochs</span><span class="o">=</span><span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;max_epochs&#39;</span><span class="p">],</span>
                      <span class="n">accelerator</span><span class="o">=</span><span class="s2">&quot;gpu&quot;</span><span class="p">,</span>
                      <span class="n">devices</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                      <span class="n">gradient_clip_val</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
-                     <span class="n">progress_bar_refresh_rate</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> 
                      <span class="n">check_val_every_n_epoch</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                     <span class="n">log_every_n_steps</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> 
+                     <span class="n">log_every_n_steps</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
                      <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">early_stopping</span><span class="p">])</span>
 
 <span class="n">trainer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">train_loader</span><span class="p">,</span> <span class="n">val_loader</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GPU available: True, used: True
-TPU available: False, using: 0 TPU cores
-IPU available: False, using: 0 IPUs
-LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-Set SLURM handle signals.
-
-  | Name  | Type        | Params
---------------------------------------
-0 | model | _Autoformer | 14.9 M
---------------------------------------
-14.9 M    Trainable params
-0         Non-trainable params
-14.9 M    Total params
-59.658    Total estimated model params size (MB)
-</pre></div>
-</div>
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "92233e4541f54a818ca8bd8801c21943", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 </section>
 <section id="test">
@@ -1061,11 +1305,6 @@ Set SLURM handle signals.
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-</pre></div>
-</div>
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "f2e3a352b6dc4455b03fda975476e27a", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1100,7 +1339,7 @@ Set SLURM handle signals.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/746312592f0600eab317b470b2eaf3325840a56732c696a8e3d4c8d967a7cd78.png" src="../_images/746312592f0600eab317b470b2eaf3325840a56732c696a8e3d4c8d967a7cd78.png" />
+<img alt="../_images/ea97859b44795ffdf8459bb67c2ad41342a107642d4ca347b234daa42dc554f4.png" src="../_images/ea97859b44795ffdf8459bb67c2ad41342a107642d4ca347b234daa42dc554f4.png" />
 </div>
 </div>
 </section>
@@ -1122,6 +1361,11 @@ Set SLURM handle signals.
 <span class="n">mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">trues</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">preds</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;MSE: </span><span class="si">{</span><span class="n">mse</span><span class="si">}</span><span class="s2"> MAE: </span><span class="si">{</span><span class="n">mae</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MSE: 0.5431954860687256 MAE: 0.4196507930755615
 </pre></div>
 </div>
 </div>
@@ -1200,8 +1444,8 @@ Set SLURM handle signals.
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-configuration-and-package-imports">Environment Configuration and Package Imports</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperparameter-definitions">Hyperparameter Definitions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperparameter-definitions">Hyperparameter Definitions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-splitting">Data Splitting</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-dataloader">Defining Dataloader</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model">Model</a><ul class="nav section-nav flex-column">
