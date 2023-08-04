@@ -37,12 +37,15 @@ jobs:
         run: |
           curl -o _config.yml 'https://raw.githubusercontent.com/SajjadPSavoji/Booklet/main/_config.yml'
           curl -o change_yml.py 'https://raw.githubusercontent.com/SajjadPSavoji/Booklet/main/change_yml.py'
+          curl -o change_yml_url.py 'https://raw.githubusercontent.com/SajjadPSavoji/Booklet/main/change_yml_url.py' 
       
       - name: set config field in yml file
         run: |
           python change_yml.py _config.yml title ${{ github.repository }}
           python change_yml.py _config.yml repository.url ${{ github.repositoryUrl }}
+          python change_yml_url.py _config.yml
           rm change_yml.py
+          rm change_yml_url.py
           
           
       - name: Commit changes
@@ -58,18 +61,18 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: "booklet"
           
-      # # Build the book
-      # - name: Build the book
-      #   run: |
-      #     jupyter-book build .
+      # Build the book
+      - name: Build the book
+        run: |
+          jupyter-book build .
           
-      # # Push the book's HTML to github-pages
-      # - name: GitHub Pages action
-      #   uses: peaceiris/actions-gh-pages@v3.6.1
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_dir: ./_build/html
-      #     publish_branch: gh-pages
+      # Push the book's HTML to github-pages
+      - name: GitHub Pages action
+        uses: peaceiris/actions-gh-pages@v3.6.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_build/html
+          publish_branch: gh-pages
           
   # this job is executed when ever a push on booklet branch is made
   # it creates and the booklet and deploys gh-pages
