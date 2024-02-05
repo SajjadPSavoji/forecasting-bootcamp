@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Multivariate Forecasting Long Sequence Time Series with Autoformer &#8212; SajjadPSavoji/forecasting-bootcamp</title>
   
@@ -19,42 +18,41 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=__G_ANALYTICS_ID__"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -67,7 +65,19 @@ const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', '__G_ANALYTICS_ID__');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'multivariate_lstf_demos/autoformer_traffic';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -82,7 +92,15 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -117,11 +135,14 @@ const thebe_selector_output = ".output, .cell_output"
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -136,9 +157,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../README.html">
+  
   
   
   
@@ -148,12 +171,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="https://vectorinstitute.ai/wp-content/uploads/2022/11/logo-vector-institute-full-colour-01.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="https://vectorinstitute.ai/wp-content/uploads/2022/11/logo-vector-institute-full-colour-01.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="https://vectorinstitute.ai/wp-content/uploads/2022/11/logo-vector-institute-full-colour-01.png" class="logo__image only-light" alt="SajjadPSavoji/forecasting-bootcamp - Home"/>
+    <script>document.write(`<img src="https://vectorinstitute.ai/wp-content/uploads/2022/11/logo-vector-institute-full-colour-01.png" class="logo__image only-dark" alt="SajjadPSavoji/forecasting-bootcamp - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -174,12 +208,13 @@ const thebe_selector_output = ".output, .cell_output"
 
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../demos/demo1_prophet_neuralprophet_testset.html">Data Loading</a></li>
-
-
-
-
-
+<li class="toctree-l1 has-children"><a class="reference internal" href="../demos/demo1_prophet_neuralprophet_testset.html">Demo1 prophet neuralprophet testset</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../demos/demo2_pytorch_forecasting.html">Demo2 pytorch forecasting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../demos/demo2_pytorch_forecasting-NBEATS-CPI.html">Demo2 pytorch forecasting-nbeats-cpi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../demos/demo3_rolling_cv_prophet.html">Demo3 rolling cv prophet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../demos/README.html">Readme</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../external_demos/m5-competition-eda-models.html">Introduction</a></li>
 
 
@@ -188,18 +223,18 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<li class="toctree-l1 has-children"><a class="reference internal" href="../intro_to_forecasting/intro_time_series.html">Intro time series</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../intro_to_forecasting/intro_time_series.html">Intro time series</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../intro_to_forecasting/intro_time_series_2.html">Intro time series 2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intro_to_forecasting/README.html">Readme</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../multivariate_demos/deepar_electricty.html">Deepar electricty</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../multivariate_demos/deepar_electricty.html">Deepar electricty</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../multivariate_demos/nbeats_electricity.html">Nbeats electricity</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../multivariate_demos/nhits_quantile.html">Nhits quantile</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../multivariate_demos/README.html">Readme</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Autoformer traffic</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Autoformer traffic</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="nhits_traffic.html">Nhits traffic</a></li>
 <li class="toctree-l2"><a class="reference internal" href="README.html">Readme</a></li>
 </ul>
@@ -423,20 +458,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -464,8 +501,8 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-configuration-and-package-imports">Environment Configuration and Package Imports</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperparameter-definitions">Hyperparameter Definitions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-splitting">Data Splitting</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-dataloader">Defining Dataloader</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model">Model</a><ul class="nav section-nav flex-column">
@@ -488,27 +525,23 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="multivariate-forecasting-long-sequence-time-series-with-autoformer">
-<h1>Multivariate Forecasting Long Sequence Time Series with Autoformer<a class="headerlink" href="#multivariate-forecasting-long-sequence-time-series-with-autoformer" title="Permalink to this heading">#</a></h1>
+<h1>Multivariate Forecasting Long Sequence Time Series with Autoformer<a class="headerlink" href="#multivariate-forecasting-long-sequence-time-series-with-autoformer" title="Link to this heading">#</a></h1>
 <p>This notebook outlines the application of <a class="reference external" href="https://arxiv.org/abs/2106.13008">Autoformer</a>, a recently-proposed model for time series forecasting, to a collection of hourly data
 from California Department of Transportation, which describes the road occupancy rates measured
 by 862 different sensors on San Francisco Bay area freeways.</p>
 <p>This demo uses an implementation of NHTIS from the neuralforecast package. <a class="reference external" href="https://github.com/jdb78/pytorch-forecasting">neuralforecast</a> is a package/repository that provides implementations of several state-of-the-art deep learning-based forecasting models, namely <a class="reference external" href="https://arxiv.org/abs/2106.13008">Autoformer</a>, <a class="reference external" href="https://arxiv.org/abs/2012.07436">Informer</a>, <a class="reference external" href="https://arxiv.org/abs/2201.12886">NHITS</a> and <a class="reference external" href="https://www.sciencedirect.com/science/article/abs/pii/S0169207019301153">ES-RNN</a>. Similar to PyTorch Forecasting, neuralforecast is built using <a class="reference external" href="https://pytorch-lightning.readthedocs.io/">PyTorch Lightning</a>, making it easier to train in multi-GPU compute environments, out-of-the-box.</p>
 <p><strong>Note:</strong> neuralforecast is a relatively new package that has been gaining traction because, unlike more mature packages, it supports recent state-of-the-art methods like NHITS and Autoformer. That being said, the documentation is sparse and the package is not as mature as others we have used in other demos (<a class="reference external" href="https://pytorch-forecasting.readthedocs.io/en/stable/">PyTorch Forecasting</a>, <a class="reference external" href="https://facebook.github.io/prophet/">Prophet</a>). In any event, neuralforecast provides a great oppurtunity to explore bleeding edge time series forecasting methods.</p>
 <section id="environment-configuration-and-package-imports">
-<h2>Environment Configuration and Package Imports<a class="headerlink" href="#environment-configuration-and-package-imports" title="Permalink to this heading">#</a></h2>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>For Colab Users: Run the following cell to install neuralforecast and pytorch_lightning.
-After installation completes, you will likely need to restart the Colab runtime.
-If this is the case, a button RESTART RUNTIME will appear at the bottom of the next cell’s output.</p>
-</div>
+<h2>Environment Configuration and Package Imports<a class="headerlink" href="#environment-configuration-and-package-imports" title="Link to this heading">#</a></h2>
+<p><strong>Note for Colab users:</strong> Run the following cell to install PyTorch Forecasting. After installation completes, you will likely need to restart the Colab runtime. If this is the case, a button RESTART RUNTIME will appear at the bottom of the next cell’s output.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="s1">&#39;google.colab&#39;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">get_ipython</span><span class="p">()):</span>
-    <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>pytorch_lightning<span class="w"> </span><span class="nv">neuralforecast</span><span class="o">==</span><span class="m">0</span>.0.6
+    <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>pytorch_lightning
+    <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>neuralforecast
 </pre></div>
 </div>
 </div>
@@ -538,14 +571,72 @@ If this is the case, a button RESTART RUNTIME will appear at the bottom of the n
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span> <span class="c1"># Comment out</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span> <span class="c1"># Comment out </span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="hyperparameter-definitions">
+<h2>Hyperparameter Definitions<a class="headerlink" href="#hyperparameter-definitions" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">VAL_PERC</span> <span class="o">=</span> <span class="mf">.1</span>
+<span class="n">TEST_PERC</span> <span class="o">=</span> <span class="mf">.1</span>
+<span class="n">N_TIME_SERIES</span> <span class="o">=</span> <span class="mi">862</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mc_model</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;seq_len&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">96</span> <span class="c1"># Input sequence size.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;label_len&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">96</span> <span class="o">//</span> <span class="mi">2</span> <span class="c1"># Label sequence size. (Input buffer length for decoder)</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;pred_len&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">96</span> <span class="c1"># Prediction sequence size.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;output_attention&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1"># If true use output attention for Transformer model.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;enc_in&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">N_TIME_SERIES</span> <span class="c1">#  Number of encoders in data embedding layers.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;dec_in&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">N_TIME_SERIES</span> <span class="c1">#  Number of decoders in data embedding layers.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;d_model&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">512</span> <span class="c1">#  Number of nodes for embedding layers.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;c_out&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">N_TIME_SERIES</span> <span class="c1"># Number of output nodes in projection layer.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;embed&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;timeF&#39;</span> <span class="c1">#  Type of embedding layers.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;freq&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;h&#39;</span> <span class="c1"># Frequency for embedding layers.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;dropout&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.05</span> <span class="c1"># Float between (0, 1). Dropout for Transformer.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;factor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># Factor for attention layer.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;n_heads&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">8</span> <span class="c1">#  Number of heads in attention layer.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;d_ff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2_048</span> <span class="c1">#  Number of inputs in encoder layers.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;moving_avg&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">25</span>  <span class="c1">#  Moving average for encoder and decoder layers.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;activation&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;gelu&#39;</span> <span class="c1">#  Activation function for encoder layer.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;e_layers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># Number of encoder layers.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;d_layers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># Number of decoder layers.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;loss_train&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;MAE&#39;</span> <span class="c1"># Loss to optimize. An item from [&#39;MAPE&#39;, &#39;MASE&#39;, &#39;SMAPE&#39;, &#39;MSE&#39;, &#39;MAE&#39;, &#39;QUANTILE&#39;, &#39;QUANTILE2&#39;]. </span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;loss_hypar&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="c1"># Hyperparameter for chosen loss.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;loss_valid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;MAE&#39;</span><span class="c1"># Validation loss.An item from [&#39;MAPE&#39;, &#39;MASE&#39;, &#39;SMAPE&#39;, &#39;RMSE&#39;, &#39;MAE&#39;, &#39;QUANTILE&#39;].</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;learning_rate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.001</span> <span class="c1"># Learning rate between (0, 1).</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;lr_decay&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="c1"># Decreasing multiplier for the learning rate.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;weight_decay&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span> <span class="c1"># L2 penalty for optimizer.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;lr_decay_step_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># Steps between each learning rate decay.</span>
+<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;random_seed&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># random_seed for pseudo random pytorch initializer and numpy random generator.</span>
+
+<span class="c1"># Dataset parameters</span>
+<span class="n">mc_data</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;mode&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;iterate_windows&#39;</span>
+<span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;n_time_in&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;seq_len&#39;</span><span class="p">]</span> <span class="c1"># Input sequence length</span>
+<span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;n_time_out&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;pred_len&#39;</span><span class="p">]</span> <span class="c1"># Prediction sequence length</span>
+<span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;batch_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># Batch size </span>
+<span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;normalizer_y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span> 
+<span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;normalizer_x&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;max_epochs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># Maximum number of training epochs</span>
+<span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;max_steps&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># maximum number of training steps</span>
+<span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;early_stop_patience&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">20</span> <span class="c1">#Number of consecutive violations of early stopping criteria to end training</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="load-data">
-<h2>Load Data<a class="headerlink" href="#load-data" title="Permalink to this heading">#</a></h2>
+<h2>Load Data<a class="headerlink" href="#load-data" title="Link to this heading">#</a></h2>
 <p>We start by loading the data. neuralforecast provides utilities for loading a <a class="reference external" href="https://nixtla.github.io/neuralforecast/data_datasets__long_horizon.html">variety of different datasets</a> popular in the time series forecasting domain. Conveniently, the loaded data is in the format that is expected by the model that we define in the subsequent section. In particular, we call the <code class="docutils literal notranslate"><span class="pre">load</span></code> function with an argument specifying the dataset to load three dataframes:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Y_df</span></code>: (pd.DataFrame) Target time series with columns [‘unique_id’, ‘ds’, ‘y’]</p></li>
@@ -566,20 +657,6 @@ If this is the case, a button RESTART RUNTIME will appear at the bottom of the n
 </div>
 </div>
 </div>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>This notebook should run in a high-RAM env. If your runtime crashes due to RAM limits, adjust “percent_to_use” accordingling.</p>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="s1">&#39;google.colab&#39;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">get_ipython</span><span class="p">()):</span>
-    <span class="n">percent_to_use</span> <span class="o">=</span> <span class="mf">0.5</span>
-    <span class="n">Y_df</span> <span class="o">=</span> <span class="n">Y_df</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Y_df</span><span class="p">)</span> <span class="o">*</span> <span class="n">percent_to_use</span><span class="p">)]</span>
-    <span class="n">X_df</span> <span class="o">=</span> <span class="n">X_df</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_df</span><span class="p">)</span> <span class="o">*</span> <span class="n">percent_to_use</span><span class="p">)]</span>
-</pre></div>
-</div>
-</div>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Y_df</span>
@@ -587,11 +664,7 @@ If this is the case, a button RESTART RUNTIME will appear at the bottom of the n
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">
-
-  <div id="df-d2f943ca-d4c1-4a8a-a96d-657a34f02169">
-    <div class="colab-df-container">
-      <div>
+<div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -652,182 +725,39 @@ If this is the case, a button RESTART RUNTIME will appear at the bottom of the n
       <td>...</td>
     </tr>
     <tr>
-      <th>7561459</th>
-      <td>486</td>
+      <th>15122923</th>
+      <td>OT</td>
       <td>2018-07-01 21:00:00</td>
-      <td>0.050247</td>
+      <td>0.765917</td>
     </tr>
     <tr>
-      <th>7561460</th>
-      <td>486</td>
+      <th>15122924</th>
+      <td>OT</td>
       <td>2018-07-01 22:00:00</td>
-      <td>-0.294950</td>
+      <td>0.389237</td>
     </tr>
     <tr>
-      <th>7561461</th>
-      <td>486</td>
+      <th>15122925</th>
+      <td>OT</td>
       <td>2018-07-01 23:00:00</td>
-      <td>-0.389601</td>
+      <td>0.172360</td>
     </tr>
     <tr>
-      <th>7561462</th>
-      <td>486</td>
+      <th>15122926</th>
+      <td>OT</td>
       <td>2018-07-02 00:00:00</td>
-      <td>-0.517658</td>
+      <td>-0.090175</td>
     </tr>
     <tr>
-      <th>7561463</th>
-      <td>486</td>
+      <th>15122927</th>
+      <td>OT</td>
       <td>2018-07-02 01:00:00</td>
-      <td>-0.812746</td>
+      <td>-0.495391</td>
     </tr>
   </tbody>
 </table>
-<p>7561464 rows × 3 columns</p>
-</div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-d2f943ca-d4c1-4a8a-a96d-657a34f02169')"
-              title="Convert this dataframe to an interactive table."
-              style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-       width="24px">
-    <path d="M0 0h24v24H0V0z" fill="none"/>
-    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
-  </svg>
-      </button>
-
-
-
-    <div id="df-2a3c5114-3de6-4eab-b982-4c953c9711fb">
-      <button class="colab-df-quickchart" onclick="quickchart('df-2a3c5114-3de6-4eab-b982-4c953c9711fb')"
-              title="Suggest charts."
-              style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
-</svg>
-      </button>
-    </div>
-
-<style>
-  .colab-df-quickchart {
-    background-color: #E8F0FE;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: #1967D2;
-    height: 32px;
-    padding: 0 0 0 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: #E2EBFA;
-    box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: #174EA6;
-  }
-
-  [theme=dark] .colab-df-quickchart {
-    background-color: #3B4455;
-    fill: #D2E3FC;
-  }
-
-  [theme=dark] .colab-df-quickchart:hover {
-    background-color: #434B5C;
-    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-    filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-    fill: #FFFFFF;
-  }
-</style>
-
-    <script>
-      async function quickchart(key) {
-        const containerElement = document.querySelector('#' + key);
-        const charts = await google.colab.kernel.invokeFunction(
-            'suggestCharts', [key], {});
-      }
-    </script>
-
-      <script>
-
-function displayQuickchartButton(domScope) {
-  let quickchartButtonEl =
-    domScope.querySelector('#df-2a3c5114-3de6-4eab-b982-4c953c9711fb button.colab-df-quickchart');
-  quickchartButtonEl.style.display =
-    google.colab.kernel.accessAllowed ? 'block' : 'none';
-}
-
-        displayQuickchartButton(document);
-      </script>
-      <style>
-    .colab-df-container {
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-      <script>
-        const buttonEl =
-          document.querySelector('#df-d2f943ca-d4c1-4a8a-a96d-657a34f02169 button.colab-df-convert');
-        buttonEl.style.display =
-          google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-        async function convertToInteractive(key) {
-          const element = document.querySelector('#df-d2f943ca-d4c1-4a8a-a96d-657a34f02169');
-          const dataTable =
-            await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                     [key], {});
-          if (!dataTable) return;
-
-          const docLinkHtml = 'Like what you see? Visit the ' +
-            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-            + ' to learn more about interactive tables.';
-          element.innerHTML = '';
-          dataTable['output_type'] = 'display_data';
-          await google.colab.output.renderOutput(dataTable, element);
-          const docLink = document.createElement('div');
-          docLink.innerHTML = docLinkHtml;
-          element.appendChild(docLink);
-        }
-      </script>
-    </div>
-  </div>
-</div></div>
+<p>15122928 rows × 3 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -836,11 +766,7 @@ function displayQuickchartButton(domScope) {
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">
-
-  <div id="df-c99f77d3-31fe-4e94-b38b-1faf852eb3b6">
-    <div class="colab-df-container">
-      <div>
+<div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -922,8 +848,8 @@ function displayQuickchartButton(domScope) {
       <td>...</td>
     </tr>
     <tr>
-      <th>7561459</th>
-      <td>486</td>
+      <th>15122923</th>
+      <td>OT</td>
       <td>2018-07-01 21:00:00</td>
       <td>0.413043</td>
       <td>0.500000</td>
@@ -931,8 +857,8 @@ function displayQuickchartButton(domScope) {
       <td>-0.00411</td>
     </tr>
     <tr>
-      <th>7561460</th>
-      <td>486</td>
+      <th>15122924</th>
+      <td>OT</td>
       <td>2018-07-01 22:00:00</td>
       <td>0.456522</td>
       <td>0.500000</td>
@@ -940,8 +866,8 @@ function displayQuickchartButton(domScope) {
       <td>-0.00411</td>
     </tr>
     <tr>
-      <th>7561461</th>
-      <td>486</td>
+      <th>15122925</th>
+      <td>OT</td>
       <td>2018-07-01 23:00:00</td>
       <td>0.500000</td>
       <td>0.500000</td>
@@ -949,8 +875,8 @@ function displayQuickchartButton(domScope) {
       <td>-0.00411</td>
     </tr>
     <tr>
-      <th>7561462</th>
-      <td>486</td>
+      <th>15122926</th>
+      <td>OT</td>
       <td>2018-07-02 00:00:00</td>
       <td>-0.500000</td>
       <td>-0.500000</td>
@@ -958,8 +884,8 @@ function displayQuickchartButton(domScope) {
       <td>-0.00137</td>
     </tr>
     <tr>
-      <th>7561463</th>
-      <td>486</td>
+      <th>15122927</th>
+      <td>OT</td>
       <td>2018-07-02 01:00:00</td>
       <td>-0.456522</td>
       <td>-0.500000</td>
@@ -968,151 +894,8 @@ function displayQuickchartButton(domScope) {
     </tr>
   </tbody>
 </table>
-<p>7561464 rows × 6 columns</p>
-</div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-c99f77d3-31fe-4e94-b38b-1faf852eb3b6')"
-              title="Convert this dataframe to an interactive table."
-              style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-       width="24px">
-    <path d="M0 0h24v24H0V0z" fill="none"/>
-    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
-  </svg>
-      </button>
-
-
-
-    <div id="df-43f62918-a1c4-49db-a433-dc138ec41f9b">
-      <button class="colab-df-quickchart" onclick="quickchart('df-43f62918-a1c4-49db-a433-dc138ec41f9b')"
-              title="Suggest charts."
-              style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
-</svg>
-      </button>
-    </div>
-
-<style>
-  .colab-df-quickchart {
-    background-color: #E8F0FE;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: #1967D2;
-    height: 32px;
-    padding: 0 0 0 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: #E2EBFA;
-    box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: #174EA6;
-  }
-
-  [theme=dark] .colab-df-quickchart {
-    background-color: #3B4455;
-    fill: #D2E3FC;
-  }
-
-  [theme=dark] .colab-df-quickchart:hover {
-    background-color: #434B5C;
-    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-    filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-    fill: #FFFFFF;
-  }
-</style>
-
-    <script>
-      async function quickchart(key) {
-        const containerElement = document.querySelector('#' + key);
-        const charts = await google.colab.kernel.invokeFunction(
-            'suggestCharts', [key], {});
-      }
-    </script>
-
-      <script>
-
-function displayQuickchartButton(domScope) {
-  let quickchartButtonEl =
-    domScope.querySelector('#df-43f62918-a1c4-49db-a433-dc138ec41f9b button.colab-df-quickchart');
-  quickchartButtonEl.style.display =
-    google.colab.kernel.accessAllowed ? 'block' : 'none';
-}
-
-        displayQuickchartButton(document);
-      </script>
-      <style>
-    .colab-df-container {
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-      <script>
-        const buttonEl =
-          document.querySelector('#df-c99f77d3-31fe-4e94-b38b-1faf852eb3b6 button.colab-df-convert');
-        buttonEl.style.display =
-          google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-        async function convertToInteractive(key) {
-          const element = document.querySelector('#df-c99f77d3-31fe-4e94-b38b-1faf852eb3b6');
-          const dataTable =
-            await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                     [key], {});
-          if (!dataTable) return;
-
-          const docLinkHtml = 'Like what you see? Visit the ' +
-            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-            + ' to learn more about interactive tables.';
-          element.innerHTML = '';
-          dataTable['output_type'] = 'display_data';
-          await google.colab.output.renderOutput(dataTable, element);
-          const docLink = document.createElement('div');
-          docLink.innerHTML = docLinkHtml;
-          element.appendChild(docLink);
-        }
-      </script>
-    </div>
-  </div>
-</div></div>
+<p>15122928 rows × 6 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1131,60 +914,8 @@ function displayQuickchartButton(domScope) {
 </div>
 </div>
 </section>
-<section id="hyperparameter-definitions">
-<h2>Hyperparameter Definitions<a class="headerlink" href="#hyperparameter-definitions" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">VAL_PERC</span> <span class="o">=</span> <span class="mf">.1</span>
-<span class="n">TEST_PERC</span> <span class="o">=</span> <span class="mf">.1</span>
-<span class="n">N_TIME_SERIES</span> <span class="o">=</span> <span class="n">Y_df</span><span class="p">[</span><span class="s2">&quot;unique_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
-
-<span class="n">mc_model</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;seq_len&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">96</span> <span class="c1"># Input sequence size.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;label_len&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">96</span> <span class="o">//</span> <span class="mi">2</span> <span class="c1"># Label sequence size. (Input buffer length for decoder)</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;pred_len&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">96</span> <span class="c1"># Prediction sequence size.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;output_attention&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1"># If true use output attention for Transformer model.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;enc_in&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">N_TIME_SERIES</span> <span class="c1">#  Number of encoders in data embedding layers.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;dec_in&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">N_TIME_SERIES</span> <span class="c1">#  Number of decoders in data embedding layers.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;d_model&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">512</span> <span class="c1">#  Number of nodes for embedding layers.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;c_out&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">N_TIME_SERIES</span> <span class="c1"># Number of output nodes in projection layer.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;embed&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;timeF&#39;</span> <span class="c1">#  Type of embedding layers.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;freq&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;h&#39;</span> <span class="c1"># Frequency for embedding layers.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;dropout&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.05</span> <span class="c1"># Float between (0, 1). Dropout for Transformer.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;factor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># Factor for attention layer.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;n_heads&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">8</span> <span class="c1">#  Number of heads in attention layer.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;d_ff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2_048</span> <span class="c1">#  Number of inputs in encoder layers.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;moving_avg&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">25</span>  <span class="c1">#  Moving average for encoder and decoder layers.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;activation&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;gelu&#39;</span> <span class="c1">#  Activation function for encoder layer.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;e_layers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># Number of encoder layers.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;d_layers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># Number of decoder layers.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;loss_train&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;MAE&#39;</span> <span class="c1"># Loss to optimize. An item from [&#39;MAPE&#39;, &#39;MASE&#39;, &#39;SMAPE&#39;, &#39;MSE&#39;, &#39;MAE&#39;, &#39;QUANTILE&#39;, &#39;QUANTILE2&#39;].</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;loss_hypar&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="c1"># Hyperparameter for chosen loss.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;loss_valid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;MAE&#39;</span><span class="c1"># Validation loss.An item from [&#39;MAPE&#39;, &#39;MASE&#39;, &#39;SMAPE&#39;, &#39;RMSE&#39;, &#39;MAE&#39;, &#39;QUANTILE&#39;].</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;learning_rate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.001</span> <span class="c1"># Learning rate between (0, 1).</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;lr_decay&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="c1"># Decreasing multiplier for the learning rate.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;weight_decay&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span> <span class="c1"># L2 penalty for optimizer.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;lr_decay_step_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># Steps between each learning rate decay.</span>
-<span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;random_seed&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># random_seed for pseudo random pytorch initializer and numpy random generator.</span>
-
-<span class="c1"># Dataset parameters</span>
-<span class="n">mc_data</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;mode&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;iterate_windows&#39;</span>
-<span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;n_time_in&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;seq_len&#39;</span><span class="p">]</span> <span class="c1"># Input sequence length</span>
-<span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;n_time_out&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mc_model</span><span class="p">[</span><span class="s1">&#39;pred_len&#39;</span><span class="p">]</span> <span class="c1"># Prediction sequence length</span>
-<span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;batch_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># Batch size</span>
-<span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;normalizer_y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;normalizer_x&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;max_epochs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># Maximum number of training epochs</span>
-<span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;max_steps&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># maximum number of training steps @Modified</span>
-<span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;early_stop_patience&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">20</span> <span class="c1">#Number of consecutive violations of early stopping criteria to end training</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 <section id="data-splitting">
-<h2>Data Splitting<a class="headerlink" href="#data-splitting" title="Permalink to this heading">#</a></h2>
+<h2>Data Splitting<a class="headerlink" href="#data-splitting" title="Link to this heading">#</a></h2>
 <p>The data is split sequentially into train, validation and test based on <code class="docutils literal notranslate"><span class="pre">VAL_PERC</span></code> and <code class="docutils literal notranslate"><span class="pre">TEST_PERC</span></code> global variables. We will withhold the last <code class="docutils literal notranslate"><span class="pre">TEST_PERC</span></code> of data for testing. In the code below, we are very careful to ensure that when training and validating the model, it does not have access to the withheld data.</p>
 <p>The neuralforecast package’s function <a class="reference external" href="https://nixtla.github.io/neuralforecast/experiments__utils.html#create_datasets">create_datasets</a> allows us to generate a <a class="reference external" href="https://nixtla.github.io/neuralforecast/data__tsdataset.html">TSDataset</a> for the train, validation and test sets by passing <code class="docutils literal notranslate"><span class="pre">Y_df</span></code>, <code class="docutils literal notranslate"><span class="pre">X_df</span></code> and <code class="docutils literal notranslate"><span class="pre">S_df</span></code> that we defined above. Additionally, we specify the amount of time steps we want in the validation and test datasets, <code class="docutils literal notranslate"><span class="pre">ds_in_val</span></code> and <code class="docutils literal notranslate"><span class="pre">ds_in_test</span></code>.</p>
 <div class="cell docutils container">
@@ -1194,7 +925,7 @@ function displayQuickchartButton(domScope) {
 <span class="n">n_test</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">TEST_PERC</span> <span class="o">*</span> <span class="n">n_ds</span><span class="p">)</span>
 
 <span class="n">train_dataset</span><span class="p">,</span> <span class="n">val_dataset</span><span class="p">,</span> <span class="n">test_dataset</span><span class="p">,</span> <span class="n">scaler_y</span> <span class="o">=</span> <span class="n">create_datasets</span><span class="p">(</span><span class="n">mc</span><span class="o">=</span><span class="n">mc_data</span><span class="p">,</span>
-                                                                     <span class="n">S_df</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                                                     <span class="n">S_df</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
                                                                      <span class="n">Y_df</span><span class="o">=</span><span class="n">Y_df</span><span class="p">,</span> <span class="n">X_df</span><span class="o">=</span><span class="n">X_df</span><span class="p">,</span>
                                                                      <span class="n">f_cols</span><span class="o">=</span><span class="n">f_cols</span><span class="p">,</span>
                                                                      <span class="n">ds_in_val</span><span class="o">=</span><span class="n">n_val</span><span class="p">,</span>
@@ -1202,10 +933,52 @@ function displayQuickchartButton(domScope) {
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:root:Train Validation splits
+
+INFO:root:                             ds                    
+                            min                 max
+sample_mask                                        
+0           2018-02-05 22:00:00 2018-07-02 01:00:00
+1           2016-07-01 02:00:00 2018-02-05 21:00:00
+INFO:root:
+Total data 			15122928 time stamps 
+Available percentage=100.0, 	15122928 time stamps 
+Insample  percentage=80.0, 	12099032 time stamps 
+Outsample percentage=20.0, 	3023896 time stamps 
+
+INFO:root:Train Validation splits
+
+INFO:root:                             ds                    
+                            min                 max
+sample_mask                                        
+0           2016-07-01 02:00:00 2018-07-02 01:00:00
+1           2018-02-05 22:00:00 2018-04-19 23:00:00
+INFO:root:
+Total data 			15122928 time stamps 
+Available percentage=100.0, 	15122928 time stamps 
+Insample  percentage=10.0, 	1511948 time stamps 
+Outsample percentage=90.0, 	13610980 time stamps 
+
+INFO:root:Train Validation splits
+
+INFO:root:                             ds                    
+                            min                 max
+sample_mask                                        
+0           2016-07-01 02:00:00 2018-04-19 23:00:00
+1           2018-04-20 00:00:00 2018-07-02 01:00:00
+INFO:root:
+Total data 			15122928 time stamps 
+Available percentage=100.0, 	15122928 time stamps 
+Insample  percentage=10.0, 	1511948 time stamps 
+Outsample percentage=90.0, 	13610980 time stamps 
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="defining-dataloader">
-<h2>Defining Dataloader<a class="headerlink" href="#defining-dataloader" title="Permalink to this heading">#</a></h2>
+<h2>Defining Dataloader<a class="headerlink" href="#defining-dataloader" title="Link to this heading">#</a></h2>
 <p>The next step is to define a PyTorch dataloader by passing a dataset, batch size and other paraneters that inform how each batch of data is loaded.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1227,9 +1000,9 @@ function displayQuickchartButton(domScope) {
 </div>
 </section>
 <section id="model">
-<h2>Model<a class="headerlink" href="#model" title="Permalink to this heading">#</a></h2>
+<h2>Model<a class="headerlink" href="#model" title="Link to this heading">#</a></h2>
 <section id="autoformer-overview">
-<h3>Autoformer Overview<a class="headerlink" href="#autoformer-overview" title="Permalink to this heading">#</a></h3>
+<h3>Autoformer Overview<a class="headerlink" href="#autoformer-overview" title="Link to this heading">#</a></h3>
 <p>Autoformer is a tranformer architecture for LSTF that aims to surmount the quadratic complexity of the attention mechanism and enhance prediction accuracy. In doing so, the Autoformer proposes two novel components, the Series Deocmposition Block and the Autocorrelation Block, that function as follows:</p>
 <ul class="simple">
 <li><p><strong>Series Decomposition Block:</strong> Block that decomposes series into seasonal and trend-cyclical components. Used throughout the architecture to allow for the progressive decomposition of complex time series.</p></li>
@@ -1242,7 +1015,7 @@ function displayQuickchartButton(domScope) {
 </section>
 </section>
 <section id="model-definition">
-<h2>Model Definition<a class="headerlink" href="#model-definition" title="Permalink to this heading">#</a></h2>
+<h2>Model Definition<a class="headerlink" href="#model-definition" title="Link to this heading">#</a></h2>
 <p>Using the neuralforecast package, an Autoformer model can be initialized using the <code class="docutils literal notranslate"><span class="pre">Autoformer</span></code> class. This returns a Pytorch Lighnting model that we will subsequently train and evaluate. There is a large amount of parameters involved in the definition which are passed via a dictionary. Some of the dictionary items may that may vary accross datasets include:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">seq_len</span></code>: (int) The length of sequences input  to the encoder.
@@ -1263,7 +1036,7 @@ function displayQuickchartButton(domScope) {
 </div>
 </section>
 <section id="training-and-validation">
-<h2>Training and Validation<a class="headerlink" href="#training-and-validation" title="Permalink to this heading">#</a></h2>
+<h2>Training and Validation<a class="headerlink" href="#training-and-validation" title="Link to this heading">#</a></h2>
 <p>We first define a pytorch lighting trainer which encapsulates the training process and allows us to easily implement a training and validation loop with the specified parameters. The arguments to the trainer include:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">max_epochs</span></code>: (Optional[int]) – Stop training once this number of epochs is reached.</p></li>
@@ -1273,30 +1046,50 @@ function displayQuickchartButton(domScope) {
 <p>For more information regarding the <code class="docutils literal notranslate"><span class="pre">pl.Trainer</span></code> class, consult the <a class="reference external" href="https://pytorch-lightning.readthedocs.io/en/stable/api/pytorch_lightning.trainer.trainer.html#pytorch_lightning.trainer.trainer.Trainer.validate">PyTorch Lightning documentation</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">early_stopping</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">EarlyStopping</span><span class="p">(</span><span class="n">monitor</span><span class="o">=</span><span class="s1">&#39;val_loss&#39;</span><span class="p">,</span>
-                                            <span class="n">min_delta</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">early_stopping</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">EarlyStopping</span><span class="p">(</span><span class="n">monitor</span><span class="o">=</span><span class="s1">&#39;val_loss&#39;</span><span class="p">,</span> 
+                                            <span class="n">min_delta</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span> 
                                             <span class="n">patience</span><span class="o">=</span><span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;early_stop_patience&#39;</span><span class="p">],</span>
                                             <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                                             <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;min&quot;</span><span class="p">)</span>
 
-<span class="n">trainer</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">Trainer</span><span class="p">(</span><span class="n">max_epochs</span><span class="o">=</span><span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;max_epochs&#39;</span><span class="p">],</span>
+<span class="n">trainer</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">Trainer</span><span class="p">(</span><span class="n">max_epochs</span><span class="o">=</span><span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;max_epochs&#39;</span><span class="p">],</span> 
+                     <span class="n">max_steps</span><span class="o">=</span><span class="n">mc_data</span><span class="p">[</span><span class="s1">&#39;max_steps&#39;</span><span class="p">],</span>
                      <span class="n">accelerator</span><span class="o">=</span><span class="s2">&quot;gpu&quot;</span><span class="p">,</span>
                      <span class="n">devices</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                      <span class="n">gradient_clip_val</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+                     <span class="n">progress_bar_refresh_rate</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> 
                      <span class="n">check_val_every_n_epoch</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                     <span class="n">log_every_n_steps</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+                     <span class="n">log_every_n_steps</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> 
                      <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">early_stopping</span><span class="p">])</span>
 
 <span class="n">trainer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">train_loader</span><span class="p">,</span> <span class="n">val_loader</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GPU available: True, used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+Set SLURM handle signals.
+
+  | Name  | Type        | Params
+--------------------------------------
+0 | model | _Autoformer | 14.9 M
+--------------------------------------
+14.9 M    Trainable params
+0         Non-trainable params
+14.9 M    Total params
+59.658    Total estimated model params size (MB)
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "92233e4541f54a818ca8bd8801c21943", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 </section>
 <section id="test">
-<h2>Test<a class="headerlink" href="#test" title="Permalink to this heading">#</a></h2>
+<h2>Test<a class="headerlink" href="#test" title="Link to this heading">#</a></h2>
 <section id="inference">
-<h3>Inference<a class="headerlink" href="#inference" title="Permalink to this heading">#</a></h3>
+<h3>Inference<a class="headerlink" href="#inference" title="Link to this heading">#</a></h3>
 <p>We can obtain the predictions of the trained model on the test samples using the predict method of the trainer object. This will output a list the same length as the number of test batches. Each entry in this list (ie <code class="docutils literal notranslate"><span class="pre">outputs[0]</span></code>) is a list itself where the first item (ie <code class="docutils literal notranslate"><span class="pre">outputs[0][0]</span></code>) is the ground truth and the second item (ie <code class="docutils literal notranslate"><span class="pre">outputs[0][1]</span></code>) is the prediction. Each of these items a 3D tensor of shape: batch size by sequenze length by number of time series.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1305,6 +1098,11 @@ function displayQuickchartButton(domScope) {
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "f2e3a352b6dc4455b03fda975476e27a", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1339,12 +1137,12 @@ function displayQuickchartButton(domScope) {
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ea97859b44795ffdf8459bb67c2ad41342a107642d4ca347b234daa42dc554f4.png" src="../_images/ea97859b44795ffdf8459bb67c2ad41342a107642d4ca347b234daa42dc554f4.png" />
+<img alt="../_images/746312592f0600eab317b470b2eaf3325840a56732c696a8e3d4c8d967a7cd78.png" src="../_images/746312592f0600eab317b470b2eaf3325840a56732c696a8e3d4c8d967a7cd78.png" />
 </div>
 </div>
 </section>
 <section id="quantitative-resutls">
-<h3>Quantitative Resutls<a class="headerlink" href="#quantitative-resutls" title="Permalink to this heading">#</a></h3>
+<h3>Quantitative Resutls<a class="headerlink" href="#quantitative-resutls" title="Link to this heading">#</a></h3>
 <p>To assess the performance of Autoformer on the dataset, we calculate its performance on the test set using a set of metrics that are commonly used in time series forecasting. The metrics include Mean Absolute Error (MAE) and Mean Squared Error (MSE).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1361,11 +1159,6 @@ function displayQuickchartButton(domScope) {
 <span class="n">mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">trues</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">preds</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;MSE: </span><span class="si">{</span><span class="n">mse</span><span class="si">}</span><span class="s2"> MAE: </span><span class="si">{</span><span class="n">mae</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MSE: 0.5431954860687256 MAE: 0.4196507930755615
 </pre></div>
 </div>
 </div>
@@ -1401,11 +1194,10 @@ function displayQuickchartButton(domScope) {
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="../multivariate_demos/README.html"
@@ -1425,10 +1217,7 @@ function displayQuickchartButton(domScope) {
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1437,6 +1226,7 @@ function displayQuickchartButton(domScope) {
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
@@ -1444,8 +1234,8 @@ function displayQuickchartButton(domScope) {
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-configuration-and-package-imports">Environment Configuration and Package Imports</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hyperparameter-definitions">Hyperparameter Definitions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-splitting">Data Splitting</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-dataloader">Defining Dataloader</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model">Model</a><ul class="nav section-nav flex-column">
@@ -1480,6 +1270,7 @@ By Vector Institute
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright Vector Institute.
@@ -1506,8 +1297,8 @@ By Vector Institute
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

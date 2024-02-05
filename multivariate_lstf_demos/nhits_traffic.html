@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Multivariate Forecasting Long Sequence Time Series with NHITS &#8212; SajjadPSavoji/forecasting-bootcamp</title>
   
@@ -19,42 +18,41 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=__G_ANALYTICS_ID__"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -67,7 +65,19 @@ const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', '__G_ANALYTICS_ID__');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'multivariate_lstf_demos/nhits_traffic';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -82,7 +92,15 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -117,11 +135,14 @@ const thebe_selector_output = ".output, .cell_output"
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -136,9 +157,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../README.html">
+  
   
   
   
@@ -148,12 +171,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="https://vectorinstitute.ai/wp-content/uploads/2022/11/logo-vector-institute-full-colour-01.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="https://vectorinstitute.ai/wp-content/uploads/2022/11/logo-vector-institute-full-colour-01.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="https://vectorinstitute.ai/wp-content/uploads/2022/11/logo-vector-institute-full-colour-01.png" class="logo__image only-light" alt="SajjadPSavoji/forecasting-bootcamp - Home"/>
+    <script>document.write(`<img src="https://vectorinstitute.ai/wp-content/uploads/2022/11/logo-vector-institute-full-colour-01.png" class="logo__image only-dark" alt="SajjadPSavoji/forecasting-bootcamp - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -174,12 +208,13 @@ const thebe_selector_output = ".output, .cell_output"
 
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../demos/demo1_prophet_neuralprophet_testset.html">Data Loading</a></li>
-
-
-
-
-
+<li class="toctree-l1 has-children"><a class="reference internal" href="../demos/demo1_prophet_neuralprophet_testset.html">Demo1 prophet neuralprophet testset</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../demos/demo2_pytorch_forecasting.html">Demo2 pytorch forecasting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../demos/demo2_pytorch_forecasting-NBEATS-CPI.html">Demo2 pytorch forecasting-nbeats-cpi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../demos/demo3_rolling_cv_prophet.html">Demo3 rolling cv prophet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../demos/README.html">Readme</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../external_demos/m5-competition-eda-models.html">Introduction</a></li>
 
 
@@ -188,18 +223,18 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<li class="toctree-l1 has-children"><a class="reference internal" href="../intro_to_forecasting/intro_time_series.html">Intro time series</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../intro_to_forecasting/intro_time_series.html">Intro time series</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../intro_to_forecasting/intro_time_series_2.html">Intro time series 2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intro_to_forecasting/README.html">Readme</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../multivariate_demos/deepar_electricty.html">Deepar electricty</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../multivariate_demos/deepar_electricty.html">Deepar electricty</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../multivariate_demos/nbeats_electricity.html">Nbeats electricity</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../multivariate_demos/nhits_quantile.html">Nhits quantile</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../multivariate_demos/README.html">Readme</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="autoformer_traffic.html">Autoformer traffic</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="autoformer_traffic.html">Autoformer traffic</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Nhits traffic</a></li>
 <li class="toctree-l2"><a class="reference internal" href="README.html">Readme</a></li>
 </ul>
@@ -423,20 +458,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -489,30 +526,27 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="multivariate-forecasting-long-sequence-time-series-with-nhits">
-<h1>Multivariate Forecasting Long Sequence Time Series with NHITS<a class="headerlink" href="#multivariate-forecasting-long-sequence-time-series-with-nhits" title="Permalink to this heading">#</a></h1>
+<h1>Multivariate Forecasting Long Sequence Time Series with NHITS<a class="headerlink" href="#multivariate-forecasting-long-sequence-time-series-with-nhits" title="Link to this heading">#</a></h1>
 <p>This notebook outlines the application of <a class="reference external" href="https://arxiv.org/abs/2201.12886">NHITS</a>, a recently-proposed model for time series forecasting, to a collection of hourly data
 from California Department of Transportation, which describes the road occupancy rates measured
 by 862 different sensors on San Francisco Bay area freeways.</p>
 <p>This demo uses an implementation of NHITS from the neuralforecast package. <a class="reference external" href="https://github.com/jdb78/pytorch-forecasting">neuralforecast</a> is a package/repository that provides implementations of several state-of-the-art deep learning-based forecasting models, namely <a class="reference external" href="https://arxiv.org/abs/2106.13008">Autoformer</a>, <a class="reference external" href="https://arxiv.org/abs/2012.07436">Informer</a>, <a class="reference external" href="https://arxiv.org/abs/2201.12886">NHITS</a> and <a class="reference external" href="https://www.sciencedirect.com/science/article/abs/pii/S0169207019301153">ES-RNN</a>. Similar to PyTorch Forecasting, neuralforecast is built using <a class="reference external" href="https://pytorch-lightning.readthedocs.io/">PyTorch Lightning</a>, making it easier to train in multi-GPU compute environments, out-of-the-box.</p>
 <p><strong>Note:</strong> neuralforecast is a relatively new package that has been gaining traction because, unlike more mature packages, it supports recent state-of-the-art methods like NHITS and Autoformer. That being said, the documentation is sparse and the package is not as mature as others we have used in other demos (<a class="reference external" href="https://pytorch-forecasting.readthedocs.io/en/stable/">PyTorch Forecasting</a>, <a class="reference external" href="https://facebook.github.io/prophet/">Prophet</a>). In any event, neuralforecast provides a great oppurtunity to explore bleeding edge time series forecasting methods.</p>
 <section id="environment-configuration-and-package-imports">
-<h2>Environment Configuration and Package Imports<a class="headerlink" href="#environment-configuration-and-package-imports" title="Permalink to this heading">#</a></h2>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Note for Colab Users: Run the following cell to install neuralforecast and pytorch_lightning.
-After installation completes, you will likely need to restart the Colab runtime.
-If this is the case, a button RESTART RUNTIME will appear at the bottom of the next cell’s output.</p>
-</div>
+<h2>Environment Configuration and Package Imports<a class="headerlink" href="#environment-configuration-and-package-imports" title="Link to this heading">#</a></h2>
+<p><strong>Note for Colab users:</strong> Run the following cell to install PyTorch Forecasting. After installation completes, you will likely need to restart the Colab runtime. If this is the case, a button RESTART RUNTIME will appear at the bottom of the next cell’s output.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="s1">&#39;google.colab&#39;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">get_ipython</span><span class="p">()):</span>
     <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>pytorch_lightning
-    <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span><span class="nv">neuralforecast</span><span class="o">==</span><span class="m">0</span>.0.6
-
-  <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span> <span class="c1"># Comment out</span>
+    <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>neuralforecast
+    
+<span class="k">if</span> <span class="s1">&#39;google.colab&#39;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">get_ipython</span><span class="p">()):</span>
+    <span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+    <span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -539,7 +573,7 @@ If this is the case, a button RESTART RUNTIME will appear at the bottom of the n
 </div>
 </section>
 <section id="hyperparameter-defintions">
-<h2>Hyperparameter Defintions<a class="headerlink" href="#hyperparameter-defintions" title="Permalink to this heading">#</a></h2>
+<h2>Hyperparameter Defintions<a class="headerlink" href="#hyperparameter-defintions" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># General Hyperparameters</span>
@@ -553,8 +587,8 @@ If this is the case, a button RESTART RUNTIME will appear at the bottom of the n
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Model Configuration Hyperparameters</span>
 <span class="n">mc</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="n">mc</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;n-hits&#39;</span> <span class="c1"># Model Name</span>
-<span class="n">mc</span><span class="p">[</span><span class="s1">&#39;mode&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;simple&#39;</span>
+<span class="n">mc</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;n-hits&#39;</span> <span class="c1"># Model Name </span>
+<span class="n">mc</span><span class="p">[</span><span class="s1">&#39;mode&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;simple&#39;</span> 
 <span class="n">mc</span><span class="p">[</span><span class="s1">&#39;activation&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;SELU&#39;</span> <span class="c1"># Activation function</span>
 
 
@@ -576,7 +610,7 @@ If this is the case, a button RESTART RUNTIME will appear at the bottom of the n
 <span class="c1"># Optimization and regularization parameters</span>
 <span class="n">mc</span><span class="p">[</span><span class="s1">&#39;initialization&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;lecun_normal&#39;</span>  <span class="c1">#Initialization function. An item from [&#39;orthogonal&#39;, &#39;he_uniform&#39;, &#39;glorot_uniform&#39;, &#39;glorot_normal&#39;, &#39;lecun_normal&#39;].</span>
 <span class="n">mc</span><span class="p">[</span><span class="s1">&#39;learning_rate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.001</span> <span class="c1"># Learning rate between (0, 1).</span>
-<span class="n">mc</span><span class="p">[</span><span class="s1">&#39;batch_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># Batch size</span>
+<span class="n">mc</span><span class="p">[</span><span class="s1">&#39;batch_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># Batch size </span>
 <span class="n">mc</span><span class="p">[</span><span class="s1">&#39;n_windows&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">32</span>
 <span class="n">mc</span><span class="p">[</span><span class="s1">&#39;lr_decay&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="c1"># Decreasing multiplier for the learning rate.</span>
 <span class="n">mc</span><span class="p">[</span><span class="s1">&#39;lr_decay_step_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># Steps between each learning rate decay.</span>
@@ -586,7 +620,7 @@ If this is the case, a button RESTART RUNTIME will appear at the bottom of the n
 <span class="n">mc</span><span class="p">[</span><span class="s1">&#39;eval_freq&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">500</span> <span class="c1"># How many steps between evaluations</span>
 <span class="n">mc</span><span class="p">[</span><span class="s1">&#39;batch_normalization&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1"># Whether perform batch normalization.</span>
 <span class="n">mc</span><span class="p">[</span><span class="s1">&#39;dropout_prob_theta&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="c1"># Float between (0, 1). Dropout for Nbeats basis.</span>
-<span class="n">mc</span><span class="p">[</span><span class="s1">&#39;dropout_prob_exogenous&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="c1">#</span>
+<span class="n">mc</span><span class="p">[</span><span class="s1">&#39;dropout_prob_exogenous&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="c1"># </span>
 <span class="n">mc</span><span class="p">[</span><span class="s1">&#39;weight_decay&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># L2 penalty for optimizer.</span>
 <span class="n">mc</span><span class="p">[</span><span class="s1">&#39;loss_train&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;MAE&#39;</span> <span class="c1"># Loss to optimize. An item from [&#39;MAPE&#39;, &#39;MASE&#39;, &#39;SMAPE&#39;, &#39;MSE&#39;, &#39;MAE&#39;, &#39;QUANTILE&#39;, &#39;QUANTILE2&#39;].</span>
 <span class="n">mc</span><span class="p">[</span><span class="s1">&#39;loss_hypar&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="c1"># Hyperparameter for chosen loss.</span>
@@ -606,7 +640,7 @@ If this is the case, a button RESTART RUNTIME will appear at the bottom of the n
 <span class="c1"># Structure of hidden layers for each stack type.</span>
 <span class="c1"># Each internal list should contain the number of units of each hidden layer.</span>
 <span class="c1"># Note that len(n_hidden) = len(stack_types).</span>
-<span class="n">mc</span><span class="p">[</span><span class="s1">&#39;n_mlp_units&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mc</span><span class="p">[</span><span class="s1">&#39;stack_types&#39;</span><span class="p">])</span> <span class="o">*</span> <span class="p">[</span> <span class="n">mc</span><span class="p">[</span><span class="s1">&#39;constant_n_layers&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">mc</span><span class="p">[</span><span class="s1">&#39;constant_n_mlp_units&#39;</span><span class="p">])]</span> <span class="p">]</span>
+<span class="n">mc</span><span class="p">[</span><span class="s1">&#39;n_mlp_units&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mc</span><span class="p">[</span><span class="s1">&#39;stack_types&#39;</span><span class="p">])</span> <span class="o">*</span> <span class="p">[</span> <span class="n">mc</span><span class="p">[</span><span class="s1">&#39;constant_n_layers&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">mc</span><span class="p">[</span><span class="s1">&#39;constant_n_mlp_units&#39;</span><span class="p">])]</span> <span class="p">]</span> 
 <span class="n">mc</span><span class="p">[</span><span class="s1">&#39;n_blocks&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="nb">len</span><span class="p">(</span><span class="n">mc</span><span class="p">[</span><span class="s1">&#39;stack_types&#39;</span><span class="p">])</span> <span class="o">*</span> <span class="p">[</span> <span class="n">mc</span><span class="p">[</span><span class="s1">&#39;constant_n_blocks&#39;</span><span class="p">]</span> <span class="p">]</span> <span class="c1"># Number of blocks for each stack. Note that len(n_blocks) = len(stack_types).</span>
 <span class="n">mc</span><span class="p">[</span><span class="s1">&#39;n_layers&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="nb">len</span><span class="p">(</span><span class="n">mc</span><span class="p">[</span><span class="s1">&#39;stack_types&#39;</span><span class="p">])</span> <span class="o">*</span> <span class="p">[</span> <span class="n">mc</span><span class="p">[</span><span class="s1">&#39;constant_n_layers&#39;</span><span class="p">]</span> <span class="p">]</span> <span class="c1"># Number of layers for each stack type. Note that len(n_layers) = len(stack_types).</span>
 
@@ -670,7 +704,7 @@ dtype: object
 </div>
 </section>
 <section id="load-data">
-<h2>Load Data<a class="headerlink" href="#load-data" title="Permalink to this heading">#</a></h2>
+<h2>Load Data<a class="headerlink" href="#load-data" title="Link to this heading">#</a></h2>
 <p>We start by loading the data. neuralforecast provides utilities for loading a <a class="reference external" href="https://nixtla.github.io/neuralforecast/data_datasets__long_horizon.html">variety of different datasets</a> popular in the time series forecasting domain. Conveniently, the loaded data is in the format that is expected by the model that we define in the subsequent section. In particular, we call the <code class="docutils literal notranslate"><span class="pre">load</span></code> function with an argument specifying the dataset to load three dataframes:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Y_df</span></code>: (pd.DataFrame) Target time series with columns [‘unique_id’, ‘ds’, ‘y’]</p></li>
@@ -698,11 +732,7 @@ dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">
-
-  <div id="df-289bb701-fa71-4983-be9f-d92e46bdf69f">
-    <div class="colab-df-container">
-      <div>
+<div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -795,150 +825,7 @@ dtype: object
   </tbody>
 </table>
 <p>15122928 rows × 3 columns</p>
-</div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-289bb701-fa71-4983-be9f-d92e46bdf69f')"
-              title="Convert this dataframe to an interactive table."
-              style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-       width="24px">
-    <path d="M0 0h24v24H0V0z" fill="none"/>
-    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
-  </svg>
-      </button>
-
-
-
-    <div id="df-43449a0d-beb4-4f55-bd16-c383e35b748e">
-      <button class="colab-df-quickchart" onclick="quickchart('df-43449a0d-beb4-4f55-bd16-c383e35b748e')"
-              title="Suggest charts."
-              style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
-</svg>
-      </button>
-    </div>
-
-<style>
-  .colab-df-quickchart {
-    background-color: #E8F0FE;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: #1967D2;
-    height: 32px;
-    padding: 0 0 0 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: #E2EBFA;
-    box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: #174EA6;
-  }
-
-  [theme=dark] .colab-df-quickchart {
-    background-color: #3B4455;
-    fill: #D2E3FC;
-  }
-
-  [theme=dark] .colab-df-quickchart:hover {
-    background-color: #434B5C;
-    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-    filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-    fill: #FFFFFF;
-  }
-</style>
-
-    <script>
-      async function quickchart(key) {
-        const containerElement = document.querySelector('#' + key);
-        const charts = await google.colab.kernel.invokeFunction(
-            'suggestCharts', [key], {});
-      }
-    </script>
-
-      <script>
-
-function displayQuickchartButton(domScope) {
-  let quickchartButtonEl =
-    domScope.querySelector('#df-43449a0d-beb4-4f55-bd16-c383e35b748e button.colab-df-quickchart');
-  quickchartButtonEl.style.display =
-    google.colab.kernel.accessAllowed ? 'block' : 'none';
-}
-
-        displayQuickchartButton(document);
-      </script>
-      <style>
-    .colab-df-container {
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-      <script>
-        const buttonEl =
-          document.querySelector('#df-289bb701-fa71-4983-be9f-d92e46bdf69f button.colab-df-convert');
-        buttonEl.style.display =
-          google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-        async function convertToInteractive(key) {
-          const element = document.querySelector('#df-289bb701-fa71-4983-be9f-d92e46bdf69f');
-          const dataTable =
-            await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                     [key], {});
-          if (!dataTable) return;
-
-          const docLinkHtml = 'Like what you see? Visit the ' +
-            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-            + ' to learn more about interactive tables.';
-          element.innerHTML = '';
-          dataTable['output_type'] = 'display_data';
-          await google.colab.output.renderOutput(dataTable, element);
-          const docLink = document.createElement('div');
-          docLink.innerHTML = docLinkHtml;
-          element.appendChild(docLink);
-        }
-      </script>
-    </div>
-  </div>
-</div></div>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -947,11 +834,7 @@ function displayQuickchartButton(domScope) {
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">
-
-  <div id="df-5569d6f3-91a6-45f3-8bc7-7151465593bd">
-    <div class="colab-df-container">
-      <div>
+<div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -1080,168 +963,11 @@ function displayQuickchartButton(domScope) {
   </tbody>
 </table>
 <p>15122928 rows × 6 columns</p>
-</div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-5569d6f3-91a6-45f3-8bc7-7151465593bd')"
-              title="Convert this dataframe to an interactive table."
-              style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-       width="24px">
-    <path d="M0 0h24v24H0V0z" fill="none"/>
-    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
-  </svg>
-      </button>
-
-
-
-    <div id="df-70f5a94e-fe58-4ad1-a96e-62e4481528fb">
-      <button class="colab-df-quickchart" onclick="quickchart('df-70f5a94e-fe58-4ad1-a96e-62e4481528fb')"
-              title="Suggest charts."
-              style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
-</svg>
-      </button>
-    </div>
-
-<style>
-  .colab-df-quickchart {
-    background-color: #E8F0FE;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: #1967D2;
-    height: 32px;
-    padding: 0 0 0 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: #E2EBFA;
-    box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: #174EA6;
-  }
-
-  [theme=dark] .colab-df-quickchart {
-    background-color: #3B4455;
-    fill: #D2E3FC;
-  }
-
-  [theme=dark] .colab-df-quickchart:hover {
-    background-color: #434B5C;
-    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-    filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-    fill: #FFFFFF;
-  }
-</style>
-
-    <script>
-      async function quickchart(key) {
-        const containerElement = document.querySelector('#' + key);
-        const charts = await google.colab.kernel.invokeFunction(
-            'suggestCharts', [key], {});
-      }
-    </script>
-
-      <script>
-
-function displayQuickchartButton(domScope) {
-  let quickchartButtonEl =
-    domScope.querySelector('#df-70f5a94e-fe58-4ad1-a96e-62e4481528fb button.colab-df-quickchart');
-  quickchartButtonEl.style.display =
-    google.colab.kernel.accessAllowed ? 'block' : 'none';
-}
-
-        displayQuickchartButton(document);
-      </script>
-      <style>
-    .colab-df-container {
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-      <script>
-        const buttonEl =
-          document.querySelector('#df-5569d6f3-91a6-45f3-8bc7-7151465593bd button.colab-df-convert');
-        buttonEl.style.display =
-          google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-        async function convertToInteractive(key) {
-          const element = document.querySelector('#df-5569d6f3-91a6-45f3-8bc7-7151465593bd');
-          const dataTable =
-            await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                     [key], {});
-          if (!dataTable) return;
-
-          const docLinkHtml = 'Like what you see? Visit the ' +
-            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-            + ' to learn more about interactive tables.';
-          element.innerHTML = '';
-          dataTable['output_type'] = 'display_data';
-          await google.colab.output.renderOutput(dataTable, element);
-          const docLink = document.createElement('div');
-          docLink.innerHTML = docLinkHtml;
-          element.appendChild(docLink);
-        }
-      </script>
-    </div>
-  </div>
-</div></div>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">S_df</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>This notebook should run in a high-RAM env. If your runtime crashes due to RAM limits, adjust “portion_to_use” accordingling.</p>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="s1">&#39;google.colab&#39;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">get_ipython</span><span class="p">()):</span>
-    <span class="n">portion_to_use</span> <span class="o">=</span> <span class="mf">0.5</span>
-    <span class="n">X_df</span> <span class="o">=</span> <span class="n">X_df</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_df</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)]</span>
-    <span class="n">Y_df</span> <span class="o">=</span> <span class="n">Y_df</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Y_df</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div>
@@ -1257,7 +983,7 @@ function displayQuickchartButton(domScope) {
 </div>
 </section>
 <section id="data-splitting">
-<h2>Data Splitting<a class="headerlink" href="#data-splitting" title="Permalink to this heading">#</a></h2>
+<h2>Data Splitting<a class="headerlink" href="#data-splitting" title="Link to this heading">#</a></h2>
 <p>The data is split sequentially into train, validation and test based on <code class="docutils literal notranslate"><span class="pre">VAL_PERC</span></code> and <code class="docutils literal notranslate"><span class="pre">TEST_PERC</span></code> global variables. We will withhold the last <code class="docutils literal notranslate"><span class="pre">TEST_PERC</span></code> of data for testing. In the code below, we are very careful to ensure that when training and validating the model, it does not have access to the withheld data.</p>
 <p>The neuralforecast package’s function <a class="reference external" href="https://nixtla.github.io/neuralforecast/experiments__utils.html#create_datasets">create_datasets</a> allows us to generate a <a class="reference external" href="https://nixtla.github.io/neuralforecast/data__tsdataset.html">TSDataset</a> for the train, validation and test sets by passing <code class="docutils literal notranslate"><span class="pre">Y_df</span></code>, <code class="docutils literal notranslate"><span class="pre">X_df</span></code> and <code class="docutils literal notranslate"><span class="pre">S_df</span></code> that we defined above. Additionally, we specify the amount of time steps we want in the validation and test datasets, <code class="docutils literal notranslate"><span class="pre">ds_in_val</span></code> and <code class="docutils literal notranslate"><span class="pre">ds_in_test</span></code>.</p>
 <div class="cell docutils container">
@@ -1267,7 +993,7 @@ function displayQuickchartButton(domScope) {
 <span class="n">n_test</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">TEST_PERC</span> <span class="o">*</span> <span class="n">n_ds</span><span class="p">)</span>
 
 <span class="n">train_dataset</span><span class="p">,</span> <span class="n">val_dataset</span><span class="p">,</span> <span class="n">test_dataset</span><span class="p">,</span> <span class="n">scaler_y</span> <span class="o">=</span> <span class="n">create_datasets</span><span class="p">(</span><span class="n">mc</span><span class="o">=</span><span class="n">mc</span><span class="p">,</span>
-                                                                     <span class="n">S_df</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                                                     <span class="n">S_df</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
                                                                      <span class="n">Y_df</span><span class="o">=</span><span class="n">Y_df</span><span class="p">,</span> <span class="n">X_df</span><span class="o">=</span><span class="n">X_df</span><span class="p">,</span>
                                                                      <span class="n">f_cols</span><span class="o">=</span><span class="n">f_cols</span><span class="p">,</span>
                                                                      <span class="n">ds_in_val</span><span class="o">=</span><span class="n">n_val</span><span class="p">,</span>
@@ -1275,10 +1001,59 @@ function displayQuickchartButton(domScope) {
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:root:Train Validation splits
+
+INFO:root:                             ds                    
+                            min                 max
+sample_mask                                        
+0           2018-02-05 22:00:00 2018-07-02 01:00:00
+1           2016-07-01 02:00:00 2018-02-05 21:00:00
+INFO:root:
+Total data 			15122928 time stamps 
+Available percentage=100.0, 	15122928 time stamps 
+Insample  percentage=80.0, 	12099032 time stamps 
+Outsample percentage=20.0, 	3023896 time stamps 
+
+/ssd003/projects/aieng/public/forecasting_unified/lib/python3.8/site-packages/neuralforecast/data/tsdataset.py:208: FutureWarning: In a future version of pandas all arguments of DataFrame.drop except for the argument &#39;labels&#39; will be keyword-only
+  X.drop([&#39;unique_id&#39;, &#39;ds&#39;], 1, inplace=True)
+INFO:root:Train Validation splits
+
+INFO:root:                             ds                    
+                            min                 max
+sample_mask                                        
+0           2016-07-01 02:00:00 2018-07-02 01:00:00
+1           2018-02-05 22:00:00 2018-04-19 23:00:00
+INFO:root:
+Total data 			15122928 time stamps 
+Available percentage=100.0, 	15122928 time stamps 
+Insample  percentage=10.0, 	1511948 time stamps 
+Outsample percentage=90.0, 	13610980 time stamps 
+
+/ssd003/projects/aieng/public/forecasting_unified/lib/python3.8/site-packages/neuralforecast/data/tsdataset.py:208: FutureWarning: In a future version of pandas all arguments of DataFrame.drop except for the argument &#39;labels&#39; will be keyword-only
+  X.drop([&#39;unique_id&#39;, &#39;ds&#39;], 1, inplace=True)
+INFO:root:Train Validation splits
+
+INFO:root:                             ds                    
+                            min                 max
+sample_mask                                        
+0           2016-07-01 02:00:00 2018-04-19 23:00:00
+1           2018-04-20 00:00:00 2018-07-02 01:00:00
+INFO:root:
+Total data 			15122928 time stamps 
+Available percentage=100.0, 	15122928 time stamps 
+Insample  percentage=10.0, 	1511948 time stamps 
+Outsample percentage=90.0, 	13610980 time stamps 
+
+/ssd003/projects/aieng/public/forecasting_unified/lib/python3.8/site-packages/neuralforecast/data/tsdataset.py:208: FutureWarning: In a future version of pandas all arguments of DataFrame.drop except for the argument &#39;labels&#39; will be keyword-only
+  X.drop([&#39;unique_id&#39;, &#39;ds&#39;], 1, inplace=True)
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="defining-dataloader">
-<h2>Defining Dataloader<a class="headerlink" href="#defining-dataloader" title="Permalink to this heading">#</a></h2>
+<h2>Defining Dataloader<a class="headerlink" href="#defining-dataloader" title="Link to this heading">#</a></h2>
 <p>The neural forecasting package defines its own dataloader <a class="reference external" href="https://nixtla.github.io/neuralforecast/data__tsloader.html">TimeSeriesLoader</a>. Similar to a regular PyTorch dataloader, we pass a dataset, batch size and other paraneters that inform how each batch of data is loaded.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1300,9 +1075,9 @@ function displayQuickchartButton(domScope) {
 </div>
 </section>
 <section id="model">
-<h2>Model<a class="headerlink" href="#model" title="Permalink to this heading">#</a></h2>
+<h2>Model<a class="headerlink" href="#model" title="Link to this heading">#</a></h2>
 <section id="nhits-overview">
-<h3>NHITS Overview<a class="headerlink" href="#nhits-overview" title="Permalink to this heading">#</a></h3>
+<h3>NHITS Overview<a class="headerlink" href="#nhits-overview" title="Link to this heading">#</a></h3>
 <p align="center">
 <img width="750" alt="NHITS Architecture" src="https://user-images.githubusercontent.com/34798787/156445832-58e5e082-5003-4859-92f6-cb029ddbd378.png">
 </p>
@@ -1316,7 +1091,7 @@ function displayQuickchartButton(domScope) {
 </section>
 </section>
 <section id="model-definition">
-<h2>Model Definition<a class="headerlink" href="#model-definition" title="Permalink to this heading">#</a></h2>
+<h2>Model Definition<a class="headerlink" href="#model-definition" title="Link to this heading">#</a></h2>
 <p>Using the neuralforecast package, an NHITS model can be initialized using the <code class="docutils literal notranslate"><span class="pre">NHITS</span></code> class. This returns a Pytorch Lighnting model that we will subsequently train and evaluate. There is a large amount of parameters involved in the definition, most of which can stay consistent accross datasets. Some of the arguments that may vary include:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">n_time_in</span></code>: (int) The length of sequences input to the model.</p></li>
@@ -1364,7 +1139,7 @@ function displayQuickchartButton(domScope) {
 </div>
 </section>
 <section id="training-and-validation">
-<h2>Training and Validation<a class="headerlink" href="#training-and-validation" title="Permalink to this heading">#</a></h2>
+<h2>Training and Validation<a class="headerlink" href="#training-and-validation" title="Link to this heading">#</a></h2>
 <p>We first define a pytorch lighting trainer which encapsulates the training process and allows us to easily implement a training and validation loop with the specified parameters. The arguments to the trainer include:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">max_epochs</span></code>: (Optional[int]) – Stop training once this number of epochs is reached.</p></li>
@@ -1374,12 +1149,12 @@ function displayQuickchartButton(domScope) {
 <p>For more information regarding the <code class="docutils literal notranslate"><span class="pre">pl.Trainer</span></code> class, consult the <a class="reference external" href="https://pytorch-lightning.readthedocs.io/en/stable/api/pytorch_lightning.trainer.trainer.html#pytorch_lightning.trainer.trainer.Trainer.validate">PyTorch Lightning documentation</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set random seed</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set random seed </span>
 <span class="n">pl</span><span class="o">.</span><span class="n">seed_everything</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 
 <span class="c1"># Define early stopping criteria</span>
-<span class="n">early_stopping</span> <span class="o">=</span> <span class="n">EarlyStopping</span><span class="p">(</span><span class="n">monitor</span><span class="o">=</span><span class="s2">&quot;val_loss&quot;</span><span class="p">,</span>
-                               <span class="n">min_delta</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span>
+<span class="n">early_stopping</span> <span class="o">=</span> <span class="n">EarlyStopping</span><span class="p">(</span><span class="n">monitor</span><span class="o">=</span><span class="s2">&quot;val_loss&quot;</span><span class="p">,</span> 
+                               <span class="n">min_delta</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span> 
                                <span class="n">patience</span><span class="o">=</span><span class="n">mc</span><span class="p">[</span><span class="s1">&#39;early_stop_patience&#39;</span><span class="p">],</span>
                                <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                                <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;min&quot;</span><span class="p">)</span>
@@ -1387,9 +1162,10 @@ function displayQuickchartButton(domScope) {
 <span class="c1"># Init pytorch lightning trainer</span>
 <span class="n">trainer</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">Trainer</span><span class="p">(</span><span class="n">accelerator</span><span class="o">=</span><span class="s2">&quot;gpu&quot;</span><span class="p">,</span>
                      <span class="n">devices</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                     <span class="n">max_epochs</span><span class="o">=</span><span class="n">mc</span><span class="p">[</span><span class="s1">&#39;max_epochs&#39;</span><span class="p">],</span>
+                     <span class="n">max_epochs</span><span class="o">=</span><span class="n">mc</span><span class="p">[</span><span class="s1">&#39;max_epochs&#39;</span><span class="p">],</span> 
                      <span class="n">gradient_clip_val</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
-                     <span class="n">log_every_n_steps</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+                     <span class="n">progress_bar_refresh_rate</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> 
+                     <span class="n">log_every_n_steps</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> 
                      <span class="n">check_val_every_n_epoch</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                      <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">early_stopping</span><span class="p">])</span>
 
@@ -1398,12 +1174,42 @@ function displayQuickchartButton(domScope) {
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Global seed set to 42
+/ssd003/projects/aieng/public/forecasting_unified/lib/python3.8/site-packages/pytorch_lightning/trainer/connectors/callback_connector.py:90: LightningDeprecationWarning: Setting `Trainer(progress_bar_refresh_rate=10)` is deprecated in v1.5 and will be removed in v1.7. Please pass `pytorch_lightning.callbacks.progress.TQDMProgressBar` with `refresh_rate` directly to the Trainer&#39;s `callbacks` argument instead. Or, to disable the progress bar pass `enable_progress_bar = False` to the Trainer.
+  rank_zero_deprecation(
+GPU available: True, used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+Set SLURM handle signals.
+
+  | Name  | Type   | Params
+---------------------------------
+0 | model | _NHITS | 932 K 
+---------------------------------
+932 K     Trainable params
+0         Non-trainable params
+932 K     Total params
+3.731     Total estimated model params size (MB)
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "95931449dbdf48b4af1f8c81945a130c", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/ssd003/projects/aieng/public/forecasting_unified/lib/python3.8/site-packages/pytorch_lightning/trainer/data_loading.py:132: UserWarning: The dataloader, val_dataloader 0, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 32 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+/ssd003/projects/aieng/public/forecasting_unified/lib/python3.8/site-packages/torch/nn/functional.py:3631: UserWarning: Default upsampling behavior when mode=linear is changed to align_corners=False since 0.4.0. Please specify align_corners=True if the old behavior is desired. See the documentation of nn.Upsample for details.
+  warnings.warn(
+Global seed set to 42
+/ssd003/projects/aieng/public/forecasting_unified/lib/python3.8/site-packages/pytorch_lightning/trainer/data_loading.py:132: UserWarning: The dataloader, train_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 32 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "f873c8ea68bc4ed29ccc4b5ef056543d", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "618a4d872e824cb48aaea34954f5b295", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 </section>
 <section id="test">
-<h2>Test<a class="headerlink" href="#test" title="Permalink to this heading">#</a></h2>
+<h2>Test<a class="headerlink" href="#test" title="Link to this heading">#</a></h2>
 <section id="inference">
-<h3>Inference<a class="headerlink" href="#inference" title="Permalink to this heading">#</a></h3>
+<h3>Inference<a class="headerlink" href="#inference" title="Link to this heading">#</a></h3>
 <p>We can obtain the predictions of the trained model on the test samples using the predict method of the trainer object. This will output a list the same length as the number of time series. Each entry in this list (ie <code class="docutils literal notranslate"><span class="pre">outputs[0]</span></code>) is a list itself where the first item (ie <code class="docutils literal notranslate"><span class="pre">outputs[0][0]</span></code>) is the ground truth and the second item (ie <code class="docutils literal notranslate"><span class="pre">outputs[0][1]</span></code>) is the prediction.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1413,16 +1219,25 @@ function displayQuickchartButton(domScope) {
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+/ssd003/projects/aieng/public/forecasting_unified/lib/python3.8/site-packages/neuralforecast/data/tsloader.py:46: UserWarning: This class wraps the pytorch `DataLoader` with a special collate function. If you want to use yours simply use `DataLoader`. Removing collate_fn
+  warnings.warn(
+/ssd003/projects/aieng/public/forecasting_unified/lib/python3.8/site-packages/pytorch_lightning/trainer/data_loading.py:132: UserWarning: The dataloader, predict_dataloader 0, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 32 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "d85bd24bdbce47c8bd54463d8c9e0aff", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 </section>
 <section id="visualize-predictions">
-<h3>Visualize Predictions<a class="headerlink" href="#visualize-predictions" title="Permalink to this heading">#</a></h3>
+<h3>Visualize Predictions<a class="headerlink" href="#visualize-predictions" title="Link to this heading">#</a></h3>
 <p>With the trained model from the previous step, we can apply it to the test set to get an unbias estimate of the models performance. Additionally, we can visualize the results to build some intuition about the forecasts being generated.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">input_list</span><span class="p">,</span> <span class="n">gt_list</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">test_loader</span><span class="p">:</span>
-    <span class="n">Y</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;Y&quot;</span><span class="p">]</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;Y&quot;</span><span class="p">]</span> 
     <span class="n">inp</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[:,</span> <span class="p">:</span><span class="n">mc</span><span class="p">[</span><span class="s1">&#39;n_time_in&#39;</span><span class="p">]]</span>
     <span class="n">input_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span>
 </pre></div>
@@ -1452,12 +1267,12 @@ function displayQuickchartButton(domScope) {
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/d1078fa1759313ffeebf07f0f543b67f50d24fa74c1bbe1b98a460eeeb8b48f1.png" src="../_images/d1078fa1759313ffeebf07f0f543b67f50d24fa74c1bbe1b98a460eeeb8b48f1.png" />
+<img alt="../_images/43843ad5c52b128b4ab9fa9d488b9d1a7b075a55d2a68e680eb057fe2a4117b5.png" src="../_images/43843ad5c52b128b4ab9fa9d488b9d1a7b075a55d2a68e680eb057fe2a4117b5.png" />
 </div>
 </div>
 </section>
 <section id="quantitative-resutls">
-<h3>Quantitative Resutls<a class="headerlink" href="#quantitative-resutls" title="Permalink to this heading">#</a></h3>
+<h3>Quantitative Resutls<a class="headerlink" href="#quantitative-resutls" title="Link to this heading">#</a></h3>
 <p>To assess the performance of NHITS on the dataset, we calculate its performance on the test set using a set of metrics that are commonly used in time series forecasting. The metrics include Mean Absolute Error (MAE) and Mean Squared Error (MSE).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1478,7 +1293,7 @@ function displayQuickchartButton(domScope) {
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MSE: 0.6308218836784363 MAE: 0.5023184418678284
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MSE: 0.644439697265625 MAE: 0.41899624466896057
 </pre></div>
 </div>
 </div>
@@ -1512,11 +1327,10 @@ function displayQuickchartButton(domScope) {
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="autoformer_traffic.html"
@@ -1536,10 +1350,7 @@ function displayQuickchartButton(domScope) {
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1547,6 +1358,7 @@ function displayQuickchartButton(domScope) {
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1592,6 +1404,7 @@ By Vector Institute
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright Vector Institute.
@@ -1618,8 +1431,8 @@ By Vector Institute
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

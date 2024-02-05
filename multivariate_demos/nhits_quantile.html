@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Multivariate quantiles and long horizon forecasting with N-HiTS &#8212; SajjadPSavoji/forecasting-bootcamp</title>
   
@@ -19,42 +18,41 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=__G_ANALYTICS_ID__"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -67,7 +65,19 @@ const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', '__G_ANALYTICS_ID__');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'multivariate_demos/nhits_quantile';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -82,7 +92,15 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -117,11 +135,14 @@ const thebe_selector_output = ".output, .cell_output"
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -136,9 +157,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../README.html">
+  
   
   
   
@@ -148,12 +171,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="https://vectorinstitute.ai/wp-content/uploads/2022/11/logo-vector-institute-full-colour-01.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="https://vectorinstitute.ai/wp-content/uploads/2022/11/logo-vector-institute-full-colour-01.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="https://vectorinstitute.ai/wp-content/uploads/2022/11/logo-vector-institute-full-colour-01.png" class="logo__image only-light" alt="SajjadPSavoji/forecasting-bootcamp - Home"/>
+    <script>document.write(`<img src="https://vectorinstitute.ai/wp-content/uploads/2022/11/logo-vector-institute-full-colour-01.png" class="logo__image only-dark" alt="SajjadPSavoji/forecasting-bootcamp - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -174,12 +208,13 @@ const thebe_selector_output = ".output, .cell_output"
 
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../demos/demo1_prophet_neuralprophet_testset.html">Data Loading</a></li>
-
-
-
-
-
+<li class="toctree-l1 has-children"><a class="reference internal" href="../demos/demo1_prophet_neuralprophet_testset.html">Demo1 prophet neuralprophet testset</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../demos/demo2_pytorch_forecasting.html">Demo2 pytorch forecasting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../demos/demo2_pytorch_forecasting-NBEATS-CPI.html">Demo2 pytorch forecasting-nbeats-cpi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../demos/demo3_rolling_cv_prophet.html">Demo3 rolling cv prophet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../demos/README.html">Readme</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../external_demos/m5-competition-eda-models.html">Introduction</a></li>
 
 
@@ -188,18 +223,18 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<li class="toctree-l1 has-children"><a class="reference internal" href="../intro_to_forecasting/intro_time_series.html">Intro time series</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../intro_to_forecasting/intro_time_series.html">Intro time series</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../intro_to_forecasting/intro_time_series_2.html">Intro time series 2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intro_to_forecasting/README.html">Readme</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="deepar_electricty.html">Deepar electricty</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="deepar_electricty.html">Deepar electricty</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="nbeats_electricity.html">Nbeats electricity</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Nhits quantile</a></li>
 <li class="toctree-l2"><a class="reference internal" href="README.html">Readme</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../multivariate_lstf_demos/autoformer_traffic.html">Autoformer traffic</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../multivariate_lstf_demos/autoformer_traffic.html">Autoformer traffic</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../multivariate_lstf_demos/nhits_traffic.html">Nhits traffic</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../multivariate_lstf_demos/README.html">Readme</a></li>
 </ul>
@@ -423,20 +458,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -487,266 +524,212 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="multivariate-quantiles-and-long-horizon-forecasting-with-n-hits">
-<h1>Multivariate quantiles and long horizon forecasting with N-HiTS<a class="headerlink" href="#multivariate-quantiles-and-long-horizon-forecasting-with-n-hits" title="Permalink to this heading">#</a></h1>
+<h1>Multivariate quantiles and long horizon forecasting with N-HiTS<a class="headerlink" href="#multivariate-quantiles-and-long-horizon-forecasting-with-n-hits" title="Link to this heading">#</a></h1>
 <p>This demo outines the application of the NHITS method using the PyTorch Forecasting. <a class="reference external" href="https://github.com/jdb78/pytorch-forecasting">PyTorch Forecasting</a> is a package that provides convenient implementations of several leading deep learning-based forecasting models, namely <a class="reference external" href="https://arxiv.org/pdf/1912.09363.pdf">Temporal Fusion Transformers</a>, <a class="reference external" href="http://arxiv.org/abs/1905.10437">N-BEATS</a>, and <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0169207019301888">DeepAR</a>. PyTorch Forecasting is built using <a class="reference external" href="https://pytorch-lightning.readthedocs.io/">PyTorch Lightning</a>, making it easier to train in multi-GPU compute environments, out-of-the-box. This demo was adapted from a tutorial in the <a class="reference external" href="https://pytorch-forecasting.readthedocs.io/en/stable/tutorials/nhits.html">PyTorch Forecasting Documentation</a>.</p>
 <section id="package-imports-and-global-variables">
-<h2>Package Imports and Global Variables<a class="headerlink" href="#package-imports-and-global-variables" title="Permalink to this heading">#</a></h2>
+<h2>Package Imports and Global Variables<a class="headerlink" href="#package-imports-and-global-variables" title="Link to this heading">#</a></h2>
 <p><strong>Note for Colab users:</strong> Run the following cell to install PyTorch Forecasting. After installation completes, you will likely need to restart the Colab runtime. If this is the case, a button <code class="docutils literal notranslate"><span class="pre">RESTART</span> <span class="pre">RUNTIME</span></code> will appear at the bottom of the next cell’s output.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="s1">&#39;google.colab&#39;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">get_ipython</span><span class="p">()):</span>
     <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>pytorch-forecasting<span class="o">[</span>mqf2<span class="o">]</span>
     <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>pytorch<span class="w"> </span>lightning
-
-    <span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
-    <span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
-    <span class="c1"># !pip install -r &#39;/content/drive/MyDrive/bootcamp_datasets/forecasting_requirements.txt&#39;</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting pytorch-forecasting[mqf2]
-  Downloading pytorch_forecasting-1.0.0-py3-none-any.whl (140 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">140.4/140.4 kB</span> <span class=" -Color -Color-Red">892.1 kB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hCollecting fastapi&gt;=0.80 (from pytorch-forecasting[mqf2])
-  Downloading fastapi-0.100.1-py3-none-any.whl (65 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">65.8/65.8 kB</span> <span class=" -Color -Color-Red">5.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hCollecting lightning&lt;3.0.0,&gt;=2.0.0 (from pytorch-forecasting[mqf2])
-  Downloading lightning-2.0.6-py3-none-any.whl (1.9 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.9/1.9 MB</span> <span class=" -Color -Color-Red">47.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hRequirement already satisfied: matplotlib in /usr/local/lib/python3.10/dist-packages (from pytorch-forecasting[mqf2]) (3.7.1)
-Collecting optuna&lt;4.0.0,&gt;=3.1.0 (from pytorch-forecasting[mqf2])
-  Downloading optuna-3.2.0-py3-none-any.whl (390 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">390.6/390.6 kB</span> <span class=" -Color -Color-Red">31.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hRequirement already satisfied: pandas&lt;=3.0.0,&gt;=1.3.0 in /usr/local/lib/python3.10/dist-packages (from pytorch-forecasting[mqf2]) (1.5.3)
-Collecting pytorch-optimizer&lt;3.0.0,&gt;=2.5.1 (from pytorch-forecasting[mqf2])
-  Downloading pytorch_optimizer-2.11.1-py3-none-any.whl (156 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">156.3/156.3 kB</span> <span class=" -Color -Color-Red">12.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hRequirement already satisfied: scikit-learn&lt;2.0,&gt;=1.2 in /usr/local/lib/python3.10/dist-packages (from pytorch-forecasting[mqf2]) (1.2.2)
-Requirement already satisfied: scipy&lt;2.0,&gt;=1.8 in /usr/local/lib/python3.10/dist-packages (from pytorch-forecasting[mqf2]) (1.10.1)
-Requirement already satisfied: statsmodels in /usr/local/lib/python3.10/dist-packages (from pytorch-forecasting[mqf2]) (0.13.5)
-Requirement already satisfied: torch&lt;3.0.0,&gt;=2.0.0 in /usr/local/lib/python3.10/dist-packages (from pytorch-forecasting[mqf2]) (2.0.1+cu118)
-Collecting cpflows&lt;0.2.0,&gt;=0.1.2 (from pytorch-forecasting[mqf2])
-  Downloading cpflows-0.1.2.tar.gz (42 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">42.9/42.9 kB</span> <span class=" -Color -Color-Red">4.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25h  Preparing metadata (setup.py) ... ?25l?25hdone
-Collecting backports.functools-lru-cache&gt;=1.6.1 (from cpflows&lt;0.2.0,&gt;=0.1.2-&gt;pytorch-forecasting[mqf2])
-  Downloading backports.functools_lru_cache-1.6.6-py2.py3-none-any.whl (5.9 kB)
-Requirement already satisfied: cycler&gt;=0.10.0 in /usr/local/lib/python3.10/dist-packages (from cpflows&lt;0.2.0,&gt;=0.1.2-&gt;pytorch-forecasting[mqf2]) (0.11.0)
-Requirement already satisfied: future&gt;=0.17.1 in /usr/local/lib/python3.10/dist-packages (from cpflows&lt;0.2.0,&gt;=0.1.2-&gt;pytorch-forecasting[mqf2]) (0.18.3)
-Requirement already satisfied: kiwisolver&gt;=1.1.0 in /usr/local/lib/python3.10/dist-packages (from cpflows&lt;0.2.0,&gt;=0.1.2-&gt;pytorch-forecasting[mqf2]) (1.4.4)
-Requirement already satisfied: numpy&gt;=1.16 in /usr/local/lib/python3.10/dist-packages (from cpflows&lt;0.2.0,&gt;=0.1.2-&gt;pytorch-forecasting[mqf2]) (1.22.4)
-Requirement already satisfied: pyparsing&gt;=2.4.7 in /usr/local/lib/python3.10/dist-packages (from cpflows&lt;0.2.0,&gt;=0.1.2-&gt;pytorch-forecasting[mqf2]) (3.1.0)
-Requirement already satisfied: python-dateutil&gt;=2.8.1 in /usr/local/lib/python3.10/dist-packages (from cpflows&lt;0.2.0,&gt;=0.1.2-&gt;pytorch-forecasting[mqf2]) (2.8.2)
-Requirement already satisfied: pytz&gt;=2020.1 in /usr/local/lib/python3.10/dist-packages (from cpflows&lt;0.2.0,&gt;=0.1.2-&gt;pytorch-forecasting[mqf2]) (2022.7.1)
-Requirement already satisfied: seaborn&gt;=0.9.1 in /usr/local/lib/python3.10/dist-packages (from cpflows&lt;0.2.0,&gt;=0.1.2-&gt;pytorch-forecasting[mqf2]) (0.12.2)
-Requirement already satisfied: six&gt;=1.15.0 in /usr/local/lib/python3.10/dist-packages (from cpflows&lt;0.2.0,&gt;=0.1.2-&gt;pytorch-forecasting[mqf2]) (1.16.0)
-Collecting subprocess32&gt;=3.5.3 (from cpflows&lt;0.2.0,&gt;=0.1.2-&gt;pytorch-forecasting[mqf2])
-  Downloading subprocess32-3.5.4.tar.gz (97 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">97.4/97.4 kB</span> <span class=" -Color -Color-Red">8.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25h  Preparing metadata (setup.py) ... ?25l?25hdone
-Requirement already satisfied: torchvision in /usr/local/lib/python3.10/dist-packages (from cpflows&lt;0.2.0,&gt;=0.1.2-&gt;pytorch-forecasting[mqf2]) (0.15.2+cu118)
-Requirement already satisfied: tqdm&gt;=4.23 in /usr/local/lib/python3.10/dist-packages (from cpflows&lt;0.2.0,&gt;=0.1.2-&gt;pytorch-forecasting[mqf2]) (4.65.0)
-Requirement already satisfied: h5py in /usr/local/lib/python3.10/dist-packages (from cpflows&lt;0.2.0,&gt;=0.1.2-&gt;pytorch-forecasting[mqf2]) (3.8.0)
-Requirement already satisfied: pydantic!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,&lt;3.0.0,&gt;=1.7.4 in /usr/local/lib/python3.10/dist-packages (from fastapi&gt;=0.80-&gt;pytorch-forecasting[mqf2]) (1.10.12)
-Collecting starlette&lt;0.28.0,&gt;=0.27.0 (from fastapi&gt;=0.80-&gt;pytorch-forecasting[mqf2])
-  Downloading starlette-0.27.0-py3-none-any.whl (66 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">67.0/67.0 kB</span> <span class=" -Color -Color-Red">6.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hRequirement already satisfied: typing-extensions&gt;=4.5.0 in /usr/local/lib/python3.10/dist-packages (from fastapi&gt;=0.80-&gt;pytorch-forecasting[mqf2]) (4.7.1)
-Requirement already satisfied: Jinja2&lt;5.0 in /usr/local/lib/python3.10/dist-packages (from lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (3.1.2)
-Requirement already satisfied: PyYAML&lt;8.0 in /usr/local/lib/python3.10/dist-packages (from lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (6.0.1)
-Collecting arrow&lt;3.0,&gt;=1.2.0 (from lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2])
-  Downloading arrow-1.2.3-py3-none-any.whl (66 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">66.4/66.4 kB</span> <span class=" -Color -Color-Red">5.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hCollecting backoff&lt;4.0,&gt;=2.2.1 (from lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2])
-  Downloading backoff-2.2.1-py3-none-any.whl (15 kB)
-Requirement already satisfied: beautifulsoup4&lt;6.0,&gt;=4.8.0 in /usr/local/lib/python3.10/dist-packages (from lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (4.11.2)
-Requirement already satisfied: click&lt;10.0 in /usr/local/lib/python3.10/dist-packages (from lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (8.1.6)
-Collecting croniter&lt;1.5.0,&gt;=1.3.0 (from lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2])
-  Downloading croniter-1.4.1-py2.py3-none-any.whl (19 kB)
-Collecting dateutils&lt;2.0 (from lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2])
-  Downloading dateutils-0.6.12-py2.py3-none-any.whl (5.7 kB)
-Collecting deepdiff&lt;8.0,&gt;=5.7.0 (from lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2])
-  Downloading deepdiff-6.3.1-py3-none-any.whl (70 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">70.7/70.7 kB</span> <span class=" -Color -Color-Red">5.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hRequirement already satisfied: fsspec&lt;2025.0,&gt;=2022.5.0 in /usr/local/lib/python3.10/dist-packages (from lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (2023.6.0)
-Collecting inquirer&lt;5.0,&gt;=2.10.0 (from lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2])
-  Downloading inquirer-3.1.3-py3-none-any.whl (18 kB)
-Collecting lightning-cloud&gt;=0.5.37 (from lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2])
-  Downloading lightning_cloud-0.5.37-py3-none-any.whl (596 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">596.7/596.7 kB</span> <span class=" -Color -Color-Red">39.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hCollecting lightning-utilities&lt;2.0,&gt;=0.7.0 (from lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2])
-  Downloading lightning_utilities-0.9.0-py3-none-any.whl (23 kB)
-Requirement already satisfied: packaging in /usr/local/lib/python3.10/dist-packages (from lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (23.1)
-Requirement already satisfied: psutil&lt;7.0 in /usr/local/lib/python3.10/dist-packages (from lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (5.9.5)
-Collecting python-multipart&lt;2.0,&gt;=0.0.5 (from lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2])
-  Downloading python_multipart-0.0.6-py3-none-any.whl (45 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">45.7/45.7 kB</span> <span class=" -Color -Color-Red">3.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hRequirement already satisfied: requests&lt;4.0 in /usr/local/lib/python3.10/dist-packages (from lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (2.27.1)
-Requirement already satisfied: rich&lt;15.0,&gt;=12.3.0 in /usr/local/lib/python3.10/dist-packages (from lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (13.4.2)
-Collecting starsessions&lt;2.0,&gt;=1.2.1 (from lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2])
-  Downloading starsessions-1.3.0-py3-none-any.whl (10 kB)
-Collecting torchmetrics&lt;2.0,&gt;=0.7.0 (from lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2])
-  Downloading torchmetrics-1.0.1-py3-none-any.whl (729 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">729.2/729.2 kB</span> <span class=" -Color -Color-Red">24.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hRequirement already satisfied: traitlets&lt;7.0,&gt;=5.3.0 in /usr/local/lib/python3.10/dist-packages (from lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (5.7.1)
-Requirement already satisfied: urllib3&lt;4.0 in /usr/local/lib/python3.10/dist-packages (from lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (1.26.16)
-Collecting uvicorn&lt;2.0 (from lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2])
-  Downloading uvicorn-0.23.2-py3-none-any.whl (59 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">59.5/59.5 kB</span> <span class=" -Color -Color-Red">3.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hRequirement already satisfied: websocket-client&lt;3.0 in /usr/local/lib/python3.10/dist-packages (from lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (1.6.1)
-Collecting websockets&lt;13.0 (from lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2])
-  Downloading websockets-11.0.3-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (129 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">129.9/129.9 kB</span> <span class=" -Color -Color-Red">4.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hCollecting pytorch-lightning (from lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2])
-  Downloading pytorch_lightning-2.0.6-py3-none-any.whl (722 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">722.8/722.8 kB</span> <span class=" -Color -Color-Red">32.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hRequirement already satisfied: contourpy&gt;=1.0.1 in /usr/local/lib/python3.10/dist-packages (from matplotlib-&gt;pytorch-forecasting[mqf2]) (1.1.0)
-Requirement already satisfied: fonttools&gt;=4.22.0 in /usr/local/lib/python3.10/dist-packages (from matplotlib-&gt;pytorch-forecasting[mqf2]) (4.41.1)
-Requirement already satisfied: pillow&gt;=6.2.0 in /usr/local/lib/python3.10/dist-packages (from matplotlib-&gt;pytorch-forecasting[mqf2]) (9.4.0)
-Collecting alembic&gt;=1.5.0 (from optuna&lt;4.0.0,&gt;=3.1.0-&gt;pytorch-forecasting[mqf2])
-  Downloading alembic-1.11.1-py3-none-any.whl (224 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">224.5/224.5 kB</span> <span class=" -Color -Color-Red">5.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hCollecting cmaes&gt;=0.9.1 (from optuna&lt;4.0.0,&gt;=3.1.0-&gt;pytorch-forecasting[mqf2])
-  Downloading cmaes-0.10.0-py3-none-any.whl (29 kB)
-Collecting colorlog (from optuna&lt;4.0.0,&gt;=3.1.0-&gt;pytorch-forecasting[mqf2])
-  Downloading colorlog-6.7.0-py2.py3-none-any.whl (11 kB)
-Requirement already satisfied: sqlalchemy&gt;=1.3.0 in /usr/local/lib/python3.10/dist-packages (from optuna&lt;4.0.0,&gt;=3.1.0-&gt;pytorch-forecasting[mqf2]) (2.0.19)
-Requirement already satisfied: joblib&gt;=1.1.1 in /usr/local/lib/python3.10/dist-packages (from scikit-learn&lt;2.0,&gt;=1.2-&gt;pytorch-forecasting[mqf2]) (1.3.1)
-Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /usr/local/lib/python3.10/dist-packages (from scikit-learn&lt;2.0,&gt;=1.2-&gt;pytorch-forecasting[mqf2]) (3.2.0)
-Requirement already satisfied: filelock in /usr/local/lib/python3.10/dist-packages (from torch&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (3.12.2)
-Requirement already satisfied: sympy in /usr/local/lib/python3.10/dist-packages (from torch&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (1.11.1)
-Requirement already satisfied: networkx in /usr/local/lib/python3.10/dist-packages (from torch&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (3.1)
-Requirement already satisfied: triton==2.0.0 in /usr/local/lib/python3.10/dist-packages (from torch&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (2.0.0)
-Requirement already satisfied: cmake in /usr/local/lib/python3.10/dist-packages (from triton==2.0.0-&gt;torch&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (3.25.2)
-Requirement already satisfied: lit in /usr/local/lib/python3.10/dist-packages (from triton==2.0.0-&gt;torch&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (16.0.6)
-Requirement already satisfied: patsy&gt;=0.5.2 in /usr/local/lib/python3.10/dist-packages (from statsmodels-&gt;pytorch-forecasting[mqf2]) (0.5.3)
-Collecting Mako (from alembic&gt;=1.5.0-&gt;optuna&lt;4.0.0,&gt;=3.1.0-&gt;pytorch-forecasting[mqf2])
-  Downloading Mako-1.2.4-py3-none-any.whl (78 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">78.7/78.7 kB</span> <span class=" -Color -Color-Red">5.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hRequirement already satisfied: soupsieve&gt;1.2 in /usr/local/lib/python3.10/dist-packages (from beautifulsoup4&lt;6.0,&gt;=4.8.0-&gt;lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (2.4.1)
-Collecting ordered-set&lt;4.2.0,&gt;=4.0.2 (from deepdiff&lt;8.0,&gt;=5.7.0-&gt;lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2])
-  Downloading ordered_set-4.1.0-py3-none-any.whl (7.6 kB)
-Requirement already satisfied: aiohttp!=4.0.0a0,!=4.0.0a1 in /usr/local/lib/python3.10/dist-packages (from fsspec&lt;2025.0,&gt;=2022.5.0-&gt;lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (3.8.5)
-Collecting blessed&gt;=1.19.0 (from inquirer&lt;5.0,&gt;=2.10.0-&gt;lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2])
-  Downloading blessed-1.20.0-py2.py3-none-any.whl (58 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">58.4/58.4 kB</span> <span class=" -Color -Color-Red">3.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hCollecting python-editor&gt;=1.0.4 (from inquirer&lt;5.0,&gt;=2.10.0-&gt;lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2])
-  Downloading python_editor-1.0.4-py3-none-any.whl (4.9 kB)
-Collecting readchar&gt;=3.0.6 (from inquirer&lt;5.0,&gt;=2.10.0-&gt;lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2])
-  Downloading readchar-4.0.5-py3-none-any.whl (8.5 kB)
-Requirement already satisfied: MarkupSafe&gt;=2.0 in /usr/local/lib/python3.10/dist-packages (from Jinja2&lt;5.0-&gt;lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (2.1.3)
-Requirement already satisfied: pyjwt in /usr/lib/python3/dist-packages (from lightning-cloud&gt;=0.5.37-&gt;lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (2.3.0)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.10/dist-packages (from requests&lt;4.0-&gt;lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (2023.7.22)
-Requirement already satisfied: charset-normalizer~=2.0.0 in /usr/local/lib/python3.10/dist-packages (from requests&lt;4.0-&gt;lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (2.0.12)
-Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.10/dist-packages (from requests&lt;4.0-&gt;lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (3.4)
-Requirement already satisfied: markdown-it-py&gt;=2.2.0 in /usr/local/lib/python3.10/dist-packages (from rich&lt;15.0,&gt;=12.3.0-&gt;lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (3.0.0)
-Requirement already satisfied: pygments&lt;3.0.0,&gt;=2.13.0 in /usr/local/lib/python3.10/dist-packages (from rich&lt;15.0,&gt;=12.3.0-&gt;lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (2.14.0)
-Requirement already satisfied: greenlet!=0.4.17 in /usr/local/lib/python3.10/dist-packages (from sqlalchemy&gt;=1.3.0-&gt;optuna&lt;4.0.0,&gt;=3.1.0-&gt;pytorch-forecasting[mqf2]) (2.0.2)
-Requirement already satisfied: anyio&lt;5,&gt;=3.4.0 in /usr/local/lib/python3.10/dist-packages (from starlette&lt;0.28.0,&gt;=0.27.0-&gt;fastapi&gt;=0.80-&gt;pytorch-forecasting[mqf2]) (3.7.1)
-Requirement already satisfied: itsdangerous&lt;3.0.0,&gt;=2.0.1 in /usr/local/lib/python3.10/dist-packages (from starsessions&lt;2.0,&gt;=1.2.1-&gt;lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (2.1.2)
-Collecting h11&gt;=0.8 (from uvicorn&lt;2.0-&gt;lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2])
-  Downloading h11-0.14.0-py3-none-any.whl (58 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">58.3/58.3 kB</span> <span class=" -Color -Color-Red">7.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hRequirement already satisfied: mpmath&gt;=0.19 in /usr/local/lib/python3.10/dist-packages (from sympy-&gt;torch&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (1.3.0)
-Requirement already satisfied: attrs&gt;=17.3.0 in /usr/local/lib/python3.10/dist-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;fsspec&lt;2025.0,&gt;=2022.5.0-&gt;lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (23.1.0)
-Requirement already satisfied: multidict&lt;7.0,&gt;=4.5 in /usr/local/lib/python3.10/dist-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;fsspec&lt;2025.0,&gt;=2022.5.0-&gt;lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (6.0.4)
-Requirement already satisfied: async-timeout&lt;5.0,&gt;=4.0.0a3 in /usr/local/lib/python3.10/dist-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;fsspec&lt;2025.0,&gt;=2022.5.0-&gt;lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (4.0.2)
-Requirement already satisfied: yarl&lt;2.0,&gt;=1.0 in /usr/local/lib/python3.10/dist-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;fsspec&lt;2025.0,&gt;=2022.5.0-&gt;lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (1.9.2)
-Requirement already satisfied: frozenlist&gt;=1.1.1 in /usr/local/lib/python3.10/dist-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;fsspec&lt;2025.0,&gt;=2022.5.0-&gt;lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (1.4.0)
-Requirement already satisfied: aiosignal&gt;=1.1.2 in /usr/local/lib/python3.10/dist-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;fsspec&lt;2025.0,&gt;=2022.5.0-&gt;lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (1.3.1)
-Requirement already satisfied: sniffio&gt;=1.1 in /usr/local/lib/python3.10/dist-packages (from anyio&lt;5,&gt;=3.4.0-&gt;starlette&lt;0.28.0,&gt;=0.27.0-&gt;fastapi&gt;=0.80-&gt;pytorch-forecasting[mqf2]) (1.3.0)
-Requirement already satisfied: exceptiongroup in /usr/local/lib/python3.10/dist-packages (from anyio&lt;5,&gt;=3.4.0-&gt;starlette&lt;0.28.0,&gt;=0.27.0-&gt;fastapi&gt;=0.80-&gt;pytorch-forecasting[mqf2]) (1.1.2)
-Requirement already satisfied: wcwidth&gt;=0.1.4 in /usr/local/lib/python3.10/dist-packages (from blessed&gt;=1.19.0-&gt;inquirer&lt;5.0,&gt;=2.10.0-&gt;lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (0.2.6)
-Requirement already satisfied: mdurl~=0.1 in /usr/local/lib/python3.10/dist-packages (from markdown-it-py&gt;=2.2.0-&gt;rich&lt;15.0,&gt;=12.3.0-&gt;lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (0.1.2)
-Requirement already satisfied: setuptools&gt;=41.0 in /usr/local/lib/python3.10/dist-packages (from readchar&gt;=3.0.6-&gt;inquirer&lt;5.0,&gt;=2.10.0-&gt;lightning&lt;3.0.0,&gt;=2.0.0-&gt;pytorch-forecasting[mqf2]) (67.7.2)
-Building wheels for collected packages: cpflows, subprocess32
-  Building wheel for cpflows (setup.py) ... ?25l?25hdone
-  Created wheel for cpflows: filename=cpflows-0.1.2-py3-none-any.whl size=54298 sha256=965a8ca494f7b442c4d7ad438eb2455ef81919baca3f06fe013845249acaba39
-  Stored in directory: /root/.cache/pip/wheels/1b/c3/fd/cdcca84615eb336ec3d17d9d1fd858684240e91b47cf3dab6e
-  Building wheel for subprocess32 (setup.py) ... ?25l?25hdone
-  Created wheel for subprocess32: filename=subprocess32-3.5.4-py3-none-any.whl size=6486 sha256=497aafc675e9c3305cd7c58a47a1c022acb57fa4e5bc39c9a7aad0bbeccaacac
-  Stored in directory: /root/.cache/pip/wheels/64/19/61/d440ccd46a2a014bce61fc5c6c8495dedd32ef04cba8b34b28
-Successfully built cpflows subprocess32
-Installing collected packages: python-editor, websockets, subprocess32, readchar, python-multipart, ordered-set, Mako, lightning-utilities, h11, colorlog, cmaes, blessed, backports.functools-lru-cache, backoff, uvicorn, starlette, inquirer, deepdiff, dateutils, croniter, arrow, alembic, starsessions, optuna, fastapi, lightning-cloud, torchmetrics, pytorch-lightning, pytorch-optimizer, lightning, pytorch-forecasting, cpflows
-Successfully installed Mako-1.2.4 alembic-1.11.1 arrow-1.2.3 backoff-2.2.1 backports.functools-lru-cache-1.6.6 blessed-1.20.0 cmaes-0.10.0 colorlog-6.7.0 cpflows-0.1.2 croniter-1.4.1 dateutils-0.6.12 deepdiff-6.3.1 fastapi-0.100.1 h11-0.14.0 inquirer-3.1.3 lightning-2.0.6 lightning-cloud-0.5.37 lightning-utilities-0.9.0 optuna-3.2.0 ordered-set-4.1.0 python-editor-1.0.4 python-multipart-0.0.6 pytorch-forecasting-1.0.0 pytorch-lightning-2.0.6 pytorch-optimizer-2.11.1 readchar-4.0.5 starlette-0.27.0 starsessions-1.3.0 subprocess32-3.5.4 torchmetrics-1.0.1 uvicorn-0.23.2 websockets-11.0.3
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
+Requirement already satisfied: pytorch-forecasting[mqf2] in /usr/local/lib/python3.8/dist-packages (0.10.3)
+Requirement already satisfied: scipy&lt;2.0,&gt;=1.8 in /usr/local/lib/python3.8/dist-packages (from pytorch-forecasting[mqf2]) (1.10.0)
+Requirement already satisfied: pytorch-lightning&lt;2.0.0,&gt;=1.2.4 in /usr/local/lib/python3.8/dist-packages (from pytorch-forecasting[mqf2]) (1.9.0)
+Requirement already satisfied: statsmodels in /usr/local/lib/python3.8/dist-packages (from pytorch-forecasting[mqf2]) (0.12.2)
+Requirement already satisfied: scikit-learn&lt;1.2,&gt;=0.24 in /usr/local/lib/python3.8/dist-packages (from pytorch-forecasting[mqf2]) (1.0.2)
+Requirement already satisfied: pandas&lt;2.0.0,&gt;=1.3.0 in /usr/local/lib/python3.8/dist-packages (from pytorch-forecasting[mqf2]) (1.3.5)
+Requirement already satisfied: matplotlib in /usr/local/lib/python3.8/dist-packages (from pytorch-forecasting[mqf2]) (3.2.2)
+Requirement already satisfied: optuna&lt;3.0.0,&gt;=2.3.0 in /usr/local/lib/python3.8/dist-packages (from pytorch-forecasting[mqf2]) (2.10.1)
+Requirement already satisfied: torch&lt;2.0,&gt;=1.7 in /usr/local/lib/python3.8/dist-packages (from pytorch-forecasting[mqf2]) (1.13.1+cu116)
+Requirement already satisfied: cpflows&lt;0.2.0,&gt;=0.1.2 in /usr/local/lib/python3.8/dist-packages (from pytorch-forecasting[mqf2]) (0.1.2)
+Requirement already satisfied: six&gt;=1.15.0 in /usr/local/lib/python3.8/dist-packages (from cpflows&lt;0.2.0,&gt;=0.1.2-&gt;pytorch-forecasting[mqf2]) (1.15.0)
+Requirement already satisfied: pytz&gt;=2020.1 in /usr/local/lib/python3.8/dist-packages (from cpflows&lt;0.2.0,&gt;=0.1.2-&gt;pytorch-forecasting[mqf2]) (2022.7.1)
+Requirement already satisfied: kiwisolver&gt;=1.1.0 in /usr/local/lib/python3.8/dist-packages (from cpflows&lt;0.2.0,&gt;=0.1.2-&gt;pytorch-forecasting[mqf2]) (1.4.4)
+Requirement already satisfied: future&gt;=0.17.1 in /usr/local/lib/python3.8/dist-packages (from cpflows&lt;0.2.0,&gt;=0.1.2-&gt;pytorch-forecasting[mqf2]) (0.18.3)
+Requirement already satisfied: numpy&gt;=1.16 in /usr/local/lib/python3.8/dist-packages (from cpflows&lt;0.2.0,&gt;=0.1.2-&gt;pytorch-forecasting[mqf2]) (1.21.6)
+Requirement already satisfied: tqdm&gt;=4.23 in /usr/local/lib/python3.8/dist-packages (from cpflows&lt;0.2.0,&gt;=0.1.2-&gt;pytorch-forecasting[mqf2]) (4.64.1)
+Requirement already satisfied: seaborn&gt;=0.9.1 in /usr/local/lib/python3.8/dist-packages (from cpflows&lt;0.2.0,&gt;=0.1.2-&gt;pytorch-forecasting[mqf2]) (0.11.2)
+Requirement already satisfied: cycler&gt;=0.10.0 in /usr/local/lib/python3.8/dist-packages (from cpflows&lt;0.2.0,&gt;=0.1.2-&gt;pytorch-forecasting[mqf2]) (0.11.0)
+Requirement already satisfied: python-dateutil&gt;=2.8.1 in /usr/local/lib/python3.8/dist-packages (from cpflows&lt;0.2.0,&gt;=0.1.2-&gt;pytorch-forecasting[mqf2]) (2.8.2)
+Requirement already satisfied: backports.functools-lru-cache&gt;=1.6.1 in /usr/local/lib/python3.8/dist-packages (from cpflows&lt;0.2.0,&gt;=0.1.2-&gt;pytorch-forecasting[mqf2]) (1.6.4)
+Requirement already satisfied: torchvision in /usr/local/lib/python3.8/dist-packages (from cpflows&lt;0.2.0,&gt;=0.1.2-&gt;pytorch-forecasting[mqf2]) (0.14.1+cu116)
+Requirement already satisfied: pyparsing&gt;=2.4.7 in /usr/local/lib/python3.8/dist-packages (from cpflows&lt;0.2.0,&gt;=0.1.2-&gt;pytorch-forecasting[mqf2]) (3.0.9)
+Requirement already satisfied: h5py in /usr/local/lib/python3.8/dist-packages (from cpflows&lt;0.2.0,&gt;=0.1.2-&gt;pytorch-forecasting[mqf2]) (3.1.0)
+Requirement already satisfied: subprocess32&gt;=3.5.3 in /usr/local/lib/python3.8/dist-packages (from cpflows&lt;0.2.0,&gt;=0.1.2-&gt;pytorch-forecasting[mqf2]) (3.5.4)
+Requirement already satisfied: packaging&gt;=20.0 in /usr/local/lib/python3.8/dist-packages (from optuna&lt;3.0.0,&gt;=2.3.0-&gt;pytorch-forecasting[mqf2]) (23.0)
+Requirement already satisfied: cmaes&gt;=0.8.2 in /usr/local/lib/python3.8/dist-packages (from optuna&lt;3.0.0,&gt;=2.3.0-&gt;pytorch-forecasting[mqf2]) (0.9.1)
+Requirement already satisfied: cliff in /usr/local/lib/python3.8/dist-packages (from optuna&lt;3.0.0,&gt;=2.3.0-&gt;pytorch-forecasting[mqf2]) (4.1.0)
+Requirement already satisfied: sqlalchemy&gt;=1.1.0 in /usr/local/lib/python3.8/dist-packages (from optuna&lt;3.0.0,&gt;=2.3.0-&gt;pytorch-forecasting[mqf2]) (1.4.46)
+Requirement already satisfied: PyYAML in /usr/local/lib/python3.8/dist-packages (from optuna&lt;3.0.0,&gt;=2.3.0-&gt;pytorch-forecasting[mqf2]) (6.0)
+Requirement already satisfied: alembic in /usr/local/lib/python3.8/dist-packages (from optuna&lt;3.0.0,&gt;=2.3.0-&gt;pytorch-forecasting[mqf2]) (1.9.3)
+Requirement already satisfied: colorlog in /usr/local/lib/python3.8/dist-packages (from optuna&lt;3.0.0,&gt;=2.3.0-&gt;pytorch-forecasting[mqf2]) (6.7.0)
+Requirement already satisfied: torchmetrics&gt;=0.7.0 in /usr/local/lib/python3.8/dist-packages (from pytorch-lightning&lt;2.0.0,&gt;=1.2.4-&gt;pytorch-forecasting[mqf2]) (0.11.1)
+Requirement already satisfied: fsspec[http]&gt;2021.06.0 in /usr/local/lib/python3.8/dist-packages (from pytorch-lightning&lt;2.0.0,&gt;=1.2.4-&gt;pytorch-forecasting[mqf2]) (2023.1.0)
+Requirement already satisfied: lightning-utilities&gt;=0.4.2 in /usr/local/lib/python3.8/dist-packages (from pytorch-lightning&lt;2.0.0,&gt;=1.2.4-&gt;pytorch-forecasting[mqf2]) (0.6.0.post0)
+Requirement already satisfied: typing-extensions&gt;=4.0.0 in /usr/local/lib/python3.8/dist-packages (from pytorch-lightning&lt;2.0.0,&gt;=1.2.4-&gt;pytorch-forecasting[mqf2]) (4.4.0)
+Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /usr/local/lib/python3.8/dist-packages (from scikit-learn&lt;1.2,&gt;=0.24-&gt;pytorch-forecasting[mqf2]) (3.1.0)
+Requirement already satisfied: joblib&gt;=0.11 in /usr/local/lib/python3.8/dist-packages (from scikit-learn&lt;1.2,&gt;=0.24-&gt;pytorch-forecasting[mqf2]) (1.2.0)
+Requirement already satisfied: patsy&gt;=0.5 in /usr/local/lib/python3.8/dist-packages (from statsmodels-&gt;pytorch-forecasting[mqf2]) (0.5.3)
+Requirement already satisfied: requests in /usr/local/lib/python3.8/dist-packages (from fsspec[http]&gt;2021.06.0-&gt;pytorch-lightning&lt;2.0.0,&gt;=1.2.4-&gt;pytorch-forecasting[mqf2]) (2.25.1)
+Requirement already satisfied: aiohttp!=4.0.0a0,!=4.0.0a1 in /usr/local/lib/python3.8/dist-packages (from fsspec[http]&gt;2021.06.0-&gt;pytorch-lightning&lt;2.0.0,&gt;=1.2.4-&gt;pytorch-forecasting[mqf2]) (3.8.3)
+Requirement already satisfied: greenlet!=0.4.17 in /usr/local/lib/python3.8/dist-packages (from sqlalchemy&gt;=1.1.0-&gt;optuna&lt;3.0.0,&gt;=2.3.0-&gt;pytorch-forecasting[mqf2]) (2.0.2)
+Requirement already satisfied: importlib-resources in /usr/local/lib/python3.8/dist-packages (from alembic-&gt;optuna&lt;3.0.0,&gt;=2.3.0-&gt;pytorch-forecasting[mqf2]) (5.10.2)
+Requirement already satisfied: importlib-metadata in /usr/local/lib/python3.8/dist-packages (from alembic-&gt;optuna&lt;3.0.0,&gt;=2.3.0-&gt;pytorch-forecasting[mqf2]) (6.0.0)
+Requirement already satisfied: Mako in /usr/local/lib/python3.8/dist-packages (from alembic-&gt;optuna&lt;3.0.0,&gt;=2.3.0-&gt;pytorch-forecasting[mqf2]) (1.2.4)
+Requirement already satisfied: autopage&gt;=0.4.0 in /usr/local/lib/python3.8/dist-packages (from cliff-&gt;optuna&lt;3.0.0,&gt;=2.3.0-&gt;pytorch-forecasting[mqf2]) (0.5.1)
+Requirement already satisfied: cmd2&gt;=1.0.0 in /usr/local/lib/python3.8/dist-packages (from cliff-&gt;optuna&lt;3.0.0,&gt;=2.3.0-&gt;pytorch-forecasting[mqf2]) (2.4.3)
+Requirement already satisfied: PrettyTable&gt;=0.7.2 in /usr/local/lib/python3.8/dist-packages (from cliff-&gt;optuna&lt;3.0.0,&gt;=2.3.0-&gt;pytorch-forecasting[mqf2]) (3.6.0)
+Requirement already satisfied: stevedore&gt;=2.0.1 in /usr/local/lib/python3.8/dist-packages (from cliff-&gt;optuna&lt;3.0.0,&gt;=2.3.0-&gt;pytorch-forecasting[mqf2]) (4.1.1)
+Requirement already satisfied: pillow!=8.3.*,&gt;=5.3.0 in /usr/local/lib/python3.8/dist-packages (from torchvision-&gt;cpflows&lt;0.2.0,&gt;=0.1.2-&gt;pytorch-forecasting[mqf2]) (7.1.2)
+Requirement already satisfied: async-timeout&lt;5.0,&gt;=4.0.0a3 in /usr/local/lib/python3.8/dist-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;fsspec[http]&gt;2021.06.0-&gt;pytorch-lightning&lt;2.0.0,&gt;=1.2.4-&gt;pytorch-forecasting[mqf2]) (4.0.2)
+Requirement already satisfied: aiosignal&gt;=1.1.2 in /usr/local/lib/python3.8/dist-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;fsspec[http]&gt;2021.06.0-&gt;pytorch-lightning&lt;2.0.0,&gt;=1.2.4-&gt;pytorch-forecasting[mqf2]) (1.3.1)
+Requirement already satisfied: frozenlist&gt;=1.1.1 in /usr/local/lib/python3.8/dist-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;fsspec[http]&gt;2021.06.0-&gt;pytorch-lightning&lt;2.0.0,&gt;=1.2.4-&gt;pytorch-forecasting[mqf2]) (1.3.3)
+Requirement already satisfied: multidict&lt;7.0,&gt;=4.5 in /usr/local/lib/python3.8/dist-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;fsspec[http]&gt;2021.06.0-&gt;pytorch-lightning&lt;2.0.0,&gt;=1.2.4-&gt;pytorch-forecasting[mqf2]) (6.0.4)
+Requirement already satisfied: yarl&lt;2.0,&gt;=1.0 in /usr/local/lib/python3.8/dist-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;fsspec[http]&gt;2021.06.0-&gt;pytorch-lightning&lt;2.0.0,&gt;=1.2.4-&gt;pytorch-forecasting[mqf2]) (1.8.2)
+Requirement already satisfied: charset-normalizer&lt;3.0,&gt;=2.0 in /usr/local/lib/python3.8/dist-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;fsspec[http]&gt;2021.06.0-&gt;pytorch-lightning&lt;2.0.0,&gt;=1.2.4-&gt;pytorch-forecasting[mqf2]) (2.1.1)
+Requirement already satisfied: attrs&gt;=17.3.0 in /usr/local/lib/python3.8/dist-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;fsspec[http]&gt;2021.06.0-&gt;pytorch-lightning&lt;2.0.0,&gt;=1.2.4-&gt;pytorch-forecasting[mqf2]) (22.2.0)
+Requirement already satisfied: pyperclip&gt;=1.6 in /usr/local/lib/python3.8/dist-packages (from cmd2&gt;=1.0.0-&gt;cliff-&gt;optuna&lt;3.0.0,&gt;=2.3.0-&gt;pytorch-forecasting[mqf2]) (1.8.2)
+Requirement already satisfied: wcwidth&gt;=0.1.7 in /usr/local/lib/python3.8/dist-packages (from cmd2&gt;=1.0.0-&gt;cliff-&gt;optuna&lt;3.0.0,&gt;=2.3.0-&gt;pytorch-forecasting[mqf2]) (0.2.6)
+Requirement already satisfied: zipp&gt;=0.5 in /usr/local/lib/python3.8/dist-packages (from importlib-metadata-&gt;alembic-&gt;optuna&lt;3.0.0,&gt;=2.3.0-&gt;pytorch-forecasting[mqf2]) (3.12.0)
+Requirement already satisfied: pbr!=2.1.0,&gt;=2.0.0 in /usr/local/lib/python3.8/dist-packages (from stevedore&gt;=2.0.1-&gt;cliff-&gt;optuna&lt;3.0.0,&gt;=2.3.0-&gt;pytorch-forecasting[mqf2]) (5.11.1)
+Requirement already satisfied: MarkupSafe&gt;=0.9.2 in /usr/local/lib/python3.8/dist-packages (from Mako-&gt;alembic-&gt;optuna&lt;3.0.0,&gt;=2.3.0-&gt;pytorch-forecasting[mqf2]) (2.0.1)
+Requirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/local/lib/python3.8/dist-packages (from requests-&gt;fsspec[http]&gt;2021.06.0-&gt;pytorch-lightning&lt;2.0.0,&gt;=1.2.4-&gt;pytorch-forecasting[mqf2]) (1.24.3)
+Requirement already satisfied: chardet&lt;5,&gt;=3.0.2 in /usr/local/lib/python3.8/dist-packages (from requests-&gt;fsspec[http]&gt;2021.06.0-&gt;pytorch-lightning&lt;2.0.0,&gt;=1.2.4-&gt;pytorch-forecasting[mqf2]) (4.0.0)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.8/dist-packages (from requests-&gt;fsspec[http]&gt;2021.06.0-&gt;pytorch-lightning&lt;2.0.0,&gt;=1.2.4-&gt;pytorch-forecasting[mqf2]) (2022.12.7)
+Requirement already satisfied: idna&lt;3,&gt;=2.5 in /usr/local/lib/python3.8/dist-packages (from requests-&gt;fsspec[http]&gt;2021.06.0-&gt;pytorch-lightning&lt;2.0.0,&gt;=1.2.4-&gt;pytorch-forecasting[mqf2]) (2.10)
+Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
 Collecting pytorch
-  Downloading pytorch-1.0.2.tar.gz (689 bytes)
+  Using cached pytorch-1.0.2.tar.gz (689 bytes)
   Preparing metadata (setup.py) ... ?25l?25hdone
-Requirement already satisfied: lightning in /usr/local/lib/python3.10/dist-packages (2.0.6)
-Requirement already satisfied: Jinja2&lt;5.0 in /usr/local/lib/python3.10/dist-packages (from lightning) (3.1.2)
-Requirement already satisfied: PyYAML&lt;8.0 in /usr/local/lib/python3.10/dist-packages (from lightning) (6.0.1)
-Requirement already satisfied: arrow&lt;3.0,&gt;=1.2.0 in /usr/local/lib/python3.10/dist-packages (from lightning) (1.2.3)
-Requirement already satisfied: backoff&lt;4.0,&gt;=2.2.1 in /usr/local/lib/python3.10/dist-packages (from lightning) (2.2.1)
-Requirement already satisfied: beautifulsoup4&lt;6.0,&gt;=4.8.0 in /usr/local/lib/python3.10/dist-packages (from lightning) (4.11.2)
-Requirement already satisfied: click&lt;10.0 in /usr/local/lib/python3.10/dist-packages (from lightning) (8.1.6)
-Requirement already satisfied: croniter&lt;1.5.0,&gt;=1.3.0 in /usr/local/lib/python3.10/dist-packages (from lightning) (1.4.1)
-Requirement already satisfied: dateutils&lt;2.0 in /usr/local/lib/python3.10/dist-packages (from lightning) (0.6.12)
-Requirement already satisfied: deepdiff&lt;8.0,&gt;=5.7.0 in /usr/local/lib/python3.10/dist-packages (from lightning) (6.3.1)
-Requirement already satisfied: fastapi&lt;2.0,&gt;=0.92.0 in /usr/local/lib/python3.10/dist-packages (from lightning) (0.100.1)
-Requirement already satisfied: fsspec&lt;2025.0,&gt;=2022.5.0 in /usr/local/lib/python3.10/dist-packages (from lightning) (2023.6.0)
-Requirement already satisfied: inquirer&lt;5.0,&gt;=2.10.0 in /usr/local/lib/python3.10/dist-packages (from lightning) (3.1.3)
-Requirement already satisfied: lightning-cloud&gt;=0.5.37 in /usr/local/lib/python3.10/dist-packages (from lightning) (0.5.37)
-Requirement already satisfied: lightning-utilities&lt;2.0,&gt;=0.7.0 in /usr/local/lib/python3.10/dist-packages (from lightning) (0.9.0)
-Requirement already satisfied: numpy&lt;3.0,&gt;=1.17.2 in /usr/local/lib/python3.10/dist-packages (from lightning) (1.22.4)
-Requirement already satisfied: packaging in /usr/local/lib/python3.10/dist-packages (from lightning) (23.1)
-Requirement already satisfied: psutil&lt;7.0 in /usr/local/lib/python3.10/dist-packages (from lightning) (5.9.5)
-Requirement already satisfied: pydantic&lt;2.1.0,&gt;=1.7.4 in /usr/local/lib/python3.10/dist-packages (from lightning) (1.10.12)
-Requirement already satisfied: python-multipart&lt;2.0,&gt;=0.0.5 in /usr/local/lib/python3.10/dist-packages (from lightning) (0.0.6)
-Requirement already satisfied: requests&lt;4.0 in /usr/local/lib/python3.10/dist-packages (from lightning) (2.27.1)
-Requirement already satisfied: rich&lt;15.0,&gt;=12.3.0 in /usr/local/lib/python3.10/dist-packages (from lightning) (13.4.2)
-Requirement already satisfied: starlette in /usr/local/lib/python3.10/dist-packages (from lightning) (0.27.0)
-Requirement already satisfied: starsessions&lt;2.0,&gt;=1.2.1 in /usr/local/lib/python3.10/dist-packages (from lightning) (1.3.0)
-Requirement already satisfied: torch&lt;4.0,&gt;=1.11.0 in /usr/local/lib/python3.10/dist-packages (from lightning) (2.0.1+cu118)
-Requirement already satisfied: torchmetrics&lt;2.0,&gt;=0.7.0 in /usr/local/lib/python3.10/dist-packages (from lightning) (1.0.1)
-Requirement already satisfied: tqdm&lt;6.0,&gt;=4.57.0 in /usr/local/lib/python3.10/dist-packages (from lightning) (4.65.0)
-Requirement already satisfied: traitlets&lt;7.0,&gt;=5.3.0 in /usr/local/lib/python3.10/dist-packages (from lightning) (5.7.1)
-Requirement already satisfied: typing-extensions&lt;6.0,&gt;=4.0.0 in /usr/local/lib/python3.10/dist-packages (from lightning) (4.7.1)
-Requirement already satisfied: urllib3&lt;4.0 in /usr/local/lib/python3.10/dist-packages (from lightning) (1.26.16)
-Requirement already satisfied: uvicorn&lt;2.0 in /usr/local/lib/python3.10/dist-packages (from lightning) (0.23.2)
-Requirement already satisfied: websocket-client&lt;3.0 in /usr/local/lib/python3.10/dist-packages (from lightning) (1.6.1)
-Requirement already satisfied: websockets&lt;13.0 in /usr/local/lib/python3.10/dist-packages (from lightning) (11.0.3)
-Requirement already satisfied: pytorch-lightning in /usr/local/lib/python3.10/dist-packages (from lightning) (2.0.6)
-Requirement already satisfied: python-dateutil&gt;=2.7.0 in /usr/local/lib/python3.10/dist-packages (from arrow&lt;3.0,&gt;=1.2.0-&gt;lightning) (2.8.2)
-Requirement already satisfied: soupsieve&gt;1.2 in /usr/local/lib/python3.10/dist-packages (from beautifulsoup4&lt;6.0,&gt;=4.8.0-&gt;lightning) (2.4.1)
-Requirement already satisfied: pytz in /usr/local/lib/python3.10/dist-packages (from dateutils&lt;2.0-&gt;lightning) (2022.7.1)
-Requirement already satisfied: ordered-set&lt;4.2.0,&gt;=4.0.2 in /usr/local/lib/python3.10/dist-packages (from deepdiff&lt;8.0,&gt;=5.7.0-&gt;lightning) (4.1.0)
-Requirement already satisfied: aiohttp!=4.0.0a0,!=4.0.0a1 in /usr/local/lib/python3.10/dist-packages (from fsspec&lt;2025.0,&gt;=2022.5.0-&gt;lightning) (3.8.5)
-Requirement already satisfied: blessed&gt;=1.19.0 in /usr/local/lib/python3.10/dist-packages (from inquirer&lt;5.0,&gt;=2.10.0-&gt;lightning) (1.20.0)
-Requirement already satisfied: python-editor&gt;=1.0.4 in /usr/local/lib/python3.10/dist-packages (from inquirer&lt;5.0,&gt;=2.10.0-&gt;lightning) (1.0.4)
-Requirement already satisfied: readchar&gt;=3.0.6 in /usr/local/lib/python3.10/dist-packages (from inquirer&lt;5.0,&gt;=2.10.0-&gt;lightning) (4.0.5)
-Requirement already satisfied: MarkupSafe&gt;=2.0 in /usr/local/lib/python3.10/dist-packages (from Jinja2&lt;5.0-&gt;lightning) (2.1.3)
-Requirement already satisfied: pyjwt in /usr/lib/python3/dist-packages (from lightning-cloud&gt;=0.5.37-&gt;lightning) (2.3.0)
-Requirement already satisfied: six in /usr/local/lib/python3.10/dist-packages (from lightning-cloud&gt;=0.5.37-&gt;lightning) (1.16.0)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.10/dist-packages (from requests&lt;4.0-&gt;lightning) (2023.7.22)
-Requirement already satisfied: charset-normalizer~=2.0.0 in /usr/local/lib/python3.10/dist-packages (from requests&lt;4.0-&gt;lightning) (2.0.12)
-Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.10/dist-packages (from requests&lt;4.0-&gt;lightning) (3.4)
-Requirement already satisfied: markdown-it-py&gt;=2.2.0 in /usr/local/lib/python3.10/dist-packages (from rich&lt;15.0,&gt;=12.3.0-&gt;lightning) (3.0.0)
-Requirement already satisfied: pygments&lt;3.0.0,&gt;=2.13.0 in /usr/local/lib/python3.10/dist-packages (from rich&lt;15.0,&gt;=12.3.0-&gt;lightning) (2.14.0)
-Requirement already satisfied: anyio&lt;5,&gt;=3.4.0 in /usr/local/lib/python3.10/dist-packages (from starlette-&gt;lightning) (3.7.1)
-Requirement already satisfied: itsdangerous&lt;3.0.0,&gt;=2.0.1 in /usr/local/lib/python3.10/dist-packages (from starsessions&lt;2.0,&gt;=1.2.1-&gt;lightning) (2.1.2)
-Requirement already satisfied: filelock in /usr/local/lib/python3.10/dist-packages (from torch&lt;4.0,&gt;=1.11.0-&gt;lightning) (3.12.2)
-Requirement already satisfied: sympy in /usr/local/lib/python3.10/dist-packages (from torch&lt;4.0,&gt;=1.11.0-&gt;lightning) (1.11.1)
-Requirement already satisfied: networkx in /usr/local/lib/python3.10/dist-packages (from torch&lt;4.0,&gt;=1.11.0-&gt;lightning) (3.1)
-Requirement already satisfied: triton==2.0.0 in /usr/local/lib/python3.10/dist-packages (from torch&lt;4.0,&gt;=1.11.0-&gt;lightning) (2.0.0)
-Requirement already satisfied: cmake in /usr/local/lib/python3.10/dist-packages (from triton==2.0.0-&gt;torch&lt;4.0,&gt;=1.11.0-&gt;lightning) (3.25.2)
-Requirement already satisfied: lit in /usr/local/lib/python3.10/dist-packages (from triton==2.0.0-&gt;torch&lt;4.0,&gt;=1.11.0-&gt;lightning) (16.0.6)
-Requirement already satisfied: h11&gt;=0.8 in /usr/local/lib/python3.10/dist-packages (from uvicorn&lt;2.0-&gt;lightning) (0.14.0)
-Requirement already satisfied: attrs&gt;=17.3.0 in /usr/local/lib/python3.10/dist-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;fsspec&lt;2025.0,&gt;=2022.5.0-&gt;lightning) (23.1.0)
-Requirement already satisfied: multidict&lt;7.0,&gt;=4.5 in /usr/local/lib/python3.10/dist-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;fsspec&lt;2025.0,&gt;=2022.5.0-&gt;lightning) (6.0.4)
-Requirement already satisfied: async-timeout&lt;5.0,&gt;=4.0.0a3 in /usr/local/lib/python3.10/dist-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;fsspec&lt;2025.0,&gt;=2022.5.0-&gt;lightning) (4.0.2)
-Requirement already satisfied: yarl&lt;2.0,&gt;=1.0 in /usr/local/lib/python3.10/dist-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;fsspec&lt;2025.0,&gt;=2022.5.0-&gt;lightning) (1.9.2)
-Requirement already satisfied: frozenlist&gt;=1.1.1 in /usr/local/lib/python3.10/dist-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;fsspec&lt;2025.0,&gt;=2022.5.0-&gt;lightning) (1.4.0)
-Requirement already satisfied: aiosignal&gt;=1.1.2 in /usr/local/lib/python3.10/dist-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;fsspec&lt;2025.0,&gt;=2022.5.0-&gt;lightning) (1.3.1)
-Requirement already satisfied: sniffio&gt;=1.1 in /usr/local/lib/python3.10/dist-packages (from anyio&lt;5,&gt;=3.4.0-&gt;starlette-&gt;lightning) (1.3.0)
-Requirement already satisfied: exceptiongroup in /usr/local/lib/python3.10/dist-packages (from anyio&lt;5,&gt;=3.4.0-&gt;starlette-&gt;lightning) (1.1.2)
-Requirement already satisfied: wcwidth&gt;=0.1.4 in /usr/local/lib/python3.10/dist-packages (from blessed&gt;=1.19.0-&gt;inquirer&lt;5.0,&gt;=2.10.0-&gt;lightning) (0.2.6)
-Requirement already satisfied: mdurl~=0.1 in /usr/local/lib/python3.10/dist-packages (from markdown-it-py&gt;=2.2.0-&gt;rich&lt;15.0,&gt;=12.3.0-&gt;lightning) (0.1.2)
-Requirement already satisfied: setuptools&gt;=41.0 in /usr/local/lib/python3.10/dist-packages (from readchar&gt;=3.0.6-&gt;inquirer&lt;5.0,&gt;=2.10.0-&gt;lightning) (67.7.2)
-Requirement already satisfied: mpmath&gt;=0.19 in /usr/local/lib/python3.10/dist-packages (from sympy-&gt;torch&lt;4.0,&gt;=1.11.0-&gt;lightning) (1.3.0)
+Collecting lightning
+  Using cached lightning-1.9.0-py3-none-any.whl (2.1 MB)
+Requirement already satisfied: psutil&lt;7.0 in /usr/local/lib/python3.8/dist-packages (from lightning) (5.4.8)
+Requirement already satisfied: numpy&lt;3.0,&gt;=1.17.2 in /usr/local/lib/python3.8/dist-packages (from lightning) (1.21.6)
+Requirement already satisfied: PyYAML&lt;8.0,&gt;=5.4 in /usr/local/lib/python3.8/dist-packages (from lightning) (6.0)
+Collecting starlette&lt;2.0
+  Using cached starlette-0.24.0-py3-none-any.whl (65 kB)
+Requirement already satisfied: fsspec[http]&lt;2024.0,&gt;2021.06.0 in /usr/local/lib/python3.8/dist-packages (from lightning) (2023.1.0)
+Requirement already satisfied: traitlets&lt;7.0,&gt;=5.3.0 in /usr/local/lib/python3.8/dist-packages (from lightning) (5.7.1)
+Requirement already satisfied: lightning-utilities&lt;2.0,&gt;=0.4.2 in /usr/local/lib/python3.8/dist-packages (from lightning) (0.6.0.post0)
+Collecting beautifulsoup4&lt;6.0,&gt;=4.8.0
+  Using cached beautifulsoup4-4.11.2-py3-none-any.whl (129 kB)
+Requirement already satisfied: tqdm&lt;6.0,&gt;=4.57.0 in /usr/local/lib/python3.8/dist-packages (from lightning) (4.64.1)
+Requirement already satisfied: Jinja2&lt;5.0 in /usr/local/lib/python3.8/dist-packages (from lightning) (2.11.3)
+Collecting fastapi&lt;0.89.0
+  Using cached fastapi-0.88.0-py3-none-any.whl (55 kB)
+Collecting packaging&lt;23.0,&gt;=17.1
+  Using cached packaging-22.0-py3-none-any.whl (42 kB)
+Requirement already satisfied: torch&lt;3.0,&gt;=1.10.0 in /usr/local/lib/python3.8/dist-packages (from lightning) (1.13.1+cu116)
+Requirement already satisfied: pydantic&lt;3.0 in /usr/local/lib/python3.8/dist-packages (from lightning) (1.10.4)
+Requirement already satisfied: urllib3&lt;3.0 in /usr/local/lib/python3.8/dist-packages (from lightning) (1.24.3)
+Collecting rich&lt;15.0
+  Using cached rich-13.3.1-py3-none-any.whl (239 kB)
+Collecting arrow&lt;3.0,&gt;=1.2.0
+  Using cached arrow-1.2.3-py3-none-any.whl (66 kB)
+Collecting uvicorn&lt;2.0
+  Using cached uvicorn-0.20.0-py3-none-any.whl (56 kB)
+Collecting croniter&lt;1.4.0,&gt;=1.3.0
+  Using cached croniter-1.3.8-py2.py3-none-any.whl (18 kB)
+Collecting deepdiff&lt;8.0,&gt;=5.7.0
+  Using cached deepdiff-6.2.3-py3-none-any.whl (73 kB)
+Collecting lightning-cloud&lt;2.0,&gt;=0.5.12
+  Using cached lightning_cloud-0.5.24-py3-none-any.whl (484 kB)
+Collecting websocket-client&lt;3.0
+  Using cached websocket_client-1.5.1-py3-none-any.whl (55 kB)
+Collecting dateutils&lt;2.0
+  Using cached dateutils-0.6.12-py2.py3-none-any.whl (5.7 kB)
+Collecting websockets&lt;12.0
+  Using cached websockets-10.4-cp38-cp38-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (106 kB)
+Requirement already satisfied: requests&lt;4.0 in /usr/local/lib/python3.8/dist-packages (from lightning) (2.25.1)
+Requirement already satisfied: click&lt;10.0 in /usr/local/lib/python3.8/dist-packages (from lightning) (7.1.2)
+Requirement already satisfied: typing-extensions&lt;6.0,&gt;=4.0.0 in /usr/local/lib/python3.8/dist-packages (from lightning) (4.4.0)
+Requirement already satisfied: torchmetrics&lt;2.0,&gt;=0.7.0 in /usr/local/lib/python3.8/dist-packages (from lightning) (0.11.1)
+Collecting starsessions&lt;2.0,&gt;=1.2.1
+  Using cached starsessions-1.3.0-py3-none-any.whl (10 kB)
+Collecting inquirer&lt;5.0,&gt;=2.10.0
+  Using cached inquirer-3.1.2-py3-none-any.whl (17 kB)
+Requirement already satisfied: python-dateutil&gt;=2.7.0 in /usr/local/lib/python3.8/dist-packages (from arrow&lt;3.0,&gt;=1.2.0-&gt;lightning) (2.8.2)
+Collecting soupsieve&gt;1.2
+  Using cached soupsieve-2.3.2.post1-py3-none-any.whl (37 kB)
+Requirement already satisfied: pytz in /usr/local/lib/python3.8/dist-packages (from dateutils&lt;2.0-&gt;lightning) (2022.7.1)
+Collecting orjson
+  Using cached orjson-3.8.5-cp38-cp38-manylinux_2_28_x86_64.whl (140 kB)
+Collecting ordered-set&lt;4.2.0,&gt;=4.0.2
+  Using cached ordered_set-4.1.0-py3-none-any.whl (7.6 kB)
+Collecting starlette&lt;2.0
+  Using cached starlette-0.22.0-py3-none-any.whl (64 kB)
+Collecting anyio&lt;5,&gt;=3.4.0
+  Using cached anyio-3.6.2-py3-none-any.whl (80 kB)
+Requirement already satisfied: aiohttp!=4.0.0a0,!=4.0.0a1 in /usr/local/lib/python3.8/dist-packages (from fsspec[http]&lt;2024.0,&gt;2021.06.0-&gt;lightning) (3.8.3)
+Collecting python-editor&gt;=1.0.4
+  Using cached python_editor-1.0.4-py3-none-any.whl (4.9 kB)
+Collecting blessed&gt;=1.19.0
+  Using cached blessed-1.20.0-py2.py3-none-any.whl (58 kB)
+Collecting readchar&gt;=3.0.6
+  Using cached readchar-4.0.3-py3-none-any.whl (8.4 kB)
+Requirement already satisfied: MarkupSafe&gt;=0.23 in /usr/local/lib/python3.8/dist-packages (from Jinja2&lt;5.0-&gt;lightning) (2.0.1)
+Requirement already satisfied: six in /usr/local/lib/python3.8/dist-packages (from lightning-cloud&lt;2.0,&gt;=0.5.12-&gt;lightning) (1.15.0)
+Collecting fastapi[all]
+  Using cached fastapi-0.90.0-py3-none-any.whl (56 kB)
+Collecting pyjwt
+  Using cached PyJWT-2.6.0-py3-none-any.whl (20 kB)
+Requirement already satisfied: idna&lt;3,&gt;=2.5 in /usr/local/lib/python3.8/dist-packages (from requests&lt;4.0-&gt;lightning) (2.10)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.8/dist-packages (from requests&lt;4.0-&gt;lightning) (2022.12.7)
+Requirement already satisfied: chardet&lt;5,&gt;=3.0.2 in /usr/local/lib/python3.8/dist-packages (from requests&lt;4.0-&gt;lightning) (4.0.0)
+Collecting pygments&lt;3.0.0,&gt;=2.14.0
+  Using cached Pygments-2.14.0-py3-none-any.whl (1.1 MB)
+Collecting markdown-it-py&lt;3.0.0,&gt;=2.1.0
+  Using cached markdown_it_py-2.1.0-py3-none-any.whl (84 kB)
+Collecting itsdangerous&lt;3.0.0,&gt;=2.0.1
+  Using cached itsdangerous-2.1.2-py3-none-any.whl (15 kB)
+Collecting h11&gt;=0.8
+  Using cached h11-0.14.0-py3-none-any.whl (58 kB)
+Requirement already satisfied: yarl&lt;2.0,&gt;=1.0 in /usr/local/lib/python3.8/dist-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;fsspec[http]&lt;2024.0,&gt;2021.06.0-&gt;lightning) (1.8.2)
+Requirement already satisfied: frozenlist&gt;=1.1.1 in /usr/local/lib/python3.8/dist-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;fsspec[http]&lt;2024.0,&gt;2021.06.0-&gt;lightning) (1.3.3)
+Requirement already satisfied: aiosignal&gt;=1.1.2 in /usr/local/lib/python3.8/dist-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;fsspec[http]&lt;2024.0,&gt;2021.06.0-&gt;lightning) (1.3.1)
+Requirement already satisfied: charset-normalizer&lt;3.0,&gt;=2.0 in /usr/local/lib/python3.8/dist-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;fsspec[http]&lt;2024.0,&gt;2021.06.0-&gt;lightning) (2.1.1)
+Requirement already satisfied: attrs&gt;=17.3.0 in /usr/local/lib/python3.8/dist-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;fsspec[http]&lt;2024.0,&gt;2021.06.0-&gt;lightning) (22.2.0)
+Requirement already satisfied: multidict&lt;7.0,&gt;=4.5 in /usr/local/lib/python3.8/dist-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;fsspec[http]&lt;2024.0,&gt;2021.06.0-&gt;lightning) (6.0.4)
+Requirement already satisfied: async-timeout&lt;5.0,&gt;=4.0.0a3 in /usr/local/lib/python3.8/dist-packages (from aiohttp!=4.0.0a0,!=4.0.0a1-&gt;fsspec[http]&lt;2024.0,&gt;2021.06.0-&gt;lightning) (4.0.2)
+Collecting sniffio&gt;=1.1
+  Using cached sniffio-1.3.0-py3-none-any.whl (10 kB)
+Requirement already satisfied: wcwidth&gt;=0.1.4 in /usr/local/lib/python3.8/dist-packages (from blessed&gt;=1.19.0-&gt;inquirer&lt;5.0,&gt;=2.10.0-&gt;lightning) (0.2.6)
+Collecting mdurl~=0.1
+  Using cached mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+Requirement already satisfied: setuptools&gt;=41.0 in /usr/local/lib/python3.8/dist-packages (from readchar&gt;=3.0.6-&gt;inquirer&lt;5.0,&gt;=2.10.0-&gt;lightning) (57.4.0)
+Collecting fastapi[all]
+  Using cached fastapi-0.89.1-py3-none-any.whl (55 kB)
+  Using cached fastapi-0.89.0-py3-none-any.whl (55 kB)
+Collecting ujson!=4.0.2,!=4.1.0,!=4.2.0,!=4.3.0,!=5.0.0,!=5.1.0,&gt;=4.0.1
+  Using cached ujson-5.7.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (52 kB)
+Collecting python-multipart&gt;=0.0.5
+  Using cached python_multipart-0.0.5-py3-none-any.whl
+Collecting httpx&gt;=0.23.0
+  Using cached httpx-0.23.3-py3-none-any.whl (71 kB)
+Collecting email-validator&gt;=1.1.1
+  Using cached email_validator-1.3.1-py2.py3-none-any.whl (22 kB)
+Requirement already satisfied: dnspython&gt;=1.15.0 in /usr/local/lib/python3.8/dist-packages (from email-validator&gt;=1.1.1-&gt;fastapi&lt;0.89.0-&gt;lightning) (2.3.0)
+Collecting httpcore&lt;0.17.0,&gt;=0.15.0
+  Using cached httpcore-0.16.3-py3-none-any.whl (69 kB)
+Requirement already satisfied: rfc3986[idna2008]&lt;2,&gt;=1.3 in /usr/local/lib/python3.8/dist-packages (from httpx&gt;=0.23.0-&gt;fastapi&lt;0.89.0-&gt;lightning) (1.5.0)
+Collecting uvloop!=0.15.0,!=0.15.1,&gt;=0.14.0
+  Using cached uvloop-0.17.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (4.6 MB)
+Collecting watchfiles&gt;=0.13
+  Using cached watchfiles-0.18.1-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.2 MB)
+Collecting python-dotenv&gt;=0.13
+  Using cached python_dotenv-0.21.1-py3-none-any.whl (19 kB)
+Collecting httptools&gt;=0.5.0
+  Using cached httptools-0.5.0-cp38-cp38-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (427 kB)
 Building wheels for collected packages: pytorch
   <span class=" -Color -Color-Bold -Color-Bold-Red">error</span>: <span class=" -Color -Color-Bold">subprocess-exited-with-error</span>
   
@@ -759,25 +742,25 @@ Building wheels for collected packages: pytorch
 <span class=" -Color -Color-Red">  ERROR: Failed building wheel for pytorch</span>
 ?25h  Running setup.py clean for pytorch
 Failed to build pytorch
-<span class=" -Color -Color-Red">ERROR: Could not build wheels for pytorch, which is required to install pyproject.toml-based projects</span>
-Mounted at /content/drive
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="nn">&lt;ipython-input-1-d3ad2ad8900a&gt;</span> in <span class="ni">&lt;cell line: 9&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="c1"># !pip install -r &#39;/content/drive/MyDrive/bootcamp_datasets/forecasting_requirements.txt&#39;</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> 
-<span class="ne">----&gt; </span><span class="mi">9</span> <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+Installing collected packages: pytorch, python-editor, websockets, websocket-client, uvloop, ujson, soupsieve, sniffio, readchar, python-multipart, python-dotenv, pyjwt, pygments, packaging, orjson, ordered-set, mdurl, itsdangerous, httptools, h11, email-validator, blessed, uvicorn, markdown-it-py, inquirer, deepdiff, dateutils, croniter, beautifulsoup4, arrow, anyio, watchfiles, starlette, rich, httpcore, starsessions, httpx, fastapi, lightning-cloud, lightning
+  <span class=" -Color -Color-Bold -Color-Bold-Red">error</span>: <span class=" -Color -Color-Bold">subprocess-exited-with-error</span>
+  
+  <span class=" -Color -Color-Red">×</span> <span class=" -Color -Color-Green">Running setup.py install for pytorch</span> did not run successfully.
+  <span class=" -Color -Color-Red">│</span> exit code: <span class=" -Color -Color-Bold -Color-Bold-Cyan">1</span>
+  <span class=" -Color -Color-Red">╰─&gt;</span> See above for output.
+  
+  <span class=" -Color -Color-Bold -Color-Bold-Magenta">note</span>: This error originates from a subprocess, and is likely not a problem with pip.
+  Running setup.py install for pytorch ... ?25l?25herror
+<span class=" -Color -Color-Bold -Color-Bold-Red">error</span>: <span class=" -Color -Color-Bold">legacy-install-failure</span>
 
-<span class="ne">NameError</span>: name &#39;warnings&#39; is not defined
+<span class=" -Color -Color-Red">×</span> Encountered error while trying to install package.
+<span class=" -Color -Color-Red">╰─&gt;</span> pytorch
+
+<span class=" -Color -Color-Bold -Color-Bold-Magenta">note</span>: This is an issue with the package mentioned above, not pip.
+<span class=" -Color -Color-Bold -Color-Bold-Cyan">hint</span>: See above for output from the failure.
 </pre></div>
 </div>
 </div>
-</div>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>please restart the run-time after the installations</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -808,7 +791,7 @@ Mounted at /content/drive
 </div>
 </section>
 <section id="load-data">
-<h2>Load Data<a class="headerlink" href="#load-data" title="Permalink to this heading">#</a></h2>
+<h2>Load Data<a class="headerlink" href="#load-data" title="Link to this heading">#</a></h2>
 <p>PyTorch forecasting provides the ability to generate a synthetic dataset using the <code class="docutils literal notranslate"><span class="pre">generate_ar_data</span></code> function. The generated data consists of 100 time series each with 400 time steps. Each time series is generated with the specified seasonality, trend and level along with a noise term. This is the time series we will be working with throughout the demo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -820,8 +803,7 @@ Mounted at /content/drive
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-
-  <div id="df-c1578812-346d-45b7-a695-f8de08bc79c2">
+  <div id="df-8b082819-8244-45b7-99b2-a29fcf4903f9">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -886,85 +868,18 @@ Mounted at /content/drive
   </tbody>
 </table>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-c1578812-346d-45b7-a695-f8de08bc79c2')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-8b082819-8244-45b7-99b2-a29fcf4903f9')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
-
+        
   <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
        width="24px">
     <path d="M0 0h24v24H0V0z" fill="none"/>
     <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
   </svg>
       </button>
-
-
-
-    <div id="df-040bf7e7-cccb-476f-b079-c8d235f8bb45">
-      <button class="colab-df-quickchart" onclick="quickchart('df-040bf7e7-cccb-476f-b079-c8d235f8bb45')"
-              title="Suggest charts."
-              style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
-</svg>
-      </button>
-    </div>
-
-<style>
-  .colab-df-quickchart {
-    background-color: #E8F0FE;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: #1967D2;
-    height: 32px;
-    padding: 0 0 0 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: #E2EBFA;
-    box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: #174EA6;
-  }
-
-  [theme=dark] .colab-df-quickchart {
-    background-color: #3B4455;
-    fill: #D2E3FC;
-  }
-
-  [theme=dark] .colab-df-quickchart:hover {
-    background-color: #434B5C;
-    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-    filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-    fill: #FFFFFF;
-  }
-</style>
-
-    <script>
-      async function quickchart(key) {
-        const containerElement = document.querySelector('#' + key);
-        const charts = await google.colab.kernel.invokeFunction(
-            'suggestCharts', [key], {});
-      }
-    </script>
-
-      <script>
-
-function displayQuickchartButton(domScope) {
-  let quickchartButtonEl =
-    domScope.querySelector('#df-040bf7e7-cccb-476f-b079-c8d235f8bb45 button.colab-df-quickchart');
-  quickchartButtonEl.style.display =
-    google.colab.kernel.accessAllowed ? 'block' : 'none';
-}
-
-        displayQuickchartButton(document);
-      </script>
-      <style>
+      
+  <style>
     .colab-df-container {
       display:flex;
       flex-wrap:wrap;
@@ -1004,12 +919,12 @@ function displayQuickchartButton(domScope) {
 
       <script>
         const buttonEl =
-          document.querySelector('#df-c1578812-346d-45b7-a695-f8de08bc79c2 button.colab-df-convert');
+          document.querySelector('#df-8b082819-8244-45b7-99b2-a29fcf4903f9 button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-c1578812-346d-45b7-a695-f8de08bc79c2');
+          const element = document.querySelector('#df-8b082819-8244-45b7-99b2-a29fcf4903f9');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -1028,7 +943,7 @@ function displayQuickchartButton(domScope) {
       </script>
     </div>
   </div>
-</div></div>
+  </div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1050,7 +965,7 @@ function displayQuickchartButton(domScope) {
     <span class="n">time_varying_unknown_reals</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">],</span>
     <span class="n">max_encoder_length</span><span class="o">=</span><span class="n">context_length</span><span class="p">,</span>
     <span class="n">max_prediction_length</span><span class="o">=</span><span class="n">prediction_length</span><span class="p">,</span>
-
+    
 <span class="p">)</span>
 
 <span class="n">validation</span> <span class="o">=</span> <span class="n">TimeSeriesDataSet</span><span class="o">.</span><span class="n">from_dataset</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">min_prediction_idx</span><span class="o">=</span><span class="n">training_cutoff</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
@@ -1063,9 +978,9 @@ function displayQuickchartButton(domScope) {
 </div>
 </section>
 <section id="model">
-<h2>Model<a class="headerlink" href="#model" title="Permalink to this heading">#</a></h2>
+<h2>Model<a class="headerlink" href="#model" title="Link to this heading">#</a></h2>
 <section id="nhits-overview">
-<h3>NHITS Overview<a class="headerlink" href="#nhits-overview" title="Permalink to this heading">#</a></h3>
+<h3>NHITS Overview<a class="headerlink" href="#nhits-overview" title="Link to this heading">#</a></h3>
 <p align="center">
 <img width="750" alt="NHITS Architecture" src="https://user-images.githubusercontent.com/34798787/156445832-58e5e082-5003-4859-92f6-cb029ddbd378.png">
 </p>
@@ -1079,7 +994,7 @@ function displayQuickchartButton(domScope) {
 </ul>
 </section>
 <section id="model-definition">
-<h3>Model Definition<a class="headerlink" href="#model-definition" title="Permalink to this heading">#</a></h3>
+<h3>Model Definition<a class="headerlink" href="#model-definition" title="Link to this heading">#</a></h3>
 <p>Using the Pytorch Forecasting package, an NHITS model can easily be initialized using the <code class="docutils literal notranslate"><span class="pre">NHiTS.from_dataset</span></code> method. This method constructs a NHITS model using the characteristics of the TimeSeriesDataset that it is operating on. The arguments of the method include:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">dataset</span></code>: (TimeSeriesDataset) time series dataset</p></li>
@@ -1110,7 +1025,7 @@ function displayQuickchartButton(domScope) {
 </section>
 </section>
 <section id="training-and-validation">
-<h2>Training and Validation<a class="headerlink" href="#training-and-validation" title="Permalink to this heading">#</a></h2>
+<h2>Training and Validation<a class="headerlink" href="#training-and-validation" title="Link to this heading">#</a></h2>
 <p>We first define a pytorch lighting trainer which encapsulates the training process and allows us to easily implement a training and validation loop with the specified parameters. The arguments to the trainer include:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">max_epochs</span></code>: (Optional[int]) – Stop training once this number of epochs is reached.</p></li>
@@ -1138,12 +1053,35 @@ function displayQuickchartButton(domScope) {
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.8/dist-packages/pytorch_lightning/trainer/connectors/accelerator_connector.py:467: LightningDeprecationWarning: Setting `Trainer(gpus=1)` is deprecated in v1.7 and will be removed in v2.0. Please use `Trainer(accelerator=&#39;gpu&#39;, devices=1)` instead.
+  rank_zero_deprecation(
+INFO:pytorch_lightning.utilities.rank_zero:GPU available: True (cuda), used: True
+INFO:pytorch_lightning.utilities.rank_zero:TPU available: False, using: 0 TPU cores
+INFO:pytorch_lightning.utilities.rank_zero:IPU available: False, using: 0 IPUs
+INFO:pytorch_lightning.utilities.rank_zero:HPU available: False, using: 0 HPUs
+INFO:pytorch_lightning.accelerators.cuda:LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+INFO:pytorch_lightning.callbacks.model_summary:
+  | Name            | Type                 | Params
+---------------------------------------------------------
+0 | loss            | MQF2DistributionLoss | 5.1 K 
+1 | logging_metrics | ModuleList           | 0     
+2 | embeddings      | MultiEmbedding       | 0     
+3 | model           | NHiTS                | 971 K 
+---------------------------------------------------------
+976 K     Trainable params
+0         Non-trainable params
+976 K     Total params
+3.907     Total estimated model params size (MB)
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "38b1820071504378bf56e2e4d21ab633"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "01bf76839f56470baa6ee1cf73da72a8"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "e4d94f44e4e24999ac5163137d0b65a9"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "52091a10684446468975f3cd801cbb58"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "154eb3a986de406f9c7027c771932bb2"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "790611fc695c4b67a9cb7b702c0095a8"}</script></div>
 </div>
 </section>
 <section id="visualize-forecasts">
-<h2>Visualize Forecasts<a class="headerlink" href="#visualize-forecasts" title="Permalink to this heading">#</a></h2>
+<h2>Visualize Forecasts<a class="headerlink" href="#visualize-forecasts" title="Link to this heading">#</a></h2>
 <section id="quantile-forecasts">
-<h3>Quantile Forecasts<a class="headerlink" href="#quantile-forecasts" title="Permalink to this heading">#</a></h3>
+<h3>Quantile Forecasts<a class="headerlink" href="#quantile-forecasts" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_model_path</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">checkpoint_callback</span><span class="o">.</span><span class="n">best_model_path</span>
@@ -1176,7 +1114,7 @@ function displayQuickchartButton(domScope) {
 </div>
 </section>
 <section id="interpretable-forecasts">
-<h3>Interpretable Forecasts<a class="headerlink" href="#interpretable-forecasts" title="Permalink to this heading">#</a></h3>
+<h3>Interpretable Forecasts<a class="headerlink" href="#interpretable-forecasts" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>  <span class="c1"># plot 10 examples</span>
@@ -1191,7 +1129,7 @@ function displayQuickchartButton(domScope) {
 </div>
 </section>
 <section id="sampling-forecasts">
-<h3>Sampling Forecasts<a class="headerlink" href="#sampling-forecasts" title="Permalink to this heading">#</a></h3>
+<h3>Sampling Forecasts<a class="headerlink" href="#sampling-forecasts" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># sample 500 paths</span>
@@ -1242,7 +1180,7 @@ Mean(Var(sample)) = 0.1246
 </section>
 </section>
 <section id="quantitative-results">
-<h2>Quantitative Results<a class="headerlink" href="#quantitative-results" title="Permalink to this heading">#</a></h2>
+<h2>Quantitative Results<a class="headerlink" href="#quantitative-results" title="Link to this heading">#</a></h2>
 <p>In order to quantitatively assess the performance of the model we can use the <a class="reference external" href="https://en.wikipedia.org/wiki/Symmetric_mean_absolute_percentage_error">Symmetric Mean Absolute Percentage Error</a>. Pytorch Forecasting includes this and other metrics in the <code class="docutils literal notranslate"><span class="pre">pytorch_forecasting.metrics</span></code> module. As a baseline, we can also define a naive forecasting model, <code class="docutils literal notranslate"><span class="pre">pytorch_forecasting.Baseline</span></code>, that produces forecasts by repeating the last known value in the time series. Unsurprisingly, the NHITS model is able to outperform this naive baseline.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1291,11 +1229,10 @@ Mean(Var(sample)) = 0.1246
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="nbeats_electricity.html"
@@ -1315,10 +1252,7 @@ Mean(Var(sample)) = 0.1246
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1326,6 +1260,7 @@ Mean(Var(sample)) = 0.1246
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1369,6 +1304,7 @@ By Vector Institute
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright Vector Institute.
@@ -1395,8 +1331,8 @@ By Vector Institute
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>
