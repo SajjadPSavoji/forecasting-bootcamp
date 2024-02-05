@@ -1,0 +1,60 @@
+root: README
+entries:
+- file: datasets/datasets_intro
+  title: Datasets intro
+  entries:
+  - file: datasets/boc_exchange/prepare_boc_exchange
+    title: Prepare boc exchange
+  - file: datasets/can_climate_data/data_explore
+    title: Data explore
+    entries:
+    - file: datasets/can_climate_data/load_raw_data
+      title: Load raw data
+    - file: datasets/can_climate_data/README
+      title: Readme
+  - file: datasets/m5/load_m5_dataset
+    title: Load m5 dataset
+- file: demos/demo1_prophet_neuralprophet_testset
+  title: Demo1 prophet neuralprophet testset
+  entries:
+  - file: demos/demo2_pytorch_forecasting
+    title: Demo2 pytorch forecasting
+  - file: demos/demo2_pytorch_forecasting-NBEATS-CPI
+    title: Demo2 pytorch forecasting-nbeats-cpi
+  - file: demos/demo3_rolling_cv_prophet
+    title: Demo3 rolling cv prophet
+  - file: demos/README
+    title: Readme
+- file: external_demos/m5-competition-eda-models
+  title: M5-competition-eda-models
+  entries:
+  - file: external_demos/readme
+    title: Readme
+  - file: external_demos/temporal_fusion_transformer_sales_demand
+    title: Temporal fusion transformer sales demand
+  - file: external_demos/time-series-forecasting-eda-fe-modelling
+    title: Time-series-forecasting-eda-fe-modelling
+- file: intro_to_forecasting/intro_time_series
+  title: Intro time series
+  entries:
+  - file: intro_to_forecasting/intro_time_series_2
+    title: Intro time series 2
+  - file: intro_to_forecasting/README
+    title: Readme
+- file: multivariate_demos/deepar_electricty
+  title: Deepar electricty
+  entries:
+  - file: multivariate_demos/nbeats_electricity
+    title: Nbeats electricity
+  - file: multivariate_demos/nhits_quantile
+    title: Nhits quantile
+  - file: multivariate_demos/README
+    title: Readme
+- file: multivariate_lstf_demos/autoformer_traffic
+  title: Autoformer traffic
+  entries:
+  - file: multivariate_lstf_demos/nhits_traffic
+    title: Nhits traffic
+  - file: multivariate_lstf_demos/README
+    title: Readme
+
